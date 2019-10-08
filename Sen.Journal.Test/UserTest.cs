@@ -7,14 +7,18 @@ namespace Sen.Journal.Test
     public class UserTest
     {
         [Theory]
-        [InlineData("john.doe@gmail.com", "JohnDoe", "peanutbuttereggdirt")]
+        [InlineData(
+            "john.doe@gmail.com",
+            "peanutbuttereggdirt",
+            "JohnDoe"
+        )]
         public void WhenInstantiatingAUser_WithValidRequiredArgs_AUserIsReturned(
             string email,
-            string username,
-            string password
+            string password,
+            string username
         )
         {
-            var user = new User(username, email, password);
+            var user = new User(email, password, username);
 
             user.Should().NotBeNull();
             user.Email.Should().Be(email);

@@ -6,7 +6,7 @@
         public string Password { get; }
         public string Username { get; }
 
-        public User(string username, string email, string password)
+        public User(string email, string password, string username)
         {
             Email = email;
             Password = password;
