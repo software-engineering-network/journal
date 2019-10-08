@@ -3,17 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sen.Journal.Domain", "Sen.Journal.Domain\Sen.Journal.Domain.csproj", "{F01CC84E-D4F8-42BF-B339-DD0EB0C6D784}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sen.Journal.Domain", "Sen.Journal.Domain\Sen.Journal.Domain.csproj", "{F01CC84E-D4F8-42BF-B339-DD0EB0C6D784}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sen.Journal.Test", "Sen.Journal.Test\Sen.Journal.Test.csproj", "{CE36E382-5021-4E23-9EF4-8B971D23452B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sen.Journal.Test", "Sen.Journal.Test\Sen.Journal.Test.csproj", "{CE36E382-5021-4E23-9EF4-8B971D23452B}"
 EndProject
 Global
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {F42FAF5C-EB2A-4C28-B230-4497D71F558A}
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|x64 = Debug|x64
@@ -47,5 +41,11 @@ Global
 		{CE36E382-5021-4E23-9EF4-8B971D23452B}.Release|x64.Build.0 = Release|Any CPU
 		{CE36E382-5021-4E23-9EF4-8B971D23452B}.Release|x86.ActiveCfg = Release|Any CPU
 		{CE36E382-5021-4E23-9EF4-8B971D23452B}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F42FAF5C-EB2A-4C28-B230-4497D71F558A}
 	EndGlobalSection
 EndGlobal
