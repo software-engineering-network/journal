@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sen.Journal.Domain", "Sen.J
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sen.Journal.Test", "Sen.Journal.Test\Sen.Journal.Test.csproj", "{CE36E382-5021-4E23-9EF4-8B971D23452B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Domain", "1. Domain", "{39DBE518-F7C9-4F98-B332-B7CDE949E251}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Shell", "4. Shell", "{94A98E73-846F-41BE-8C55-82679A3CA6FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +48,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F01CC84E-D4F8-42BF-B339-DD0EB0C6D784} = {39DBE518-F7C9-4F98-B332-B7CDE949E251}
+		{CE36E382-5021-4E23-9EF4-8B971D23452B} = {94A98E73-846F-41BE-8C55-82679A3CA6FA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F42FAF5C-EB2A-4C28-B230-4497D71F558A}

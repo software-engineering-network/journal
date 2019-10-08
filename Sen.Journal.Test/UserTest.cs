@@ -103,6 +103,7 @@ namespace Sen.Journal.Test
             var user2 = User;
 
             user1.Should().Be(user2);
+            (user1 == user2).Should().BeTrue();
         }
     }
 }
