@@ -4,9 +4,9 @@
     {
         public string Email { get; }
         public string Password { get; }
-        public string Username { get; }
+        public Username Username { get; }
 
-        public User(string email, string password, string username)
+        public User(string email, string password, Username username)
         {
             Email = email;
             Password = password;
