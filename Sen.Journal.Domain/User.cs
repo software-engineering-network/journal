@@ -2,13 +2,13 @@
 {
     public class User
     {
-        public string Email { get; }
-        public string Password { get; }
+        public EmailAddress EmailAddress { get; }
+        public Password Password { get; }
         public Username Username { get; }
 
-        public User(string email, string password, Username username)
+        public User(EmailAddress emailAddress, Password password, Username username)
         {
-            Email = email;
+            EmailAddress = emailAddress;
             Password = password;
             Username = username;
         }

@@ -13,20 +13,22 @@ namespace Sen.Journal.Test
             "JohnDoe"
         )]
         public void WhenInstantiatingAUser_WithValidRequiredArgs_ItReturnsAUser(
-            string email,
-            string password,
+            string primitiveEmailAddress,
+            string primtivePassword,
             string primitiveUsername
         )
         {
+            var emailAddress = new EmailAddress(primitiveEmailAddress);
+            var password = new Password(primtivePassword);
             var username = new Username(primitiveUsername);
             var user = new User(
-                email,
+                emailAddress,
                 password,
                 username
             );
 
             user.Should().NotBeNull();
-            user.Email.Should().Be(email);
+            user.EmailAddress.Should().Be(emailAddress);
             user.Password.Should().Be(password);
             user.Username.Should().Be(username);
         }
