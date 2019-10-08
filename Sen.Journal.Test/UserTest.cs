@@ -12,16 +12,23 @@ namespace Sen.Journal.Test
             "peanutbuttereggdirt",
             "JohnDoe"
         )]
-        public void WhenInstantiatingAUser_WithValidRequiredArgs_AUserIsReturned(
-            string email,
-            string password,
-            string username
+        public void WhenInstantiatingAUser_WithValidRequiredArgs_ItReturnsAUser(
+            string primitiveEmailAddress,
+            string primitivePassword,
+            string primitiveUsername
         )
         {
-            var user = new User(email, password, username);
+            var emailAddress = new EmailAddress(primitiveEmailAddress);
+            var password = new Password(primitivePassword);
+            var username = new Username(primitiveUsername);
+            var user = new User(
+                emailAddress,
+                password,
+                username
+            );
 
             user.Should().NotBeNull();
-            user.Email.Should().Be(email);
+            user.EmailAddress.Should().Be(emailAddress);
             user.Password.Should().Be(password);
             user.Username.Should().Be(username);
         }
