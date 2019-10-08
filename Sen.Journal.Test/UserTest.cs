@@ -14,12 +14,12 @@ namespace Sen.Journal.Test
         )]
         public void WhenInstantiatingAUser_WithValidRequiredArgs_ItReturnsAUser(
             string primitiveEmailAddress,
-            string primtivePassword,
+            string primitivePassword,
             string primitiveUsername
         )
         {
             var emailAddress = new EmailAddress(primitiveEmailAddress);
-            var password = new Password(primtivePassword);
+            var password = new Password(primitivePassword);
             var username = new Username(primitiveUsername);
             var user = new User(
                 emailAddress,
