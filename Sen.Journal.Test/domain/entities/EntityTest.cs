@@ -8,31 +8,16 @@ namespace Sen.Journal.Test
     {
         public Entity Entity { get; set; }
 
-        private static Entity CreatePersonFromPrimitives(
-            ulong id,
-            string emailAddress,
-            string password,
-            string username
-        )
-        {
-            return new Person(
-                new Id(id),
-                new EmailAddress(emailAddress),
-                new Password(password),
-                new Username(username)
-            );
-        }
-
         [Fact]
         public void WhenCheckingForEquality_ItMatchesIdentifierEquality()
         {
-            var person1 = CreatePersonFromPrimitives(
+            var person1 = TestObjectFactory.CreatePerson(
                 1,
                 "john.doe@gmail.com",
                 "alligator1",
                 "JohnDoe"
             );
-            var person2 = CreatePersonFromPrimitives(
+            var person2 = TestObjectFactory.CreatePerson(
                 1,
                 "jane.doe@gmail.com",
                 "alligator1",

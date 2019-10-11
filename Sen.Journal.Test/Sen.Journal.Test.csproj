@@ -15,10 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Sen.Journal.Domain\Sen.Journal.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="infrastructure-in-memory\" />
+    <ProjectReference Include="..\Sen.Journal.Infrastructure.InMemory\Sen.Journal.Infrastructure.InMemory.csproj" />
   </ItemGroup>
 
 </Project>
