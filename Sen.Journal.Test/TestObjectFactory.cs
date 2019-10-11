@@ -1,4 +1,6 @@
-﻿using Sen.Journal.Domain;
+﻿using System.Collections.Generic;
+using Sen.Journal.Domain;
+using Sen.Journal.Infrastructure.InMemory;
 
 namespace Sen.Journal.Test
 {
@@ -20,6 +22,23 @@ namespace Sen.Journal.Test
         }
 
         public static Person CreateJohnDoe(ulong id = 0)
-            => CreatePerson(id, "john.doe@gmail.com", "peanutbuttereggdirt", "JohnDoe");
+        {
+            return CreatePerson(
+                id,
+                "john.doe@gmail.com",
+                "peanutbuttereggdirt",
+                "JohnDoe"
+            );
+        }
+
+        public static IPersonRepository CreatePersonRepository(params Person[] seed)
+        {
+            var personRepository = new PersonRepository();
+
+            foreach (var person in seed)
+                personRepository.Create(person);
+
+            return personRepository;
+        }
     }
 }
