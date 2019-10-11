@@ -4,7 +4,7 @@ using Xunit;
 
 namespace Sen.Journal.Test
 {
-    public class UserTest
+    public class PersonTest
     {
         [Theory]
         [InlineData(
@@ -13,7 +13,7 @@ namespace Sen.Journal.Test
             "peanutbuttereggdirt",
             "JohnDoe"
         )]
-        public void WhenInstantiatingAUser_WithValidRequiredArgs_ItReturnsAUser(
+        public void WhenInstantiatingAPerson_WithValidRequiredArgs_ItReturnsAPerson(
             ulong primitiveId,
             string primitiveEmailAddress,
             string primitivePassword,
@@ -24,17 +24,17 @@ namespace Sen.Journal.Test
             var emailAddress = new EmailAddress(primitiveEmailAddress);
             var password = new Password(primitivePassword);
             var username = new Username(primitiveUsername);
-            var user = new User(
+            var person = new Person(
                 id,
                 emailAddress,
                 password,
                 username
             );
 
-            user.Should().NotBeNull();
-            user.EmailAddress.Should().Be(emailAddress);
-            user.Password.Should().Be(password);
-            user.Username.Should().Be(username);
+            person.Should().NotBeNull();
+            person.EmailAddress.Should().Be(emailAddress);
+            person.Password.Should().Be(password);
+            person.Username.Should().Be(username);
         }
     }
 }

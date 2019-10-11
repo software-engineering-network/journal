@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Sen.Journal.Domain\Sen.Journal.Domain.csproj" />
+    <ProjectReference Include="..\Sen.Journal.Infrastructure.InMemory\Sen.Journal.Infrastructure.InMemory.csproj" />
   </ItemGroup>
 
 </Project>

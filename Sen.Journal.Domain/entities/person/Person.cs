@@ -1,12 +1,12 @@
 ﻿namespace Sen.Journal.Domain
 {
-    public class User : Entity
+    public class Person : Entity
     {
         public EmailAddress EmailAddress { get; }
         public Password Password { get; }
         public Username Username { get; }
 
-        public User(
+        public Person(
             Id id,
             EmailAddress emailAddress,
             Password password,
