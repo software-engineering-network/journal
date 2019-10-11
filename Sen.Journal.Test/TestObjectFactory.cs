@@ -1,11 +1,30 @@
-﻿using System.Collections.Generic;
-using Sen.Journal.Domain;
+﻿using Sen.Journal.Domain;
+using Sen.Journal.Domain.storage;
 using Sen.Journal.Infrastructure.InMemory;
 
 namespace Sen.Journal.Test
 {
     public class TestObjectFactory
     {
+        public static Domain.Journal CreateJournal(
+            ulong id,
+            string journalTitle
+        )
+        {
+            return new Domain.Journal(
+                new Id(id),
+                new JournalTitle(journalTitle)
+            );
+        }
+
+        public static Domain.Journal CreateMusicJournal(ulong id = 0)
+        {
+            return CreateJournal(
+                id,
+                "Music Journal"
+            );
+        }
+
         public static Person CreatePerson(
             ulong id,
             string emailAddress,
@@ -31,7 +50,7 @@ namespace Sen.Journal.Test
             );
         }
 
-        public static IPersonRepository CreatePersonRepository(params Person[] seed)
+        public static IRepository<Person> CreatePersonRepository(params Person[] seed)
         {
             var personRepository = new PersonRepository();
 
