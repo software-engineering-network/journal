@@ -7,20 +7,26 @@ namespace Sen.Journal.Test
     public class JournalTest
     {
         [Theory]
-        [InlineData(1, "Music Journal")]
+        [InlineData(
+            1,
+            "Music Journal"
+        )]
         public void WhenInstantiatingAJournal_WithValidArgs_ItReturnsAJournal(
-            ulong id,
-            string journalTitle
+            ulong primitiveId,
+            string primitiveJournalTitle
         )
         {
+            var id = new Id(primitiveId);
+            var journalTitle = new JournalTitle(primitiveJournalTitle);
+
             var journal = new Domain.Journal(
-                new Id(id),
-                new JournalTitle(journalTitle)
+                id,
+                journalTitle
             );
 
             journal.Should().NotBeNull();
-            journal.Id.Value.Should().Be(id);
-            journal.JournalTitle.Value.Should().Be(journalTitle);
+            journal.Id.Should().Be(id);
+            journal.JournalTitle.Should().Be(journalTitle);
         }
     }
 }
