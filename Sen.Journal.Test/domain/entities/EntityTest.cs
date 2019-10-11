@@ -8,14 +8,14 @@ namespace Sen.Journal.Test
     {
         public Entity Entity { get; set; }
 
-        private static Entity CreateUserFromPrimitives(
+        private static Entity CreatePersonFromPrimitives(
             ulong id,
             string emailAddress,
             string password,
             string username
         )
         {
-            return new User(
+            return new Person(
                 new Id(id),
                 new EmailAddress(emailAddress),
                 new Password(password),
@@ -26,31 +26,31 @@ namespace Sen.Journal.Test
         [Fact]
         public void WhenCheckingForEquality_ItMatchesIdentifierEquality()
         {
-            var user1 = CreateUserFromPrimitives(
+            var person1 = CreatePersonFromPrimitives(
                 1,
                 "john.doe@gmail.com",
                 "alligator1",
                 "JohnDoe"
             );
-            var user2 = CreateUserFromPrimitives(
+            var person2 = CreatePersonFromPrimitives(
                 1,
                 "jane.doe@gmail.com",
                 "alligator1",
                 "JaneDoe"
             );
 
-            user1.Should().Be(user2);
-            (user1 == user2).Should().BeTrue();
+            person1.Should().Be(person2);
+            (person1 == person2).Should().BeTrue();
         }
 
         [Fact]
         public void WhenCheckingForEquality_ItMatchesReferenceEquality()
         {
-            var user1 = Entity;
-            var user2 = Entity;
+            var person1 = Entity;
+            var person2 = Entity;
 
-            user1.Should().Be(user2);
-            (user1 == user2).Should().BeTrue();
+            person1.Should().Be(person2);
+            (person1 == person2).Should().BeTrue();
         }
     }
 }

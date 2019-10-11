@@ -17,4 +17,8 @@
     <ProjectReference Include="..\Sen.Journal.Domain\Sen.Journal.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="infrastructure-in-memory\" />
+  </ItemGroup>
+
 </Project>
