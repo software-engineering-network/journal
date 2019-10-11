@@ -4,20 +4,18 @@ using Xunit;
 
 namespace Sen.Journal.Test.Infrastructure.InMemory
 {
-    public class PersonRepositoryTest
+    public class InMemoryRepositoryTest
     {
         [Fact]
-        public void WhenCreatingAPerson_WithValidArgs_ItCreatesAndReturnsAPerson()
+        public void WhenCreatingAnEntity_WithValidArgs_ItCreatesAndReturnsAnEntity()
         {
             var johnDoe = TestObjectFactory.CreateJohnDoe();
             var personRepository = new PersonRepository();
 
             var johnDoeFromStorage = personRepository.Create(johnDoe);
 
+            johnDoeFromStorage.Should().NotBeNull();
             johnDoeFromStorage.Id.Value.Should().Be(1);
-            johnDoeFromStorage.EmailAddress.Should().Be(johnDoe.EmailAddress);
-            johnDoeFromStorage.Password.Should().Be(johnDoe.Password);
-            johnDoeFromStorage.Username.Should().Be(johnDoe.Username);
         }
     }
 }

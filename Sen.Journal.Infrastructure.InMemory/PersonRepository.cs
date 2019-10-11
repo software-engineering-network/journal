@@ -1,40 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Sen.Journal.Domain;
+﻿using Sen.Journal.Domain;
 
 namespace Sen.Journal.Infrastructure.InMemory
 {
-    public class PersonRepository : IPersonRepository
+    public class PersonRepository : InMemoryRepository<Person>
     {
-        private List<Person> _persons;
-
-        public PersonRepository()
-        {
-            _persons = new List<Person>();
-        }
-
-        public Person Create(Person person)
+        public override Person Create(Person entity)
         {
             var personToStore = new Person(
-                new Id(NextId(_persons)), 
-                new EmailAddress(person.EmailAddress.Value), 
-                new Password(person.Password.Value), 
-                new Username(person.Username.Value)
+                new Id(NextId(Entities)), 
+                new EmailAddress(entity.EmailAddress.Value), 
+                new Password(entity.Password.Value), 
+                new Username(entity.Username.Value)
             );
 
-            _persons.Add(personToStore);
+            Entities.Add(personToStore);
 
             return personToStore;
-        }
-
-        private ulong NextId(IEnumerable<Person> persons)
-        {
-            var maxId = _persons.Count == 0 
-                ? 0
-                : persons.Select(x => x.Id.Value).Max();
-
-            return ++maxId;
         }
     }
 }
