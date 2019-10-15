@@ -15,7 +15,7 @@ namespace Sen.Journal.Test.Infrastructure.InMemory
             var johnDoeFromStorage = personRepository.Create(johnDoe);
 
             johnDoeFromStorage.Should().NotBeNull();
-            johnDoeFromStorage.Id.Value.Should().Be(1);
+            johnDoeFromStorage.Id.Should().Be(1ul);
         }
     }
 }
