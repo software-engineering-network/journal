@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace Sen.Journal.Domain
 {
@@ -16,38 +17,37 @@ namespace Sen.Journal.Domain
         {
             if (ReferenceEquals(null, other))
                 return false;
+
+            // reference equality
             if (ReferenceEquals(this, other))
                 return true;
-            if (Value.Equals(other.Value))
-                return true;
 
+            // wrapped type equality
             return EqualityComparer<T>.Default.Equals(Value, other.Value);
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object other)
         {
-            if (ReferenceEquals(null, obj))
+            if (ReferenceEquals(null, other))
                 return false;
-            if (ReferenceEquals(this, obj))
+
+            // reference equality
+            if (ReferenceEquals(this, other))
                 return true;
 
-            if (obj.GetType() == this.GetType())
-                return Equals((TinyType<T>)obj);
-            if (obj.GetType() == Value.GetType())
-                return Value.Equals(obj);
+            // tiny type to wrapped type equality
+            if (other.GetType() == Value.GetType())
+                return Value.Equals(other);
 
+            // tiny type equality
+            if (other.GetType() == GetType())
+                return Equals((TinyType<T>)other);
+
+            // ¯\_(ツ)_/¯
             return false;
         }
 
-        public bool Equals(T other)
-        {
-            return Value.Equals(other);
-        }
-
-        public override int GetHashCode()
-        {
-            return EqualityComparer<T>.Default.GetHashCode(Value);
-        }
+        public override int GetHashCode() => EqualityComparer<T>.Default.GetHashCode(Value);
 
         public static bool operator ==(TinyType<T> left, TinyType<T> right)
         {
@@ -61,7 +61,5 @@ namespace Sen.Journal.Domain
         }
 
         public static bool operator !=(TinyType<T> left, TinyType<T> right) => !(left == right);
-
-        public override string ToString() => Value.ToString();
     }
 }

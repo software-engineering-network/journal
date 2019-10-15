@@ -26,10 +26,7 @@
             return Id == other.Id;
         }
 
-        public override int GetHashCode()
-        {
-            return (Id != null ? Id.GetHashCode() : 0);
-        }
+        public override int GetHashCode() => Id != null ? Id.GetHashCode() : 0;
 
         public static bool operator ==(Entity left, Entity right)
         {
