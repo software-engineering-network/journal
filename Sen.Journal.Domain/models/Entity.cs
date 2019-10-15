@@ -9,6 +9,28 @@
             Id = id;
         }
 
+        #region Operators
+
+        public static bool operator ==(Entity left, Entity right)
+        {
+            if (left is null && right is null)
+                return true;
+
+            if (left is null || right is null)
+                return false;
+
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(Entity left, Entity right)
+        {
+            return !(left == right);
+        }
+
+        #endregion
+
+        #region System.Object
+
         public override bool Equals(object obj)
         {
             var other = obj as Entity;
@@ -26,19 +48,11 @@
             return Id == other.Id;
         }
 
-        public override int GetHashCode() => Id != null ? Id.GetHashCode() : 0;
-
-        public static bool operator ==(Entity left, Entity right)
+        public override int GetHashCode()
         {
-            if (left is null && right is null)
-                return true;
-
-            if (left is null || right is null)
-                return false;
-
-            return left.Equals(right);
+            return Id != null ? Id.GetHashCode() : 0;
         }
 
-        public static bool operator !=(Entity left, Entity right) => !(left == right);
+        #endregion
     }
 }
