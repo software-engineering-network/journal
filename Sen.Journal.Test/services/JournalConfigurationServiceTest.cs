@@ -4,18 +4,18 @@ using Sen.Journal.Infrastructure.InMemory;
 using Sen.Journal.Services;
 using Xunit;
 
-namespace Sen.Journal.Test
+namespace Sen.Journal.Test.Services
 {
     public class JournalConfigurationServiceTest
     {
-        private IJournalConfigurationService CreateJournalConfigurationService()
+        private static IJournalConfigurationService CreateJournalConfigurationService()
         {
             var currentUserService = new JohnDoeCurrentUserProvider();
             var repository = new JournalRepository(currentUserService);
             return new JournalConfigurationService(repository);
         }
 
-        private CreateJournalArgs CreateCreateJournalArgs(
+        private static CreateJournalArgs CreateCreateJournalArgs(
             ulong personId = 1,
             string journalTitle = "Music Journal"
         )

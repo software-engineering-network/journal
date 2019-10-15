@@ -2,7 +2,7 @@
 using Sen.Journal.Domain;
 using Xunit;
 
-namespace Sen.Journal.Test
+namespace Sen.Journal.Test.Domain
 {
     public class JournalTest
     {
@@ -18,7 +18,7 @@ namespace Sen.Journal.Test
             string journalTitle
         )
         {
-            var journal = new Domain.Journal(
+            var journal = new Journal.Domain.Journal(
                 new Id(personId),
                 new JournalTitle(journalTitle),
                 new Id(id)

@@ -2,7 +2,7 @@ using FluentAssertions;
 using Sen.Journal.Domain;
 using Xunit;
 
-namespace Sen.Journal.Test
+namespace Sen.Journal.Test.Domain
 {
     public class TinyTypeTest
     {
