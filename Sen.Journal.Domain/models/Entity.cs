@@ -1,12 +1,19 @@
-﻿namespace Sen.Journal.Domain
+﻿using System;
+
+namespace Sen.Journal.Domain
 {
-    public abstract class Entity
+    public abstract class Entity : IAuditable
     {
+        private readonly IAuditable _auditable;
+
         public Id Id { get; }
 
         protected Entity(Id id)
         {
             Id = id;
+
+            var dateTimeProvider = new BasicDateTimeProvider();
+            _auditable = new Auditable(dateTimeProvider);
         }
 
         #region Operators
@@ -51,6 +58,25 @@
         public override int GetHashCode()
         {
             return Id != null ? Id.GetHashCode() : 0;
+        }
+
+        #endregion
+
+        #region IAuditable
+
+        public Person CreatedBy => _auditable.CreatedBy;
+        public DateTime? CreatedDate => _auditable.CreatedDate;
+        public Person ModifiedBy => _auditable.ModifiedBy;
+        public DateTime? ModifiedDate => _auditable.ModifiedDate;
+
+        public IAuditable Create(Person person)
+        {
+            return _auditable.Create(person);
+        }
+
+        public IAuditable Modify(Person person, DateTime? now = null)
+        {
+            return _auditable.Modify(person, now);
         }
 
         #endregion

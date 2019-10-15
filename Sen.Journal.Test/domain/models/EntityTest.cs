@@ -22,12 +22,7 @@ namespace Sen.Journal.Test
         [Fact]
         public void WhenCheckingForEquality_ItMatchesIdentifierEquality()
         {
-            var person1 = TestObjectFactory.CreatePerson(
-                1,
-                "john.doe@gmail.com",
-                "alligator1",
-                "JohnDoe"
-            );
+            var person1 = TestObjectFactory.CreateJohnDoe(1);
             var person2 = TestObjectFactory.CreatePerson(
                 1,
                 "jane.doe@gmail.com",
