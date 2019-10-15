@@ -9,19 +9,19 @@ namespace Sen.Journal.Test
         [Theory]
         [InlineData(
             1,
+            1,
             "Music Journal"
         )]
         public void WhenInstantiatingAJournal_WithValidArgs_ItReturnsAJournal(
-            ulong primitiveId,
-            string primitiveJournalTitle
+            ulong id,
+            ulong personId,
+            string journalTitle
         )
         {
-            var id = new Id(primitiveId);
-            var journalTitle = new JournalTitle(primitiveJournalTitle);
-
             var journal = new Domain.Journal(
-                id,
-                journalTitle
+                new Id(personId),
+                new JournalTitle(journalTitle),
+                new Id(id)
             );
 
             journal.Should().NotBeNull();

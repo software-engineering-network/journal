@@ -13,22 +13,18 @@ namespace Sen.Journal.Test
             "peanutbuttereggdirt",
             "JohnDoe"
         )]
-        public void WhenInstantiatingAPerson_WithValidRequiredArgs_ItReturnsAPerson(
-            ulong primitiveId,
-            string primitiveEmailAddress,
-            string primitivePassword,
-            string primitiveUsername
+        public void WhenInstantiatingAPerson_WithValidArgs_ItReturnsAPerson(
+            ulong id,
+            string emailAddress,
+            string password,
+            string username
         )
         {
-            var id = new Id(primitiveId);
-            var emailAddress = new EmailAddress(primitiveEmailAddress);
-            var password = new Password(primitivePassword);
-            var username = new Username(primitiveUsername);
             var person = new Person(
-                id,
-                emailAddress,
-                password,
-                username
+                new Id(id),
+                new EmailAddress(emailAddress),
+                new Password(password),
+                new Username(username)
             );
 
             person.Should().NotBeNull();

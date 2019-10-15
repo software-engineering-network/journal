@@ -1,5 +1,4 @@
 ﻿using Sen.Journal.Domain;
-using Sen.Journal.Domain.storage;
 using Sen.Journal.Infrastructure.InMemory;
 
 namespace Sen.Journal.Test
@@ -12,8 +11,9 @@ namespace Sen.Journal.Test
         )
         {
             return new Domain.Journal(
-                new Id(id),
-                new JournalTitle(journalTitle)
+                new Id(1), 
+                new JournalTitle(journalTitle),
+                new Id(id)
             );
         }
 

@@ -30,9 +30,18 @@ namespace Sen.Journal.Domain
                 return false;
             if (ReferenceEquals(this, obj))
                 return true;
-            if (obj.GetType() != this.GetType())
-                return false;
-            return Equals((TinyType<T>) obj);
+
+            if (obj.GetType() == this.GetType())
+                return Equals((TinyType<T>)obj);
+            if (obj.GetType() == Value.GetType())
+                return Value.Equals(obj);
+
+            return false;
+        }
+
+        public bool Equals(T other)
+        {
+            return Value.Equals(other);
         }
 
         public override int GetHashCode()
@@ -52,5 +61,7 @@ namespace Sen.Journal.Domain
         }
 
         public static bool operator !=(TinyType<T> left, TinyType<T> right) => !(left == right);
+
+        public override string ToString() => Value.ToString();
     }
 }

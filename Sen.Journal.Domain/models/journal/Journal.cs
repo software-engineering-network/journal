@@ -2,15 +2,16 @@
 {
     public class Journal : Entity
     {
-        public Id PersonId { get; set; }
+        public Id PersonId { get; }
         public JournalTitle JournalTitle { get; }
 
         public Journal(
-            Id id,
             Id personId,
-            JournalTitle journalTitle
+            JournalTitle journalTitle,
+            Id id = null
         ) : base(id)
         {
+            PersonId = personId;
             JournalTitle = journalTitle;
         }
     }

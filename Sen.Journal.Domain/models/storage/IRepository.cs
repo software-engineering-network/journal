@@ -1,4 +1,4 @@
-﻿namespace Sen.Journal.Domain.storage
+﻿namespace Sen.Journal.Domain
 {
     public interface IRepository<T>
     {
