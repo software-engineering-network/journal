@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 
 namespace Sen.Journal.Domain
 {
@@ -12,6 +11,8 @@ namespace Sen.Journal.Domain
         {
             Value = value;
         }
+
+        #region IEquatable<TinyType<T>>
 
         public bool Equals(TinyType<T> other)
         {
@@ -25,6 +26,30 @@ namespace Sen.Journal.Domain
             // wrapped type equality
             return EqualityComparer<T>.Default.Equals(Value, other.Value);
         }
+
+        #endregion
+
+        #region Operators
+
+        public static bool operator ==(TinyType<T> left, TinyType<T> right)
+        {
+            if (left is null && right is null)
+                return true;
+
+            if (left is null || right is null)
+                return false;
+
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(TinyType<T> left, TinyType<T> right)
+        {
+            return !(left == right);
+        }
+
+        #endregion
+
+        #region System.Object
 
         public override bool Equals(object other)
         {
@@ -41,25 +66,17 @@ namespace Sen.Journal.Domain
 
             // tiny type equality
             if (other.GetType() == GetType())
-                return Equals((TinyType<T>)other);
+                return Equals((TinyType<T>) other);
 
             // ¯\_(ツ)_/¯
             return false;
         }
 
-        public override int GetHashCode() => EqualityComparer<T>.Default.GetHashCode(Value);
-
-        public static bool operator ==(TinyType<T> left, TinyType<T> right)
+        public override int GetHashCode()
         {
-            if (left is null && right is null)
-                return true;
-
-            if (left is null || right is null)
-                return false;
-
-            return left.Equals(right);
+            return EqualityComparer<T>.Default.GetHashCode(Value);
         }
 
-        public static bool operator !=(TinyType<T> left, TinyType<T> right) => !(left == right);
+        #endregion
     }
 }
