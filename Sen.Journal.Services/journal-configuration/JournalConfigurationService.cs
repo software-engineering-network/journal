@@ -14,7 +14,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Services
         public Journal CreateJournal(CreateJournalArgs args)
         {
             var journal = new Journal(
-                new Id(args.PersonId),
+                new PersonId(args.PersonId),
                 new JournalTitle(args.JournalTitle)
             );
 
@@ -26,7 +26,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Services
             var journal = _journalRepository.Find(new Id(args.Id));
 
             journal.Update(
-                new Id(args.PersonId),
+                new PersonId(args.PersonId),
                 new JournalTitle(args.JournalTitle)
             );
 

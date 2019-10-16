@@ -21,7 +21,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.domain
         )
         {
             var person = new Person(
-                new Id(id),
+                new PersonId(id),
                 new EmailAddress(emailAddress),
                 new Password(password),
                 new Username(username)

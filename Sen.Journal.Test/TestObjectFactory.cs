@@ -10,7 +10,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test
         )
         {
             return new Journal(
-                new Id(1),
+                new PersonId(1),
                 new JournalTitle(journalTitle),
                 new Id(id)
             );
@@ -32,7 +32,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test
         )
         {
             return new Person(
-                new Id(id),
+                new PersonId(id),
                 new EmailAddress(emailAddress),
                 new Password(password),
                 new Username(username)

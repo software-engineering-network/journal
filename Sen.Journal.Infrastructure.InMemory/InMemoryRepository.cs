@@ -32,13 +32,13 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
             return Find(entity.Id);
         }
 
-        protected Id NextId(IEnumerable<T> persons)
+        protected ulong NextId(IEnumerable<T> persons)
         {
             var maxId = _entities.Count == 0
                 ? 0
                 : persons.Select(x => x.Id.Value).Max();
 
-            return new Id(++maxId);
+            return ++maxId;
         }
     }
 }

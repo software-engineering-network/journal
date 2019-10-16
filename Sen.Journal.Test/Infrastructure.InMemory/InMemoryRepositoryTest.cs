@@ -14,10 +14,10 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Infrastructure.InMe
             var currentUserProvider = new JohnDoeCurrentUserProvider();
             var personRepository = new PersonRepository(currentUserProvider);
 
-            var johnDoeFromStorage = personRepository.Create(johnDoe);
+            johnDoe = personRepository.Create(johnDoe);
 
-            johnDoeFromStorage.Should().NotBeNull();
-            johnDoeFromStorage.Id.Should().Be(1ul);
+            johnDoe.Should().NotBeNull();
+            johnDoe.Id.Should().Be(1ul);
         }
     }
 }

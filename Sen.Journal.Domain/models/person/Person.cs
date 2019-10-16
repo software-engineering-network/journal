@@ -2,6 +2,13 @@
 
 namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 {
+    public class PersonId : Id
+    {
+        public PersonId(ulong value) : base(value)
+        {
+        }
+    }
+
     public class Person : Entity
     {
         public EmailAddress EmailAddress { get; }
@@ -10,12 +17,12 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
         public List<Journal> Journals { get; }
 
         public Person(
-            Id id,
+            PersonId personId,
             EmailAddress emailAddress,
             Password password,
             Username username,
             IEnumerable<Journal> journals = null
-        ) : base(id)
+        ) : base(personId)
         {
             EmailAddress = emailAddress;
             Password = password;

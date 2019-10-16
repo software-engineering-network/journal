@@ -11,9 +11,9 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
         public override Person Create(Person entity)
         {
             var newPerson = new Person(
-                NextId(_entities), 
-                new EmailAddress(entity.EmailAddress.Value), 
-                new Password(entity.Password.Value), 
+                new PersonId(NextId(_entities)),
+                new EmailAddress(entity.EmailAddress.Value),
+                new Password(entity.Password.Value),
                 new Username(entity.Username.Value)
             );
 
