@@ -13,7 +13,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
             var newJournal = new Journal(
                 entity.PersonId,
                 entity.JournalTitle,
-                new Id(NextId(_entities))
+                new JournalId(NextId(_entities))
             );
 
             var currentUser = _currentUserProvider.GetCurrentUser();

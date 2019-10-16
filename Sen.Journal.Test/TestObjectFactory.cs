@@ -5,14 +5,14 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test
     public class TestObjectFactory
     {
         public static Journal CreateJournal(
-            ulong id,
+            ulong journalId,
             string journalTitle
         )
         {
             return new Journal(
                 new PersonId(1),
                 new JournalTitle(journalTitle),
-                new Id(id)
+                new JournalId(journalId)
             );
         }
 
@@ -25,14 +25,14 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test
         }
 
         public static Person CreatePerson(
-            ulong id,
+            ulong personId,
             string emailAddress,
             string password,
             string username
         )
         {
             return new Person(
-                new PersonId(id),
+                new PersonId(personId),
                 new EmailAddress(emailAddress),
                 new Password(password),
                 new Username(username)

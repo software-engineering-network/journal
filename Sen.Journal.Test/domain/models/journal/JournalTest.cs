@@ -21,7 +21,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.domain
             var journal = new Journal(
                 new PersonId(personId),
                 new JournalTitle(journalTitle),
-                new Id(id)
+                new JournalId(id)
             );
 
             journal.Should().NotBeNull();

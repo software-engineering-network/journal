@@ -2,13 +2,6 @@
 
 namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 {
-    public class PersonId : Id
-    {
-        public PersonId(ulong value) : base(value)
-        {
-        }
-    }
-
     public class Person : Entity
     {
         public EmailAddress EmailAddress { get; }

@@ -8,8 +8,8 @@
         public Journal(
             PersonId personId,
             JournalTitle journalTitle,
-            Id id = null
-        ) : base(id)
+            JournalId journalId = null
+        ) : base(journalId)
         {
             PersonId = personId;
             JournalTitle = journalTitle;
