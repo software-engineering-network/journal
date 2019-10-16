@@ -27,6 +27,20 @@ namespace Sen.Journal.Test.Services
             };
         }
 
+        private static UpdateJournalArgs CreateUpdateJournalArgs(
+            ulong id = 1,
+            ulong personId = 2,
+            string journalTitle = "Medical Journal"
+        )
+        {
+            return new UpdateJournalArgs
+            {
+                Id = id,
+                PersonId = personId,
+                JournalTitle = journalTitle
+            };
+        }
+
         [Fact]
         public void WhenCreatingAJournal_WithValidArgs_ItReturnsANewJournal()
         {
@@ -51,6 +65,22 @@ namespace Sen.Journal.Test.Services
 
             journal.CreatedBy.Should().NotBeNull();
             journal.CreatedDate.Should().NotBeNull();
+            journal.ModifiedBy.Should().NotBeNull();
+            journal.ModifiedDate.Should().NotBeNull();
+        }
+
+        [Fact]
+        public void WhenUpdatingAJournal_WithValidArgs_ItUpdatesTheAuditingData()
+        {
+            var service = CreateJournalConfigurationService();
+            var createArgs = CreateCreateJournalArgs();
+            var journal = service.CreateJournal(createArgs);
+
+            var updateArgs = CreateUpdateJournalArgs();
+            journal = service.UpdateJournal(updateArgs);
+
+            journal.PersonId.Should().Be(updateArgs.PersonId);
+            journal.JournalTitle.Should().Be(updateArgs.JournalTitle);
             journal.ModifiedBy.Should().NotBeNull();
             journal.ModifiedDate.Should().NotBeNull();
         }

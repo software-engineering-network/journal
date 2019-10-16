@@ -1,15 +1,11 @@
-﻿using System;
-using Sen.Journal.Domain;
+﻿using Sen.Journal.Domain;
 
 namespace Sen.Journal.Infrastructure.InMemory
 {
     public class JournalRepository : InMemoryRepository<Domain.Journal>
     {
-        private readonly ICurrentUserProvider _currentUserProvider;
-
-        public JournalRepository(ICurrentUserProvider currentUserProvider)
+        public JournalRepository(ICurrentUserProvider currentUserProvider) : base(currentUserProvider)
         {
-            _currentUserProvider = currentUserProvider;
         }
 
         public override Domain.Journal Create(Domain.Journal entity)
@@ -17,13 +13,13 @@ namespace Sen.Journal.Infrastructure.InMemory
             var newJournal = new Domain.Journal(
                 entity.PersonId,
                 entity.JournalTitle,
-                NextId(Entities)
+                NextId(_entities)
             );
 
             var currentUser = _currentUserProvider.GetCurrentUser();
             newJournal.Create(currentUser);
 
-            Entities.Add(newJournal);
+            _entities.Add(newJournal);
 
             return newJournal;
         }

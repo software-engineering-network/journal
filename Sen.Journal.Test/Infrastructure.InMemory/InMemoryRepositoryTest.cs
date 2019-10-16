@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using Sen.Journal.Domain;
 using Sen.Journal.Infrastructure.InMemory;
 using Xunit;
 
@@ -10,7 +11,8 @@ namespace Sen.Journal.Test.Infrastructure.InMemory
         public void WhenCreatingAnEntity_WithValidArgs_ItCreatesAndReturnsAnEntity()
         {
             var johnDoe = TestObjectFactory.CreateJohnDoe();
-            var personRepository = new PersonRepository();
+            var currentUserProvider = new JohnDoeCurrentUserProvider();
+            var personRepository = new PersonRepository(currentUserProvider);
 
             var johnDoeFromStorage = personRepository.Create(johnDoe);
 
