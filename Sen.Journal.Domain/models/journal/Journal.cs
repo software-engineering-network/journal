@@ -2,8 +2,8 @@
 {
     public class Journal : Entity
     {
-        public Id PersonId { get; }
-        public JournalTitle JournalTitle { get; }
+        public Id PersonId { get; private set; }
+        public JournalTitle JournalTitle { get; private set; }
 
         public Journal(
             Id personId,
@@ -13,6 +13,16 @@
         {
             PersonId = personId;
             JournalTitle = journalTitle;
+        }
+
+        public Journal Update(
+            Id personId,
+            JournalTitle journalTitle
+        )
+        {
+            PersonId = personId;
+            JournalTitle = journalTitle;
+            return this;
         }
     }
 }

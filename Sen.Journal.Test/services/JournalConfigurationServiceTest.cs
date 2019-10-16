@@ -1,33 +1,88 @@
 ﻿using FluentAssertions;
+using Sen.Journal.Domain;
 using Sen.Journal.Infrastructure.InMemory;
 using Sen.Journal.Services;
 using Xunit;
 
-namespace Sen.Journal.Test
+namespace Sen.Journal.Test.Services
 {
     public class JournalConfigurationServiceTest
     {
-        [Theory]
-        [InlineData(1, "Music Journal")]
-        public void WhenCreatingAJournal_WithValidArgs_ItReturnsANewJournal(
-            ulong personId,
-            string journalTitle
+        private static IJournalConfigurationService CreateJournalConfigurationService()
+        {
+            var currentUserService = new JohnDoeCurrentUserProvider();
+            var repository = new JournalRepository(currentUserService);
+            return new JournalConfigurationService(repository);
+        }
+
+        private static CreateJournalArgs CreateCreateJournalArgs(
+            ulong personId = 1,
+            string journalTitle = "Music Journal"
         )
         {
-            var repository = new JournalRepository();
-            var service = new JournalConfigurationService(repository);
-            var args = new CreateJournalArgs
+            return new CreateJournalArgs
             {
                 PersonId = personId,
                 JournalTitle = journalTitle
             };
+        }
+
+        private static UpdateJournalArgs CreateUpdateJournalArgs(
+            ulong id = 1,
+            ulong personId = 2,
+            string journalTitle = "Medical Journal"
+        )
+        {
+            return new UpdateJournalArgs
+            {
+                Id = id,
+                PersonId = personId,
+                JournalTitle = journalTitle
+            };
+        }
+
+        [Fact]
+        public void WhenCreatingAJournal_WithValidArgs_ItReturnsANewJournal()
+        {
+            var service = CreateJournalConfigurationService();
+            var args = CreateCreateJournalArgs();
 
             var journal = service.CreateJournal(args);
 
             journal.Should().NotBeNull();
             journal.Id.Should().NotBe(0);
-            journal.PersonId.Should().Be(personId);
-            journal.JournalTitle.Should().Be(journalTitle);
+            journal.PersonId.Should().Be(args.PersonId);
+            journal.JournalTitle.Should().Be(args.JournalTitle);
+        }
+
+        [Fact]
+        public void WhenCreatingAJournal_WithValidArgs_ItUpdatesTheAuditingData()
+        {
+            var service = CreateJournalConfigurationService();
+            var args = CreateCreateJournalArgs();
+
+            var journal = service.CreateJournal(args);
+
+            journal.CreatedBy.Should().NotBeNull();
+            journal.CreatedDate.Should().NotBeNull();
+            journal.ModifiedBy.Should().NotBeNull();
+            journal.ModifiedDate.Should().NotBeNull();
+        }
+
+        [Fact]
+        public void WhenUpdatingAJournal_WithValidArgs_ItUpdatesTheAuditingData()
+        {
+            var service = CreateJournalConfigurationService();
+            var createArgs = CreateCreateJournalArgs();
+            var journal = service.CreateJournal(createArgs);
+
+            var updateArgs = CreateUpdateJournalArgs();
+            journal = service.UpdateJournal(updateArgs);
+
+            journal.PersonId.Should().Be(updateArgs.PersonId);
+            journal.JournalTitle.Should().Be(updateArgs.JournalTitle);
+            journal.ModifiedBy.Should().NotBeNull();
+            journal.ModifiedDate.Should().NotBeNull();
         }
     }
 }

@@ -1,23 +1,22 @@
 ﻿using Sen.Journal.Domain;
-using Sen.Journal.Infrastructure.InMemory;
 
 namespace Sen.Journal.Test
 {
     public class TestObjectFactory
     {
-        public static Domain.Journal CreateJournal(
+        public static Journal.Domain.Journal CreateJournal(
             ulong id,
             string journalTitle
         )
         {
-            return new Domain.Journal(
-                new Id(1), 
+            return new Journal.Domain.Journal(
+                new Id(1),
                 new JournalTitle(journalTitle),
                 new Id(id)
             );
         }
 
-        public static Domain.Journal CreateMusicJournal(ulong id = 0)
+        public static Journal.Domain.Journal CreateMusicJournal(ulong id = 0)
         {
             return CreateJournal(
                 id,
@@ -48,16 +47,6 @@ namespace Sen.Journal.Test
                 "peanutbuttereggdirt",
                 "JohnDoe"
             );
-        }
-
-        public static IRepository<Person> CreatePersonRepository(params Person[] seed)
-        {
-            var personRepository = new PersonRepository();
-
-            foreach (var person in seed)
-                personRepository.Create(person);
-
-            return personRepository;
         }
     }
 }
