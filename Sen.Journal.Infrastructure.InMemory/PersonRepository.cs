@@ -1,6 +1,6 @@
-﻿using Sen.Journal.Domain;
+﻿using SoftwareEngineeringNetwork.JournalApplication.Domain;
 
-namespace Sen.Journal.Infrastructure.InMemory
+namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
 {
     public class PersonRepository : InMemoryRepository<Person>
     {

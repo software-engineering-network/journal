@@ -1,22 +1,22 @@
-﻿using Sen.Journal.Domain;
+﻿using SoftwareEngineeringNetwork.JournalApplication.Domain;
 
-namespace Sen.Journal.Test
+namespace SoftwareEngineeringNetwork.JournalApplication.Test
 {
     public class TestObjectFactory
     {
-        public static Journal.Domain.Journal CreateJournal(
+        public static Journal CreateJournal(
             ulong id,
             string journalTitle
         )
         {
-            return new Journal.Domain.Journal(
+            return new Journal(
                 new Id(1),
                 new JournalTitle(journalTitle),
                 new Id(id)
             );
         }
 
-        public static Journal.Domain.Journal CreateMusicJournal(ulong id = 0)
+        public static Journal CreateMusicJournal(ulong id = 0)
         {
             return CreateJournal(
                 id,

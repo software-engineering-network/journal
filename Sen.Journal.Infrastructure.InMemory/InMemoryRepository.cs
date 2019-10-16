@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Sen.Journal.Domain;
+using SoftwareEngineeringNetwork.JournalApplication.Domain;
 
-namespace Sen.Journal.Infrastructure.InMemory
+namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
 {
     public abstract class InMemoryRepository<T> : IRepository<T> where T : Entity
     {

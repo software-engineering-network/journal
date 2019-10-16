@@ -1,10 +1,10 @@
 ﻿using FluentAssertions;
-using Sen.Journal.Domain;
-using Sen.Journal.Infrastructure.InMemory;
-using Sen.Journal.Services;
+using SoftwareEngineeringNetwork.JournalApplication.Domain;
+using SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory;
+using SoftwareEngineeringNetwork.JournalApplication.Services;
 using Xunit;
 
-namespace Sen.Journal.Test.Services
+namespace SoftwareEngineeringNetwork.JournalApplication.Test.services
 {
     public class JournalConfigurationServiceTest
     {

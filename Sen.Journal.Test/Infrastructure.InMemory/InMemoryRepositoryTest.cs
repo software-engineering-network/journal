@@ -1,9 +1,9 @@
 ﻿using FluentAssertions;
-using Sen.Journal.Domain;
-using Sen.Journal.Infrastructure.InMemory;
+using SoftwareEngineeringNetwork.JournalApplication.Domain;
+using SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory;
 using Xunit;
 
-namespace Sen.Journal.Test.Infrastructure.InMemory
+namespace SoftwareEngineeringNetwork.JournalApplication.Test.Infrastructure.InMemory
 {
     public class InMemoryRepositoryTest
     {

@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>SoftwareEngineeringNetwork.JournalApplication.Domain</AssemblyName>
+    <RootNamespace>SoftwareEngineeringNetwork.JournalApplication.Domain</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

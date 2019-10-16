@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Sen.Journal.Domain
+namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 {
     public class Person : Entity
     {

@@ -1,16 +1,16 @@
-﻿using Sen.Journal.Domain;
+﻿using SoftwareEngineeringNetwork.JournalApplication.Domain;
 
-namespace Sen.Journal.Infrastructure.InMemory
+namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
 {
-    public class JournalRepository : InMemoryRepository<Domain.Journal>
+    public class JournalRepository : InMemoryRepository<Journal>
     {
         public JournalRepository(ICurrentUserProvider currentUserProvider) : base(currentUserProvider)
         {
         }
 
-        public override Domain.Journal Create(Domain.Journal entity)
+        public override Journal Create(Journal entity)
         {
-            var newJournal = new Domain.Journal(
+            var newJournal = new Journal(
                 entity.PersonId,
                 entity.JournalTitle,
                 NextId(_entities)

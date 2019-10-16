@@ -4,6 +4,10 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <AssemblyName>SoftwareEngineeringNetwork.JournalApplication.Test</AssemblyName>
+
+    <RootNamespace>SoftwareEngineeringNetwork.JournalApplication.Test</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

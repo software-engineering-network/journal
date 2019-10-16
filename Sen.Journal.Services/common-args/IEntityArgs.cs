@@ -1,4 +1,4 @@
-﻿namespace Sen.Journal.Services
+﻿namespace SoftwareEngineeringNetwork.JournalApplication.Services
 {
     public interface IEntityArgs
     {

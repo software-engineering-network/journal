@@ -1,4 +1,4 @@
-﻿namespace Sen.Journal.Domain
+﻿namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 {
     public class Id : TinyType<ulong>
     {

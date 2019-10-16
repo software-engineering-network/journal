@@ -6,6 +6,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory</AssemblyName>
+    <RootNamespace>SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory</RootNamespace>
   </PropertyGroup>
 
 </Project>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Sen.Journal.Domain
+namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 {
     public abstract class TinyType<T> : IEquatable<TinyType<T>>
     {

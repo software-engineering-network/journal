@@ -6,6 +6,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>SoftwareEngineeringNetwork.JournalApplication.Services</AssemblyName>
+    <RootNamespace>SoftwareEngineeringNetwork.JournalApplication.Services</RootNamespace>
   </PropertyGroup>
 
 </Project>

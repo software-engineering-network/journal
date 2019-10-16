@@ -1,8 +1,8 @@
 ﻿using FluentAssertions;
-using Sen.Journal.Domain;
+using SoftwareEngineeringNetwork.JournalApplication.Domain;
 using Xunit;
 
-namespace Sen.Journal.Test.Domain
+namespace SoftwareEngineeringNetwork.JournalApplication.Test.domain
 {
     public class JournalTest
     {
@@ -18,7 +18,7 @@ namespace Sen.Journal.Test.Domain
             string journalTitle
         )
         {
-            var journal = new Journal.Domain.Journal(
+            var journal = new Journal(
                 new Id(personId),
                 new JournalTitle(journalTitle),
                 new Id(id)

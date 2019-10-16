@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sen.Journal.Domain
+namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 {
     public class Auditable : IAuditable
     {

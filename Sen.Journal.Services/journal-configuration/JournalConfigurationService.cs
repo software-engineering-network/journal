@@ -1,19 +1,19 @@
-﻿using Sen.Journal.Domain;
+﻿using SoftwareEngineeringNetwork.JournalApplication.Domain;
 
-namespace Sen.Journal.Services
+namespace SoftwareEngineeringNetwork.JournalApplication.Services
 {
     public class JournalConfigurationService : IJournalConfigurationService
     {
-        private readonly IRepository<Domain.Journal> _journalRepository;
+        private readonly IRepository<Journal> _journalRepository;
 
-        public JournalConfigurationService(IRepository<Domain.Journal> journalRepository)
+        public JournalConfigurationService(IRepository<Journal> journalRepository)
         {
             _journalRepository = journalRepository;
         }
 
-        public Domain.Journal CreateJournal(CreateJournalArgs args)
+        public Journal CreateJournal(CreateJournalArgs args)
         {
-            var journal = new Domain.Journal(
+            var journal = new Journal(
                 new Id(args.PersonId),
                 new JournalTitle(args.JournalTitle)
             );
@@ -21,7 +21,7 @@ namespace Sen.Journal.Services
             return _journalRepository.Create(journal);
         }
 
-        public Domain.Journal UpdateJournal(UpdateJournalArgs args)
+        public Journal UpdateJournal(UpdateJournalArgs args)
         {
             var journal = _journalRepository.Find(new Id(args.Id));
 
