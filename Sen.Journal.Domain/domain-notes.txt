@@ -1,0 +1,15 @@
+﻿1.	Bounded Contexts:
+	A.	Administration
+		*	UserManagement
+
+		a.	Setup (possible subdomain of A)
+			*	account creation
+
+	B.	Journaling
+		a.	JournalManagement
+		b.	Entry
+			*	CRUD
+			*	tag
+
+	C.	Commenting
+		*	
