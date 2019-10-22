@@ -8,6 +8,10 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 
         public Id Id { get; }
 
+        protected Entity()
+        {
+        }
+
         protected Entity(Id id)
         {
             Id = id;
