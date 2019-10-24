@@ -4,7 +4,7 @@ using System.Linq;
 using SoftwareEngineeringNetwork.JournalApplication.Domain;
 using SoftwareEngineeringNetwork.JournalApplication.Domain.UserManagement;
 
-namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory.UserRegistration
+namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory.UserManagement
 {
     public class UserRepository : IUserRepository
     {

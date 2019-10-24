@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using FluentAssertions;
+﻿using FluentAssertions;
 using SoftwareEngineeringNetwork.JournalApplication.Domain;
 using SoftwareEngineeringNetwork.JournalApplication.Domain.UserManagement;
 using SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory.UserManagement;
@@ -7,24 +6,17 @@ using Xunit;
 
 namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain.UserManagement
 {
-    public class UserManagerTest
+    public class CreateUserValidatorTest
     {
-        #region Fields
-
+        private readonly CreateUserValidator _createUserValidator;
         private readonly UserManager _userManager;
-        private readonly IUserRepository _userRepository;
 
-        #endregion
-
-        #region Construction
-
-        public UserManagerTest()
+        public CreateUserValidatorTest()
         {
-            _userRepository = new UserRepository();
-            _userManager = new UserManager(_userRepository);
+            var userRepository = new UserRepository();
+            _createUserValidator = new CreateUserValidator(userRepository);
+            _userManager = new UserManager(userRepository);
         }
-
-        #endregion
 
         [Theory]
         [InlineData(
@@ -34,7 +26,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain.UserManageme
             "Doe",
             "JohnDoe"
         )]
-        public void WhenCreatingAUser_WithValidArgs_AUserIsCreated(
+        public void WhenCreatingAUser_WithAnExistingUsername_NoUserIsCreated(
             string emailAddress,
             string name,
             string password,
@@ -42,7 +34,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain.UserManageme
             string username
         )
         {
-            var createUserCommand = new CreateUser(
+            var createUser = new CreateUser(
                 new EmailAddress(emailAddress),
                 new Name(name),
                 new Password(password),
@@ -50,9 +42,11 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain.UserManageme
                 new Username(username)
             );
 
-            _userManager.CreateUser(createUserCommand);
+            _userManager.CreateUser(createUser);
 
-            _userRepository.Fetch().Count().Should().Be(1);
+            var validationResult = _createUserValidator.Validate(createUser);
+
+            validationResult.IsValid.Should().Be(false);
         }
     }
 }
