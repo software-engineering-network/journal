@@ -4,9 +4,20 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 {
     public abstract class Entity : IAuditable
     {
+        #region Fields
+
         private readonly IAuditable _auditable;
 
-        public Id Id { get; }
+        #endregion
+
+        #region Properties
+
+        public Id Id { get; protected set; }
+        public RecordName RecordName { get; protected set; }
+
+        #endregion
+
+        #region Construction
 
         protected Entity()
         {
@@ -20,27 +31,31 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
             _auditable = new Auditable(dateTimeProvider);
         }
 
-        #region Operators
+        #endregion
 
-        public static bool operator ==(Entity left, Entity right)
+        #region IAuditable Members
+
+        public UserId CreatedBy => _auditable.CreatedBy;
+
+        public DateTime? CreatedDate => _auditable.CreatedDate;
+
+        public UserId ModifiedBy => _auditable.ModifiedBy;
+
+        public DateTime? ModifiedDate => _auditable.ModifiedDate;
+
+        public IAuditable SetCreatedInfo(UserId userId)
         {
-            if (left is null && right is null)
-                return true;
-
-            if (left is null || right is null)
-                return false;
-
-            return left.Equals(right);
+            return _auditable.SetCreatedInfo(userId);
         }
 
-        public static bool operator !=(Entity left, Entity right)
+        public IAuditable SetModifiedInfo(UserId userId, DateTime? now = null)
         {
-            return !(left == right);
+            return _auditable.SetModifiedInfo(userId, now);
         }
 
         #endregion
 
-        #region System.Object
+        #region object Overrides
 
         public override bool Equals(object obj)
         {
@@ -66,21 +81,22 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 
         #endregion
 
-        #region IAuditable
+        #region Operator Overloads
 
-        public Person CreatedBy => _auditable.CreatedBy;
-        public DateTime? CreatedDate => _auditable.CreatedDate;
-        public Person ModifiedBy => _auditable.ModifiedBy;
-        public DateTime? ModifiedDate => _auditable.ModifiedDate;
-
-        public IAuditable Create(Person person)
+        public static bool operator ==(Entity left, Entity right)
         {
-            return _auditable.Create(person);
+            if (left is null && right is null)
+                return true;
+
+            if (left is null || right is null)
+                return false;
+
+            return left.Equals(right);
         }
 
-        public IAuditable Modify(Person person, DateTime? now = null)
+        public static bool operator !=(Entity left, Entity right)
         {
-            return _auditable.Modify(person, now);
+            return !(left == right);
         }
 
         #endregion

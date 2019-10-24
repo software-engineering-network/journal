@@ -10,4 +10,8 @@
     <Folder Include="contracts\auditing\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="8.5.0" />
+  </ItemGroup>
+
 </Project>

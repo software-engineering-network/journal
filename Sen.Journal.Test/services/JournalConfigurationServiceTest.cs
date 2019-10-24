@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using SoftwareEngineeringNetwork.JournalApplication.Domain;
 using SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory;
 using SoftwareEngineeringNetwork.JournalApplication.Services;
 using Xunit;
@@ -51,7 +50,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.services
 
             journal.Should().NotBeNull();
             journal.Id.Should().NotBe(0);
-            journal.PersonId.Should().Be(args.PersonId);
+            journal.UserId.Should().Be(args.PersonId);
             journal.JournalTitle.Should().Be(args.JournalTitle);
         }
 
@@ -79,7 +78,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.services
             var updateArgs = CreateUpdateJournalArgs();
             journal = service.UpdateJournal(updateArgs);
 
-            journal.PersonId.Should().Be(updateArgs.PersonId);
+            journal.UserId.Should().Be(updateArgs.PersonId);
             journal.JournalTitle.Should().Be(updateArgs.JournalTitle);
             journal.ModifiedBy.Should().NotBeNull();
             journal.ModifiedDate.Should().NotBeNull();

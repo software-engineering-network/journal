@@ -2,25 +2,25 @@
 {
     public class Journal : Entity
     {
-        public PersonId PersonId { get; private set; }
+        public UserId UserId { get; private set; }
         public JournalTitle JournalTitle { get; private set; }
 
         public Journal(
-            PersonId personId,
+            UserId userId,
             JournalTitle journalTitle,
             JournalId journalId = null
         ) : base(journalId)
         {
-            PersonId = personId;
+            UserId = userId;
             JournalTitle = journalTitle;
         }
 
         public Journal Update(
-            PersonId personId,
+            UserId personId,
             JournalTitle journalTitle
         )
         {
-            PersonId = personId;
+            UserId = personId;
             JournalTitle = journalTitle;
             return this;
         }

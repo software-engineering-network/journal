@@ -2,7 +2,7 @@ using FluentAssertions;
 using SoftwareEngineeringNetwork.JournalApplication.Domain;
 using Xunit;
 
-namespace SoftwareEngineeringNetwork.JournalApplication.Test.domain
+namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain
 {
     public class UsernameTest
     {

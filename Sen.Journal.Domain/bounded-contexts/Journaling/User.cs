@@ -5,9 +5,9 @@
         public Name Name { get; }
 
         public User(
-            PersonId personId,
+            UserId userId,
             Name name
-        ) : base(personId)
+        ) : base(userId)
         {
             Name = name;
         }

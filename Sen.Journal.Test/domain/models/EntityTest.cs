@@ -1,8 +1,9 @@
 using FluentAssertions;
 using SoftwareEngineeringNetwork.JournalApplication.Domain;
+using SoftwareEngineeringNetwork.JournalApplication.Domain.UserManagement;
 using Xunit;
 
-namespace SoftwareEngineeringNetwork.JournalApplication.Test.domain
+namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain
 {
     public class EntityTest
     {
@@ -12,7 +13,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.domain
         public void WhenCheckingForEquality_ItDoesNotMatchNull()
         {
             var person = TestObjectFactory.CreateJohnDoe();
-            Person person2 = null;
+            User person2 = null;
 
             person.Equals(person2).Should().BeFalse();
             (person == person2).Should().BeFalse();
@@ -23,12 +24,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.domain
         public void WhenCheckingForEquality_ItMatchesIdentifierEquality()
         {
             var person1 = TestObjectFactory.CreateJohnDoe(1);
-            var person2 = TestObjectFactory.CreatePerson(
-                1,
-                "jane.doe@gmail.com",
-                "alligator1",
-                "JaneDoe"
-            );
+            var person2 = TestObjectFactory.CreateJaneDoe(2);
 
             person1.Should().Be(person2);
             (person1 == person2).Should().BeTrue();
@@ -47,8 +43,8 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.domain
         [Fact]
         public void WhenCheckingForEquality_NullMatchesNull()
         {
-            Person person = null;
-            Person person2 = null;
+            User person = null;
+            User person2 = null;
 
             (person == person2).Should().BeTrue();
             (person2 == person).Should().BeTrue();

@@ -1,15 +1,21 @@
 ﻿1.	Bounded Contexts:
-	A.	Administration
-		*	UserManagement
+	A.	UserRegistration
+		*	Create User
+			*	calculate RecordName
+				*	jswords
+				*	can depend on existing users (more than one jswords - jswords02)
 
-		a.	Setup (possible subdomain of A)
-			*	account creation
+	B.	UserManagement
+		*	Update User
+			*	potentially recalculate RecordName
+		*	Delete User
+			*	User is Aggregate here - delete all journals associated with user
 
-	B.	Journaling
+	C.	Journaling
 		a.	JournalManagement
 		b.	Entry
 			*	CRUD
 			*	tag
 
-	C.	Commenting
+	D.	Commenting
 		*	

@@ -2,7 +2,7 @@
 using SoftwareEngineeringNetwork.JournalApplication.Domain;
 using Xunit;
 
-namespace SoftwareEngineeringNetwork.JournalApplication.Test.domain
+namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain
 {
     public class JournalTest
     {
@@ -14,12 +14,12 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.domain
         )]
         public void WhenInstantiatingAJournal_WithValidArgs_ItReturnsAJournal(
             ulong id,
-            ulong personId,
+            ulong userId,
             string journalTitle
         )
         {
             var journal = new Journal(
-                new PersonId(personId),
+                new UserId(userId),
                 new JournalTitle(journalTitle),
                 new JournalId(id)
             );
