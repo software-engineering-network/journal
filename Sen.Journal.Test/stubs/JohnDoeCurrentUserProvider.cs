@@ -1,4 +1,6 @@
-﻿namespace SoftwareEngineeringNetwork.JournalApplication.Domain
+﻿using SoftwareEngineeringNetwork.JournalApplication.Domain;
+
+namespace SoftwareEngineeringNetwork.JournalApplication.Test
 {
     public class JohnDoeCurrentUserProvider : ICurrentUserProvider
     {

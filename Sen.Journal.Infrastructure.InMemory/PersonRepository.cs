@@ -4,9 +4,15 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
 {
     public class PersonRepository : InMemoryRepository<Person>
     {
+        #region Construction
+
         public PersonRepository(ICurrentUserProvider currentUserProvider) : base(currentUserProvider)
         {
         }
+
+        #endregion
+
+        #region InMemoryRepository<Person> Overrides
 
         public override Person Create(Person entity)
         {
@@ -21,5 +27,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
 
             return newPerson;
         }
+
+        #endregion
     }
 }

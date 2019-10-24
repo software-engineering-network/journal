@@ -18,6 +18,19 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
 
         public abstract T Create(T entity);
 
+        public bool Exists(Func<T, bool> predicate)
+        {
+            try
+            {
+                var existingEntity = _entities.First(predicate);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public virtual T Find(Id id)
         {
             return _entities.Find(x => x.Id == id);

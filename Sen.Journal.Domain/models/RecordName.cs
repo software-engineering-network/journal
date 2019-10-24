@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SoftwareEngineeringNetwork.JournalApplication.Domain
+﻿namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 {
     /// <summary>
     /// A human-readable identifier for an Entity.
@@ -19,12 +17,5 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
         public RecordName(string value) : base(value)
         {
         }
-    }
-
-    public class SuperId
-    {
-        public Id Id { get; set; }
-        public Guid Guid { get; set; }
-        public RecordName RecordName { get; set; }
     }
 }
