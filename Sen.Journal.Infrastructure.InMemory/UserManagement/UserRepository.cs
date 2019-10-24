@@ -128,6 +128,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory.
         public static User ToUser(this Person person)
         {
             return new User(
+                new UserId(person.Id), 
                 new EmailAddress(person.EmailAddress),
                 new Name(person.Name),
                 new Password(person.Password),

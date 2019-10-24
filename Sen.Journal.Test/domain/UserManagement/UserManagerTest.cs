@@ -3,6 +3,7 @@ using FluentAssertions;
 using SoftwareEngineeringNetwork.JournalApplication.Domain;
 using SoftwareEngineeringNetwork.JournalApplication.Domain.UserManagement;
 using SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory.UserManagement;
+using SoftwareEngineeringNetwork.JournalApplication.Services.Users;
 using Xunit;
 
 namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain.UserManagement
@@ -12,7 +13,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain.UserManageme
         #region Fields
 
         private readonly UserManager _userManager;
-        private readonly IUserRepository _userRepository;
+        private readonly IUserService _userService;
 
         #endregion
 
@@ -20,8 +21,9 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain.UserManageme
 
         public UserManagerTest()
         {
-            _userRepository = new UserRepository();
-            _userManager = new UserManager(_userRepository);
+            var userRepository = new UserRepository();
+            _userManager = new UserManager(userRepository);
+            _userService = new UserService(userRepository);
         }
 
         #endregion
@@ -52,7 +54,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain.UserManageme
 
             _userManager.CreateUser(createUserCommand);
 
-            _userRepository.Fetch().Count().Should().Be(1);
+            _userService.Fetch().Count().Should().Be(1);
         }
     }
 }
