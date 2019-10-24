@@ -7,40 +7,30 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain.UserManagement
     {
         #region Fields
 
-        private readonly CreateUserCommandValidator _createUserCommandValidator;
         private readonly IUserRepository _userRepository;
 
         #endregion
 
         #region Construction
 
-        public UserManager(
-            IUserRepository userRepository,
-            CreateUserCommandValidator createUserCommandValidator
-        )
+        public UserManager(IUserRepository userRepository)
         {
             _userRepository = userRepository;
-            _createUserCommandValidator = createUserCommandValidator;
         }
 
         #endregion
 
         #region IUserManager Members
 
-        public void CreateUser(CreateUserCommand createUserCommand)
+        public void CreateUser(CreateUser createUser)
         {
-            var validationResult = _createUserCommandValidator.Validate(createUserCommand);
-
-            if (!validationResult.IsValid)
-                return;
-
             var user = new User(
-                createUserCommand.EmailAddress,
-                createUserCommand.Name,
-                createUserCommand.Password,
-                CreateRecordName(createUserCommand),
-                createUserCommand.Surname,
-                createUserCommand.Username
+                createUser.EmailAddress,
+                createUser.Name,
+                createUser.Password,
+                CreateRecordName(createUser),
+                createUser.Surname,
+                createUser.Username
             );
 
             _userRepository.Create(user);
@@ -48,9 +38,9 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain.UserManagement
 
         #endregion
 
-        private RecordName CreateRecordName(CreateUserCommand command)
+        private RecordName CreateRecordName(CreateUser createUser)
         {
-            var candidateRecordName = new RecordName(command.Name.Value + command.Surname.Value);
+            var candidateRecordName = new RecordName(createUser.Name.Value + createUser.Surname.Value);
 
             /*
              * if the candidate doesn't exist
@@ -61,9 +51,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain.UserManagement
              *     increment the modifier and append to the candidate
              *     return the above
              */
-
-            // check recordname exists
-            if (_userRepository.FirstOrDefault(x => x.RecordName == candidateRecordName) == null)
+            if (!_userRepository.RecordNameExists(candidateRecordName))
                 return candidateRecordName;
 
             var matchingRecordNames = _userRepository.FindMatchingRecordNames(candidateRecordName);

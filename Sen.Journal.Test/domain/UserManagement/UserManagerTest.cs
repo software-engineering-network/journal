@@ -42,7 +42,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain.UserManageme
             string username
         )
         {
-            var createUserCommand = new CreateUserCommand(
+            var createUserCommand = new CreateUser(
                 new EmailAddress(emailAddress),
                 new Name(name),
                 new Password(password),
@@ -72,7 +72,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain.UserManageme
             string username
         )
         {
-            var createUserCommand = new CreateUserCommand(
+            var createUserCommand = new CreateUser(
                 new EmailAddress(emailAddress),
                 new Name(name),
                 new Password(password),
@@ -87,7 +87,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain.UserManageme
 
         private static UserManager CreateUserManager(IUserRepository userRepository)
         {
-            var createUserCommandValidator = new CreateUserCommandValidator(userRepository);
+            var createUserCommandValidator = new CreateUserValidator(userRepository);
 
             return new UserManager(
                 userRepository,

@@ -2,7 +2,7 @@
 
 namespace SoftwareEngineeringNetwork.JournalApplication.Domain.UserManagement
 {
-    public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
+    public class CreateUserValidator : AbstractValidator<CreateUser>
     {
         #region Fields
 
@@ -12,7 +12,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain.UserManagement
 
         #region Construction
 
-        public CreateUserCommandValidator(IUserRepository userRepository)
+        public CreateUserValidator(IUserRepository userRepository)
         {
             _userRepository = userRepository;
             RuleFor(x => x.Username)
