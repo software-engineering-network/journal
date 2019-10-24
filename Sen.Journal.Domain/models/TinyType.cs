@@ -5,14 +5,22 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 {
     public abstract class TinyType<T> : IEquatable<TinyType<T>>
     {
+        #region Properties
+
         public T Value { get; }
+
+        #endregion
+
+        #region Construction
 
         protected TinyType(T value)
         {
             Value = value;
         }
 
-        #region IEquatable<TinyType<T>>
+        #endregion
+
+        #region IEquatable<TinyType<T>> Members
 
         public bool Equals(TinyType<T> other)
         {
@@ -29,27 +37,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 
         #endregion
 
-        #region Operators
-
-        public static bool operator ==(TinyType<T> left, TinyType<T> right)
-        {
-            if (left is null && right is null)
-                return true;
-
-            if (left is null || right is null)
-                return false;
-
-            return left.Equals(right);
-        }
-
-        public static bool operator !=(TinyType<T> left, TinyType<T> right)
-        {
-            return !(left == right);
-        }
-
-        #endregion
-
-        #region System.Object
+        #region object Overrides
 
         public override bool Equals(object other)
         {
@@ -75,6 +63,26 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
         public override int GetHashCode()
         {
             return EqualityComparer<T>.Default.GetHashCode(Value);
+        }
+
+        #endregion
+
+        #region Operator Overloads
+
+        public static bool operator ==(TinyType<T> left, TinyType<T> right)
+        {
+            if (left is null && right is null)
+                return true;
+
+            if (left is null || right is null)
+                return false;
+
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(TinyType<T> left, TinyType<T> right)
+        {
+            return !(left == right);
         }
 
         #endregion
