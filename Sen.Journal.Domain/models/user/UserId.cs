@@ -1,8 +1,8 @@
 ﻿namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 {
-    public class PersonId : Id
+    public class UserId : Id
     {
-        public PersonId(ulong value) : base(value)
+        public UserId(ulong value) : base(value)
         {
         }
     }

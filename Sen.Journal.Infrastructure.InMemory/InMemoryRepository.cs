@@ -7,14 +7,24 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
 {
     public abstract class InMemoryRepository<T> : IRepository<T> where T : Entity
     {
+        #region Fields
+
         protected readonly ICurrentUserProvider _currentUserProvider;
         protected readonly List<T> _entities;
+
+        #endregion
+
+        #region Construction
 
         protected InMemoryRepository(ICurrentUserProvider currentUserProvider)
         {
             _currentUserProvider = currentUserProvider;
             _entities = new List<T>();
         }
+
+        #endregion
+
+        #region IRepository<T> Members
 
         public abstract T Create(T entity);
 
@@ -29,6 +39,11 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
             {
                 return false;
             }
+        }
+
+        public IEnumerable<T> Fetch()
+        {
+            return _entities;
         }
 
         public virtual T Find(Id id)
@@ -46,20 +61,22 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
             return _entities.Where(predicate);
         }
 
-        public IEnumerable<RecordName> WithMatchingRecordNames(RecordName recordName)
-        {
-            return Fetch(x => x.RecordName.Value.StartsWith(recordName.Value))
-                .Select(x => x.RecordName);
-        }
-
         public virtual T Update(T entity)
         {
             var storedEntity = _entities.Find(x => x.Id == entity.Id);
 
             var currentUser = _currentUserProvider.GetCurrentUser();
-            storedEntity.SetModifiedInfo((PersonId) currentUser.Id);
+            storedEntity.SetModifiedInfo((UserId) currentUser.Id);
 
             return Find(entity.Id);
+        }
+
+        #endregion
+
+        public IEnumerable<RecordName> WithMatchingRecordNames(RecordName recordName)
+        {
+            return Fetch(x => x.RecordName.Value.StartsWith(recordName.Value))
+                .Select(x => x.RecordName);
         }
 
         protected ulong NextId(IEnumerable<T> persons)

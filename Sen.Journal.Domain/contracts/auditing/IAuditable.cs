@@ -4,12 +4,12 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 {
     public interface IAuditable
     {
-        PersonId CreatedBy { get; }
+        UserId CreatedBy { get; }
         DateTime? CreatedDate { get; }
-        PersonId ModifiedBy { get; }
+        UserId ModifiedBy { get; }
         DateTime? ModifiedDate { get; }
 
-        IAuditable SetCreatedInfo(PersonId personId);
-        IAuditable SetModifiedInfo(PersonId personId, DateTime? now = null);
+        IAuditable SetCreatedInfo(UserId userId);
+        IAuditable SetModifiedInfo(UserId userId, DateTime? now = null);
     }
 }

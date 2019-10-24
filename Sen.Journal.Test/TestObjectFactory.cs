@@ -1,4 +1,5 @@
 ﻿using SoftwareEngineeringNetwork.JournalApplication.Domain;
+using SoftwareEngineeringNetwork.JournalApplication.Domain.UserManagement;
 
 namespace SoftwareEngineeringNetwork.JournalApplication.Test
 {
@@ -10,7 +11,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test
         )
         {
             return new Journal(
-                new PersonId(1),
+                new UserId(1),
                 new JournalTitle(journalTitle),
                 new JournalId(journalId)
             );
@@ -24,28 +25,57 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test
             );
         }
 
-        public static Person CreatePerson(
-            ulong personId,
+        public static User CreatePerson(
             string emailAddress,
+            string name,
             string password,
-            string username
+            string recordName,
+            string surname,
+            string username,
+            ulong id = 0
         )
         {
-            return new Person(
-                new PersonId(personId),
-                new EmailAddress(emailAddress),
-                new Password(password),
-                new Username(username)
+            return id == 0
+                ? new User(
+                    new EmailAddress(emailAddress),
+                    new Name(name),
+                    new Password(password),
+                    new RecordName(recordName),
+                    new Surname(surname),
+                    new Username(username)
+                )
+                : new User(
+                    new UserId(id),
+                    new EmailAddress(emailAddress),
+                    new Name(name),
+                    new Password(password),
+                    new RecordName(recordName),
+                    new Surname(surname),
+                    new Username(username)
+                );
+        }
+
+        public static User CreateJohnDoe(ulong id = 0)
+        {
+            return CreatePerson(
+                "john.doe@gmail.com",
+                "John",
+                "peanutbuttereggdirt",
+                "JohnDoe",
+                "Doe",
+                "JohnDoe"
             );
         }
 
-        public static Person CreateJohnDoe(ulong id = 0)
+        public static User CreateJaneDoe(ulong id = 0)
         {
             return CreatePerson(
-                id,
-                "john.doe@gmail.com",
+                "jane.doe@gmail.com",
+                "Jane",
                 "peanutbuttereggdirt",
-                "JohnDoe"
+                "JaneDoe",
+                "Doe",
+                "JaneDoe"
             );
         }
     }

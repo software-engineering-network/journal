@@ -7,9 +7,10 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
     {
         T Create(T entity);
         bool Exists(Func<T, bool> predicate);
+        IEnumerable<T> Fetch();
+        IEnumerable<T> Fetch(Func<T, bool> predicate);
         T Find(Id id);
         T FirstOrDefault(Func<T, bool> predicate);
-        IEnumerable<T> Fetch(Func<T, bool> predicate);
         T Update(T entity);
     }
 }

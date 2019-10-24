@@ -1,7 +1,9 @@
-﻿namespace SoftwareEngineeringNetwork.JournalApplication.Domain
+﻿using SoftwareEngineeringNetwork.JournalApplication.Domain.UserManagement;
+
+namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 {
     public interface ICurrentUserProvider
     {
-        Person GetCurrentUser();
+        User GetCurrentUser();
     }
 }

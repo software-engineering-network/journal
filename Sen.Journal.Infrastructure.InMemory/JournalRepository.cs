@@ -11,13 +11,13 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
         public override Journal Create(Journal entity)
         {
             var newJournal = new Journal(
-                entity.PersonId,
+                entity.UserId,
                 entity.JournalTitle,
                 new JournalId(NextId(_entities))
             );
 
             var currentUser = _currentUserProvider.GetCurrentUser();
-            newJournal.SetCreatedInfo((PersonId) currentUser.Id);
+            newJournal.SetCreatedInfo((UserId) currentUser.Id);
 
             _entities.Add(newJournal);
 

@@ -12,7 +12,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 
         #region Properties
 
-        public Id Id { get; }
+        public Id Id { get; protected set; }
         public RecordName RecordName { get; protected set; }
 
         #endregion
@@ -35,19 +35,22 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 
         #region IAuditable Members
 
-        public PersonId CreatedBy => _auditable.CreatedBy;
+        public UserId CreatedBy => _auditable.CreatedBy;
+
         public DateTime? CreatedDate => _auditable.CreatedDate;
-        public PersonId ModifiedBy => _auditable.ModifiedBy;
+
+        public UserId ModifiedBy => _auditable.ModifiedBy;
+
         public DateTime? ModifiedDate => _auditable.ModifiedDate;
 
-        public IAuditable SetCreatedInfo(PersonId personId)
+        public IAuditable SetCreatedInfo(UserId userId)
         {
-            return _auditable.SetCreatedInfo(personId);
+            return _auditable.SetCreatedInfo(userId);
         }
 
-        public IAuditable SetModifiedInfo(PersonId personId, DateTime? now = null)
+        public IAuditable SetModifiedInfo(UserId userId, DateTime? now = null)
         {
-            return _auditable.SetModifiedInfo(personId, now);
+            return _auditable.SetModifiedInfo(userId, now);
         }
 
         #endregion
