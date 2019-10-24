@@ -10,14 +10,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain.UserManageme
 {
     public class UserManagerTest
     {
-        #region Fields
-
-        private readonly UserManager _userManager;
-        private readonly IUserService _userService;
-
-        #endregion
-
-        #region Construction
+        #region Setup/Teardown
 
         public UserManagerTest()
         {
@@ -28,71 +21,49 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain.UserManageme
 
         #endregion
 
-        [Theory]
-        [InlineData(
-            "john.doe@gmail.com",
-            "John",
-            "peanutbuttereggdirt",
-            "Doe",
-            "JohnDoe"
-        )]
-        public void WhenCreatingAUser_AUserIsPersisted(
-            string emailAddress,
-            string name,
-            string password,
-            string surname,
-            string username
-        )
+        private readonly UserManager _userManager;
+        private readonly IUserService _userService;
+
+        private static CreateUser CreateADoeCommand(string name = "John")
         {
-            var createUser = new CreateUser(
-                new EmailAddress(emailAddress),
+            return new CreateUser(
+                new EmailAddress($"{name}.doe@gmail.com"),
                 new Name(name),
-                new Password(password),
-                new Surname(surname),
-                new Username(username)
+                new Password("peanutbuttereggdirt"),
+                new Surname("Doe"),
+                new Username($"{name}Doe")
             );
+        }
+
+        [Fact]
+        public void WhenCreatingAUser_AUserIsPersisted()
+        {
+            var createUser = CreateADoeCommand();
 
             _userManager.CreateUser(createUser);
-            var user = _userService.FindUserDetails(username);
+            var johnDoe = _userService.FindUserDetails(createUser.Username.Value);
 
-            user.Should().NotBeNull();
-            user.RecordName.Should().Be("jdoe");
+            johnDoe.Should().NotBeNull();
+            johnDoe.RecordName.Should().Be("jdoe");
         }
 
         [Fact]
         public void WhenCreatingSimilarUsers_DifferentRecordNamesArePersisted()
         {
-            var createJohnDoe = new CreateUser(
-                new EmailAddress("john.doe@gmail.com"),
-                new Name("John"),
-                new Password("peanutbuttereggdirt"),
-                new Surname("Doe"),
-                new Username("JohnDoe")
-            );
+            var createJohnDoe = CreateADoeCommand();
+            var createJaneDoe = CreateADoeCommand("Jane");
+            var createJamesDoe = CreateADoeCommand("James");
 
-            var createJaneDoe = new CreateUser(
-                new EmailAddress("jane.doe@gmail.com"),
-                new Name("Jane"),
-                new Password("peanutbuttereggdirt"),
-                new Surname("Doe"),
-                new Username("JaneDoe")
-            );
+            _userManager
+                .CreateUser(createJohnDoe)
+                .CreateUser(createJaneDoe)
+                .CreateUser(createJamesDoe);
 
-            var createJamesDoe = new CreateUser(
-                new EmailAddress("james.doe@gmail.com"),
-                new Name("James"),
-                new Password("peanutbuttereggdirt"),
-                new Surname("Doe"),
-                new Username("JamesDoe")
-            );
+            var users = _userService.FetchUserDetails().ToList();
 
-            _userManager.CreateUser(createJohnDoe);
-            _userManager.CreateUser(createJaneDoe);
-            _userManager.CreateUser(createJamesDoe);
-
-            var johnDoe = _userService.FindUserDetails("JohnDoe");
-            var janeDoe = _userService.FindUserDetails("JaneDoe");
-            var jamesDoe = _userService.FindUserDetails("JamesDoe");
+            var johnDoe = users.Single(x => x.Name == "John");
+            var janeDoe = users.Single(x => x.Name == "Jane");
+            var jamesDoe = users.Single(x => x.Name == "James");
 
             johnDoe.RecordName.Should().Be("jdoe");
             janeDoe.RecordName.Should().Be("jdoe1");

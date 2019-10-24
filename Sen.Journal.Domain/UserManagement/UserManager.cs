@@ -22,7 +22,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain.UserManagement
 
         #region IUserManager Members
 
-        public void CreateUser(CreateUser createUser)
+        public IUserManager CreateUser(CreateUser createUser)
         {
             var user = new User(
                 createUser.EmailAddress,
@@ -34,6 +34,8 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain.UserManagement
             );
 
             _userRepository.Create(user);
+
+            return this;
         }
 
         #endregion
