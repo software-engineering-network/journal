@@ -4,7 +4,7 @@ using System.Linq;
 using SoftwareEngineeringNetwork.JournalApplication.Domain;
 using SoftwareEngineeringNetwork.JournalApplication.Domain.UserManagement;
 
-namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory.UserRegistration
+namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory.UserManagement
 {
     public class UserRepository : IUserRepository
     {
@@ -80,11 +80,21 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory.
             return person.ToUser();
         }
 
+        public User Find(Username username)
+        {
+            return _persons.Single(x => x.Username == username.Value).ToUser();
+        }
+
         public IEnumerable<RecordName> FindMatchingRecordNames(RecordName recordName)
         {
             return _persons
                 .Where(x => x.RecordName.StartsWith(recordName.Value))
                 .Select(x => new RecordName(x.RecordName));
+        }
+
+        public bool RecordNameExists(RecordName recordName)
+        {
+            return _persons.Exists(x => x.RecordName == recordName.Value);
         }
 
         public bool UsernameExists(Username username)
@@ -123,6 +133,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory.
         public static User ToUser(this Person person)
         {
             return new User(
+                new UserId(person.Id), 
                 new EmailAddress(person.EmailAddress),
                 new Name(person.Name),
                 new Password(person.Password),

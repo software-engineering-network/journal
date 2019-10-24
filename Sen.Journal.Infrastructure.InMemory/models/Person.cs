@@ -1,5 +1,8 @@
 ﻿namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
 {
+    /// <summary>
+    /// External representation of a User
+    /// </summary>
     public class Person
     {
         public ulong Id { get; set; }

@@ -2,6 +2,6 @@
 {
     public interface IUserManager
     {
-        void CreateUser(CreateUserCommand createUserCommand);
+        IUserManager CreateUser(CreateUser createUser);
     }
 }

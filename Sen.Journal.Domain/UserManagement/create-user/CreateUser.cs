@@ -1,6 +1,6 @@
 ﻿namespace SoftwareEngineeringNetwork.JournalApplication.Domain.UserManagement
 {
-    public class CreateUserCommand
+    public class CreateUser
     {
         #region Properties
 
@@ -14,7 +14,7 @@
 
         #region Construction
 
-        public CreateUserCommand(
+        public CreateUser(
             EmailAddress emailAddress,
             Name name,
             Password password,
