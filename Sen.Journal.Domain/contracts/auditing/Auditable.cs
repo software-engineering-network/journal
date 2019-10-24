@@ -11,22 +11,22 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
             _dateTimeProvider = dateTimeProvider;
         }
 
-        public Person CreatedBy { get; private set; }
+        public PersonId CreatedBy { get; private set; }
         public DateTime? CreatedDate { get; private set; }
-        public Person ModifiedBy { get; private set; }
+        public PersonId ModifiedBy { get; private set; }
         public DateTime? ModifiedDate { get; private set; }
 
-        public IAuditable Create(Person person)
+        public IAuditable SetCreatedInfo(PersonId personId)
         {
-            CreatedBy = person;
+            CreatedBy = personId;
             CreatedDate = _dateTimeProvider.Now();
-            Modify(person, CreatedDate);
+            SetModifiedInfo(personId, CreatedDate);
             return this;
         }
 
-        public IAuditable Modify(Person person, DateTime? now = null)
+        public IAuditable SetModifiedInfo(PersonId personId, DateTime? now = null)
         {
-            ModifiedBy = person;
+            ModifiedBy = personId;
             ModifiedDate = now ?? _dateTimeProvider.Now();
             return this;
         }

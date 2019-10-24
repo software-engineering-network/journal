@@ -17,7 +17,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
             );
 
             var currentUser = _currentUserProvider.GetCurrentUser();
-            newJournal.Create(currentUser);
+            newJournal.SetCreatedInfo((PersonId) currentUser.Id);
 
             _entities.Add(newJournal);
 

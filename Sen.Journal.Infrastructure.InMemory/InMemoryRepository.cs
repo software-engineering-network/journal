@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using SoftwareEngineeringNetwork.JournalApplication.Domain;
 
@@ -22,12 +23,28 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
             return _entities.Find(x => x.Id == id);
         }
 
+        public T FirstOrDefault(Func<T, bool> predicate)
+        {
+            return _entities.FirstOrDefault(predicate);
+        }
+
+        public IEnumerable<T> Fetch(Func<T, bool> predicate)
+        {
+            return _entities.Where(predicate);
+        }
+
+        public IEnumerable<RecordName> WithMatchingRecordNames(RecordName recordName)
+        {
+            return Fetch(x => x.RecordName.Value.StartsWith(recordName.Value))
+                .Select(x => x.RecordName);
+        }
+
         public virtual T Update(T entity)
         {
             var storedEntity = _entities.Find(x => x.Id == entity.Id);
 
             var currentUser = _currentUserProvider.GetCurrentUser();
-            storedEntity.Modify(currentUser);
+            storedEntity.SetModifiedInfo((PersonId) currentUser.Id);
 
             return Find(entity.Id);
         }

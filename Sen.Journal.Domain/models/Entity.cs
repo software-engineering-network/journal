@@ -7,6 +7,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
         private readonly IAuditable _auditable;
 
         public Id Id { get; }
+        public RecordName RecordName { get; protected set; }
 
         protected Entity()
         {
@@ -68,19 +69,19 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 
         #region IAuditable
 
-        public Person CreatedBy => _auditable.CreatedBy;
+        public PersonId CreatedBy => _auditable.CreatedBy;
         public DateTime? CreatedDate => _auditable.CreatedDate;
-        public Person ModifiedBy => _auditable.ModifiedBy;
+        public PersonId ModifiedBy => _auditable.ModifiedBy;
         public DateTime? ModifiedDate => _auditable.ModifiedDate;
 
-        public IAuditable Create(Person person)
+        public IAuditable SetCreatedInfo(PersonId personId)
         {
-            return _auditable.Create(person);
+            return _auditable.SetCreatedInfo(personId);
         }
 
-        public IAuditable Modify(Person person, DateTime? now = null)
+        public IAuditable SetModifiedInfo(PersonId personId, DateTime? now = null)
         {
-            return _auditable.Modify(person, now);
+            return _auditable.SetModifiedInfo(personId, now);
         }
 
         #endregion
