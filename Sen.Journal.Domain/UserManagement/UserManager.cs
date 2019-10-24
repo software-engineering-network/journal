@@ -40,7 +40,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain.UserManagement
 
         private RecordName CreateRecordName(CreateUser createUser)
         {
-            var candidateRecordName = new RecordName(createUser.Name.Value + createUser.Surname.Value);
+            var candidateRecordName = CreateCandidateRecordName(createUser);
 
             /*
              * if the candidate doesn't exist
@@ -55,17 +55,35 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain.UserManagement
                 return candidateRecordName;
 
             var matchingRecordNames = _userRepository.FindMatchingRecordNames(candidateRecordName);
-
-            var maxQuantifier = matchingRecordNames
+            
+            var quantifiers = matchingRecordNames
                 .Select(
                     x => x.Value.Split(
-                        new [] {x.Value},
+                        new[] {candidateRecordName.Value},
                         StringSplitOptions.None
                     )[1]
-                )
-                .Max(int.Parse);
+                );
 
-            return new RecordName(candidateRecordName.Value + ++maxQuantifier);
+            var max = 0;
+
+            foreach (var q in quantifiers)
+            {
+                int quantifier;
+
+                if (!int.TryParse(q, out quantifier))
+                    continue;
+
+                if (quantifier > max)
+                    max = quantifier;
+            }
+
+            return new RecordName(candidateRecordName.Value + ++max);
+        }
+
+        private static RecordName CreateCandidateRecordName(CreateUser createUser)
+        {
+            var recordName = (createUser.Name.Value[0] + createUser.Surname.Value).ToLower();
+            return new RecordName(recordName);
         }
     }
 }

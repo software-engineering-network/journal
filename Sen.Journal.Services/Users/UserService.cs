@@ -24,14 +24,24 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Services.Users
 
         #region IUserService Members
 
+        public UserDetailsDto FindUserDetails(string username)
+        {
+            return _userRepository.Find(new Username(username)).ToUserDetailsDto();
+        }
+
         public IEnumerable<UserDto> Fetch()
         {
-            return _userRepository.Fetch().Select(x => x.ToDto());
+            return _userRepository.Fetch().Select(x => x.ToUserDto());
+        }
+
+        public IEnumerable<UserDetailsDto> FetchUserDetails()
+        {
+            return _userRepository.Fetch().Select(x => x.ToUserDetailsDto());
         }
 
         public UserDto Find(string username)
         {
-            return _userRepository.Find(new Username(username)).ToDto();
+            return _userRepository.Find(new Username(username)).ToUserDto();
         }
 
         #endregion
@@ -39,10 +49,23 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Services.Users
 
     public static class UserDtoExtensions
     {
-        public static UserDto ToDto(this User user)
+        public static UserDto ToUserDto(this User user)
         {
             return new UserDto(
                 user.Id.Value,
+                user.Username.Value
+            );
+        }
+
+        public static UserDetailsDto ToUserDetailsDto(this User user)
+        {
+            return new UserDetailsDto(
+                user.Id.Value,
+                user.EmailAddress.Value,
+                user.Name.Value,
+                user.Password.Value,
+                user.RecordName.Value,
+                user.Surname.Value,
                 user.Username.Value
             );
         }
