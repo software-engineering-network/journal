@@ -12,7 +12,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test
                 new EmailAddress("john.doe@gmail.com"),
                 new Name("John"), 
                 new Password("peanutbuttereggdirt"),
-                new RecordName("JohnDoe"), 
+                new RecordName("jdoe"), 
                 new Surname("Doe"), 
                 new Username("JohnDoe")
             );

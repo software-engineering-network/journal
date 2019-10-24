@@ -80,6 +80,11 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory.
             return person.ToUser();
         }
 
+        public User Find(Username username)
+        {
+            return _persons.Single(x => x.Username == username.Value).ToUser();
+        }
+
         public IEnumerable<RecordName> FindMatchingRecordNames(RecordName recordName)
         {
             return _persons

@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using FluentAssertions;
+﻿using FluentAssertions;
 using SoftwareEngineeringNetwork.JournalApplication.Domain;
 using SoftwareEngineeringNetwork.JournalApplication.Domain.UserManagement;
 using SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory.UserManagement;
@@ -44,7 +43,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain.UserManageme
             string username
         )
         {
-            var createUserCommand = new CreateUser(
+            var createUser = new CreateUser(
                 new EmailAddress(emailAddress),
                 new Name(name),
                 new Password(password),
@@ -52,9 +51,10 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain.UserManageme
                 new Username(username)
             );
 
-            _userManager.CreateUser(createUserCommand);
+            _userManager.CreateUser(createUser);
+            var user = _userService.Find(username);
 
-            _userService.Fetch().Count().Should().Be(1);
+            user.Should().NotBeNull();
         }
     }
 }
