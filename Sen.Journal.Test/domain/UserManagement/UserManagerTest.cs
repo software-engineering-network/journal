@@ -34,7 +34,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain.UserManageme
             "Doe",
             "JohnDoe"
         )]
-        public void WhenCreatingAUser_WithValidArgs_AUserIsCreated(
+        public void WhenCreatingAUser_AUserIsPersisted(
             string emailAddress,
             string name,
             string password,

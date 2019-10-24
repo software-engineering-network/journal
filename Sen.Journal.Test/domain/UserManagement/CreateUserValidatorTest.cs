@@ -34,6 +34,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain.UserManageme
             string username
         )
         {
+            // create command
             var createUser = new CreateUser(
                 new EmailAddress(emailAddress),
                 new Name(name),
@@ -42,8 +43,10 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain.UserManageme
                 new Username(username)
             );
 
+            // setup storage
             _userManager.CreateUser(createUser);
 
+            // evaluate command when username already exists
             var validationResult = _createUserValidator.Validate(createUser);
 
             validationResult.IsValid.Should().Be(false);
