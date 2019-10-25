@@ -1,4 +1,4 @@
-﻿namespace SoftwareEngineeringNetwork.JournalApplication.Services.Users
+﻿namespace SoftwareEngineeringNetwork.JournalApplication.Services
 {
     public class UserDetailsDto
     {

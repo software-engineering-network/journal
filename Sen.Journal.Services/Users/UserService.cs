@@ -2,7 +2,7 @@
 using System.Linq;
 using SoftwareEngineeringNetwork.JournalApplication.Domain;
 
-namespace SoftwareEngineeringNetwork.JournalApplication.Services.Users
+namespace SoftwareEngineeringNetwork.JournalApplication.Services
 {
     public class UserService : IUserService
     {

@@ -1,6 +1,6 @@
 ﻿using SoftwareEngineeringNetwork.JournalApplication.Domain;
 
-namespace SoftwareEngineeringNetwork.JournalApplication.Services.Users
+namespace SoftwareEngineeringNetwork.JournalApplication.Services
 {
     public static class UserDtoExtensions
     {

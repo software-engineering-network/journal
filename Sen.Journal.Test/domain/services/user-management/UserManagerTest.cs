@@ -2,7 +2,7 @@
 using FluentAssertions;
 using SoftwareEngineeringNetwork.JournalApplication.Domain;
 using SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory.UserManagement;
-using SoftwareEngineeringNetwork.JournalApplication.Services.Users;
+using SoftwareEngineeringNetwork.JournalApplication.Services;
 using Xunit;
 
 namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain.UserManagement
