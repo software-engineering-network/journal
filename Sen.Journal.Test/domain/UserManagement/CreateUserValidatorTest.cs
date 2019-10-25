@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using SoftwareEngineeringNetwork.JournalApplication.Domain;
-using SoftwareEngineeringNetwork.JournalApplication.Domain.UserManagement;
 using SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory.UserManagement;
 using Xunit;
 

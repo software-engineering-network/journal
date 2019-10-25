@@ -1,4 +1,4 @@
-﻿using SoftwareEngineeringNetwork.JournalApplication.Domain.UserManagement;
+﻿using SoftwareEngineeringNetwork.JournalApplication.Domain;
 
 namespace SoftwareEngineeringNetwork.JournalApplication.Services.UserManagement
 {

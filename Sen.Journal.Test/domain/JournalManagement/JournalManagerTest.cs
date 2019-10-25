@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using SoftwareEngineeringNetwork.JournalApplication.Domain;
-using SoftwareEngineeringNetwork.JournalApplication.Domain.JournalManagement;
 using SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory;
 using SoftwareEngineeringNetwork.JournalApplication.Services.Journals;
 using Xunit;

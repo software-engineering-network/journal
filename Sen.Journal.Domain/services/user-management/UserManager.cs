@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace SoftwareEngineeringNetwork.JournalApplication.Domain.UserManagement
+namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 {
     public class UserManager : IUserManager
     {

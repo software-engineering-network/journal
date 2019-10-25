@@ -1,4 +1,4 @@
-﻿namespace SoftwareEngineeringNetwork.JournalApplication.Domain.UserManagement
+﻿namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 {
     public class CreateUser
     {
