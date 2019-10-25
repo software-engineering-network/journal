@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Folder Include="contracts\auditing\" />
+    <Folder Include="JournalManagement\create-journal\" />
   </ItemGroup>
 
   <ItemGroup>

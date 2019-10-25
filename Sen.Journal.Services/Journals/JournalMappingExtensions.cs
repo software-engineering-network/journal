@@ -2,7 +2,7 @@
 
 namespace SoftwareEngineeringNetwork.JournalApplication.Services
 {
-    public static class JournalDtoExtensions
+    public static class JournalMappingExtensions
     {
         public static JournalDto ToJournalDto(this Journal journal)
         {

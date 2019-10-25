@@ -23,4 +23,9 @@
     <ProjectReference Include="..\Sen.Journal.Services\Sen.Journal.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="domain\services\journal-management\" />
+    <Folder Include="domain\services\user-management\" />
+  </ItemGroup>
+
 </Project>
