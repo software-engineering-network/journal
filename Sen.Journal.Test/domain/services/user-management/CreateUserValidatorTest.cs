@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using SoftwareEngineeringNetwork.JournalApplication.Domain;
-using SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory.UserManagement;
+using SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory;
 using Xunit;
 
 namespace SoftwareEngineeringNetwork.JournalApplication.Test
