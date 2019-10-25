@@ -23,7 +23,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test
         public void WhenCheckingForEquality_ItMatchesIdentifierEquality()
         {
             var person1 = TestUserFactory.CreateJohnDoe(1);
-            var person2 = TestUserFactory.CreateJaneDoe(2);
+            var person2 = TestUserFactory.CreateJaneDoe(1);
 
             person1.Should().Be(person2);
             (person1 == person2).Should().BeTrue();

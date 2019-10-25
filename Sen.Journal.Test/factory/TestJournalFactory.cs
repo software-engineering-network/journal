@@ -6,19 +6,25 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test
     {
         public static Journal CreateJournal(
             ulong journalId,
+            ulong userId,
             string journalTitle
         )
         {
             return new Journal(
-                new UserId(1),
+                new JournalId(journalId), 
+                new UserId(userId),
                 new JournalTitle(journalTitle)
             );
         }
 
-        public static Journal CreateMusicCoversJournal(ulong id = 0)
+        public static Journal CreateMusicCoversJournal(
+            ulong journalId = 0,
+            ulong userId = 0
+        )
         {
             return CreateJournal(
-                id,
+                journalId,
+                userId,
                 "Music Covers Journal"
             );
         }

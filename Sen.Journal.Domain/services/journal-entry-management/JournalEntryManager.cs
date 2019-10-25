@@ -13,7 +13,12 @@
 
         public IJournalEntryManager CreateJournalEntry(CreateJournalEntry createJournalEntry)
         {
-            var journalEntry = new JournalEntry();
+            var journalEntry = new JournalEntry(
+                createJournalEntry.UserId,
+                createJournalEntry.JournalId,
+                createJournalEntry.JournalEntryTitle,
+                createJournalEntry.JournalEntryContent
+            );
 
             _journalEntryRepository.Create(journalEntry);
 

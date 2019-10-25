@@ -4,20 +4,20 @@
     {
         #region Properties
 
-        public ulong UserId { get; }
-        public ulong JournalId { get; }
-        public string JournalEntryTitle { get; }
-        public string JournalEntryContent { get; }
+        public UserId UserId { get; }
+        public JournalId JournalId { get; }
+        public JournalEntryTitle JournalEntryTitle { get; }
+        public JournalEntryContent JournalEntryContent { get; }
 
         #endregion
 
         #region Construction
 
         public CreateJournalEntry(
-            ulong userId,
-            ulong journalId,
-            string journalEntryTitle,
-            string journalEntryContent
+            UserId userId,
+            JournalId journalId,
+            JournalEntryTitle journalEntryTitle,
+            JournalEntryContent journalEntryContent
         )
         {
             UserId = userId;

@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using SoftwareEngineeringNetwork.JournalApplication.Domain;
-using SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory;
 using SoftwareEngineeringNetwork.JournalApplication.Services;
 using Xunit;
 
@@ -8,23 +7,25 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test
 {
     public class JournalManagerTest
     {
-        #region Setup/Teardown
+        #region Fields
 
-        public JournalManagerTest()
-        {
-            var currentUserProvider = new JohnDoeCurrentUserProvider();
-            _johnDoe = currentUserProvider.GetCurrentUser();
-
-            var journalRepository = new JournalRepository(currentUserProvider);
-            _journalService = new JournalService(journalRepository);
-            _journalManager = new JournalManager(journalRepository);
-        }
+        private readonly User _johnDoe;
+        private readonly JournalManager _journalManager;
+        private readonly IJournalService _journalService;
 
         #endregion
 
-        private readonly JournalManager _journalManager;
-        private readonly IJournalService _journalService;
-        private readonly User _johnDoe;
+        #region Construction
+
+        public JournalManagerTest()
+        {
+            var unitOfWork = TestUnitOfWorkFactory.CreateUnitOfWork();
+            _journalService = new JournalService(unitOfWork.JournalRepository);
+            _journalManager = new JournalManager(unitOfWork.JournalRepository);
+            _johnDoe = TestUserFactory.CreateJohnDoe(1);
+        }
+
+        #endregion
 
         [Theory]
         [InlineData("Music Cover Notes")]
