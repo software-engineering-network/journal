@@ -1,4 +1,4 @@
-﻿namespace SoftwareEngineeringNetwork.JournalApplication.Domain.JournalManagement
+﻿namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 {
     public class Journal : Entity
     {

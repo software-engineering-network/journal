@@ -1,4 +1,4 @@
-﻿using SoftwareEngineeringNetwork.JournalApplication.Domain.JournalManagement;
+﻿using SoftwareEngineeringNetwork.JournalApplication.Domain;
 
 namespace SoftwareEngineeringNetwork.JournalApplication.Services.Journals
 {

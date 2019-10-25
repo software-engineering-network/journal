@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using SoftwareEngineeringNetwork.JournalApplication.Domain;
-using SoftwareEngineeringNetwork.JournalApplication.Domain.JournalManagement;
 
 namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
 {

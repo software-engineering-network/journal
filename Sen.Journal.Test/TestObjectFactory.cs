@@ -1,6 +1,4 @@
 ﻿using SoftwareEngineeringNetwork.JournalApplication.Domain;
-using SoftwareEngineeringNetwork.JournalApplication.Domain.JournalManagement;
-using SoftwareEngineeringNetwork.JournalApplication.Domain.UserManagement;
 
 namespace SoftwareEngineeringNetwork.JournalApplication.Test
 {

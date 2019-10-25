@@ -1,6 +1,4 @@
-﻿using SoftwareEngineeringNetwork.JournalApplication.Domain.UserManagement;
-
-namespace SoftwareEngineeringNetwork.JournalApplication.Domain
+﻿namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 {
     public interface ICurrentUserProvider
     {
