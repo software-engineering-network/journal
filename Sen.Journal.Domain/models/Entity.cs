@@ -12,7 +12,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 
         #region Properties
 
-        public Id Id { get; protected set; }
+        public Id Id { get; set; }
         public RecordName RecordName { get; protected set; }
 
         #endregion
@@ -21,14 +21,14 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 
         protected Entity()
         {
+            var dateTimeProvider = new BasicDateTimeProvider();
+            _auditable = new Auditable(dateTimeProvider);
         }
 
         protected Entity(Id id)
+            : this()
         {
             Id = id;
-
-            var dateTimeProvider = new BasicDateTimeProvider();
-            _auditable = new Auditable(dateTimeProvider);
         }
 
         #endregion

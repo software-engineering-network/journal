@@ -1,8 +1,10 @@
-﻿using SoftwareEngineeringNetwork.JournalApplication.Domain;
+﻿using System.Linq;
+using SoftwareEngineeringNetwork.JournalApplication.Domain;
+using SoftwareEngineeringNetwork.JournalApplication.Domain.JournalManagement;
 
 namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
 {
-    public class JournalRepository : InMemoryRepository<Journal>
+    public class JournalRepository : InMemoryRepository<Journal>, IJournalRepository
     {
         public JournalRepository(ICurrentUserProvider currentUserProvider) : base(currentUserProvider)
         {
@@ -10,18 +12,18 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
 
         public override Journal Create(Journal entity)
         {
-            var newJournal = new Journal(
-                entity.UserId,
-                entity.JournalTitle,
-                new JournalId(NextId(_entities))
-            );
-
             var currentUser = _currentUserProvider.GetCurrentUser();
-            newJournal.SetCreatedInfo((UserId) currentUser.Id);
+            entity.Id = new Id(NextId(_entities));
+            entity.SetCreatedInfo((UserId) currentUser.Id);
 
-            _entities.Add(newJournal);
+            _entities.Add(entity);
 
-            return newJournal;
+            return entity;
+        }
+
+        public Journal Find(UserId userId, JournalTitle journalTitle)
+        {
+            return _entities.Single(x => x.UserId == userId && x.JournalTitle == journalTitle);
         }
     }
 }

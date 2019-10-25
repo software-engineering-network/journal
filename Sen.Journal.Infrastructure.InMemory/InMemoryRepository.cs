@@ -79,11 +79,11 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
                 .Select(x => x.RecordName);
         }
 
-        protected ulong NextId(IEnumerable<T> persons)
+        protected ulong NextId(IEnumerable<T> entities)
         {
             var maxId = _entities.Count == 0
                 ? 0
-                : persons.Select(x => x.Id.Value).Max();
+                : entities.Select(x => x.Id.Value).Max();
 
             return ++maxId;
         }

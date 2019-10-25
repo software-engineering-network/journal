@@ -24,11 +24,13 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain.UserManagement
 
         public IUserManager CreateUser(CreateUser createUser)
         {
+            var recordName = CreateRecordName(createUser);
+
             var user = new User(
                 createUser.EmailAddress,
                 createUser.Name,
                 createUser.Password,
-                CreateRecordName(createUser),
+                recordName,
                 createUser.Surname,
                 createUser.Username
             );
