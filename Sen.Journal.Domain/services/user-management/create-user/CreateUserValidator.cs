@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace SoftwareEngineeringNetwork.JournalApplication.Domain.UserManagement
+namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 {
     public class CreateUserValidator : AbstractValidator<CreateUser>
     {

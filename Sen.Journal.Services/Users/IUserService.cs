@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SoftwareEngineeringNetwork.JournalApplication.Services.Users
+namespace SoftwareEngineeringNetwork.JournalApplication.Services
 {
     public interface IUserService
     {

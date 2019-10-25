@@ -2,7 +2,7 @@ using FluentAssertions;
 using SoftwareEngineeringNetwork.JournalApplication.Domain;
 using Xunit;
 
-namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain
+namespace SoftwareEngineeringNetwork.JournalApplication.Test
 {
     public class EntityTest
     {

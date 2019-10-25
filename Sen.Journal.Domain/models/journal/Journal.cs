@@ -31,9 +31,4 @@
 
         #endregion
     }
-
-    public interface IJournalRepository : IRepository<Journal>
-    {
-        Journal Find(UserId userId, JournalTitle journalTitle);
-    }
 }

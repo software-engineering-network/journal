@@ -1,12 +1,11 @@
 ﻿using System.Linq;
 using FluentAssertions;
 using SoftwareEngineeringNetwork.JournalApplication.Domain;
-using SoftwareEngineeringNetwork.JournalApplication.Domain.UserManagement;
-using SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory.UserManagement;
-using SoftwareEngineeringNetwork.JournalApplication.Services.Users;
+using SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory;
+using SoftwareEngineeringNetwork.JournalApplication.Services;
 using Xunit;
 
-namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain.UserManagement
+namespace SoftwareEngineeringNetwork.JournalApplication.Test
 {
     public class UserManagerTest
     {

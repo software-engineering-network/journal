@@ -1,6 +1,4 @@
-﻿using SoftwareEngineeringNetwork.JournalApplication.Services.Users;
-
-namespace SoftwareEngineeringNetwork.JournalApplication.Services.Journals
+﻿namespace SoftwareEngineeringNetwork.JournalApplication.Services
 {
     public class JournalDto : IEntityDto
     {

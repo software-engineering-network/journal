@@ -1,6 +1,6 @@
-﻿using SoftwareEngineeringNetwork.JournalApplication.Domain.UserManagement;
+﻿using SoftwareEngineeringNetwork.JournalApplication.Domain;
 
-namespace SoftwareEngineeringNetwork.JournalApplication.Services.UserManagement
+namespace SoftwareEngineeringNetwork.JournalApplication.Services
 {
     public class UserManagementService : IUserManagementService
     {
