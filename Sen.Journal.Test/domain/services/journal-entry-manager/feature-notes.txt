@@ -1,0 +1,4 @@
+﻿*	allow journal entry scheudling
+*	allow public journals
+	*	maybe allow group journals
+*	allow commenting on journal entries
