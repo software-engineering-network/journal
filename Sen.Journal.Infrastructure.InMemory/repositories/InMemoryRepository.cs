@@ -26,7 +26,16 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
 
         #region IRepository<T> Members
 
-        public abstract T Create(T entity);
+        public T Create(T entity)
+        {
+            var currentUser = _currentUserProvider.GetCurrentUser();
+            entity.Id = new Id(NextId(_entities));
+            entity.SetCreatedInfo((UserId) currentUser.Id);
+
+            _entities.Add(entity);
+
+            return entity;
+        }
 
         public bool Exists(Func<T, bool> predicate)
         {

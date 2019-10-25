@@ -2,7 +2,7 @@
 
 namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
 {
-    public static class PersonMapping
+    public static class PersonMappingExtensions
     {
         public static Person ToPerson(this User user)
         {

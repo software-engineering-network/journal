@@ -5,24 +5,21 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
 {
     public class JournalRepository : InMemoryRepository<Journal>, IJournalRepository
     {
+        #region Construction
+
         public JournalRepository(ICurrentUserProvider currentUserProvider) : base(currentUserProvider)
         {
         }
 
-        public override Journal Create(Journal entity)
-        {
-            var currentUser = _currentUserProvider.GetCurrentUser();
-            entity.Id = new Id(NextId(_entities));
-            entity.SetCreatedInfo((UserId) currentUser.Id);
+        #endregion
 
-            _entities.Add(entity);
-
-            return entity;
-        }
+        #region IJournalRepository Members
 
         public Journal Find(UserId userId, JournalTitle journalTitle)
         {
             return _entities.Single(x => x.UserId == userId && x.JournalTitle == journalTitle);
         }
+
+        #endregion
     }
 }

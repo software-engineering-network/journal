@@ -11,7 +11,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test
         [Fact]
         public void WhenCheckingForEquality_ItDoesNotMatchNull()
         {
-            var person = TestObjectFactory.CreateJohnDoe();
+            var person = TestUserFactory.CreateJohnDoe();
             User person2 = null;
 
             person.Equals(person2).Should().BeFalse();
@@ -22,8 +22,8 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test
         [Fact]
         public void WhenCheckingForEquality_ItMatchesIdentifierEquality()
         {
-            var person1 = TestObjectFactory.CreateJohnDoe(1);
-            var person2 = TestObjectFactory.CreateJaneDoe(2);
+            var person1 = TestUserFactory.CreateJohnDoe(1);
+            var person2 = TestUserFactory.CreateJaneDoe(2);
 
             person1.Should().Be(person2);
             (person1 == person2).Should().BeTrue();

@@ -2,27 +2,8 @@
 
 namespace SoftwareEngineeringNetwork.JournalApplication.Test
 {
-    public class TestObjectFactory
+    public class TestUserFactory
     {
-        public static Journal CreateJournal(
-            ulong journalId,
-            string journalTitle
-        )
-        {
-            return new Journal(
-                new UserId(1),
-                new JournalTitle(journalTitle)
-            );
-        }
-
-        public static Journal CreateMusicJournal(ulong id = 0)
-        {
-            return CreateJournal(
-                id,
-                "Music Journal"
-            );
-        }
-
         public static User CreatePerson(
             string emailAddress,
             string name,
