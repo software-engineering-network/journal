@@ -3,7 +3,7 @@ using SoftwareEngineeringNetwork.JournalApplication.Domain;
 using SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory.UserManagement;
 using Xunit;
 
-namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain.UserManagement
+namespace SoftwareEngineeringNetwork.JournalApplication.Test
 {
     public class CreateUserValidatorTest
     {
