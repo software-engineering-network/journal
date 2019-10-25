@@ -12,13 +12,19 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test
         private readonly User _johnDoe;
         private readonly IJournalEntryService _journalEntryService;
 
+        private readonly IUnitOfWork _unitOfWork;
+
         public JournalEntryManagerTest()
         {
-            _musicCoversJournal = TestJournalFactory.CreateMusicCoversJournal();
-            var journalEntryRepository = TestRepositoryFactory.CreateJournalEntryRepository();
-            _journalEntryManager = new JournalEntryManager(journalEntryRepository);
-            _johnDoe = TestUserFactory.CreateJohnDoe();
-            _journalEntryService = new JournalEntryService(journalEntryRepository);
+            _unitOfWork = TestUnitOfWorkFactory
+                .CreateUnitOfWork()
+                .WithUsers()
+                .WithJournals();
+
+            _musicCoversJournal = TestJournalFactory.CreateMusicCoversJournal(1);
+            _journalEntryManager = new JournalEntryManager(_unitOfWork.JournalEntryRepository);
+            _johnDoe = TestUserFactory.CreateJohnDoe(1);
+            _journalEntryService = new JournalEntryService(_unitOfWork.JournalEntryRepository);
         }
 
         [Theory]
@@ -26,10 +32,10 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test
         public void WhenCreatingAPost_APostIsPersisted(string journalEntryTitle, string journalEntryContent)
         {
             var createJournalEntry = new CreateJournalEntry(
-                _johnDoe.Id.Value,
-                _musicCoversJournal.Id.Value,
-                journalEntryTitle,
-                journalEntryContent
+                (UserId) _johnDoe.Id,
+                (JournalId) _musicCoversJournal.Id,
+                new JournalEntryTitle(journalEntryTitle), 
+                new JournalEntryContent(journalEntryContent)
             );
 
             _journalEntryManager.CreateJournalEntry(createJournalEntry);

@@ -42,7 +42,8 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test
                 "peanutbuttereggdirt",
                 "JohnDoe",
                 "Doe",
-                "JohnDoe"
+                "JohnDoe",
+                id
             );
         }
 
@@ -54,7 +55,8 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test
                 "peanutbuttereggdirt",
                 "JaneDoe",
                 "Doe",
-                "JaneDoe"
+                "JaneDoe",
+                id
             );
         }
     }

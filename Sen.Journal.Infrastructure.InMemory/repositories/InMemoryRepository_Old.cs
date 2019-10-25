@@ -5,31 +5,21 @@ using SoftwareEngineeringNetwork.JournalApplication.Domain;
 
 namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
 {
-    public abstract class InMemoryRepository<T> : IRepository<T> where T : Entity
+    public abstract class InMemoryRepository_Old<T> : IRepository<T> where T : Entity
     {
         #region Fields
 
-        private readonly ICurrentUserProvider _currentUserProvider;
-
-        #endregion
-
-        #region Properties
-
-        protected Context Context { get; }
-        protected Func<List<T>> GetEntities { get; set; }
-        protected List<T> Entities => GetEntities.Invoke();
+        protected readonly ICurrentUserProvider _currentUserProvider;
+        protected List<T> _entities;
 
         #endregion
 
         #region Construction
 
-        protected InMemoryRepository(
-            Context context,
-            ICurrentUserProvider currentUserProvider
-        )
+        protected InMemoryRepository_Old(ICurrentUserProvider currentUserProvider)
         {
-            Context = context;
             _currentUserProvider = currentUserProvider;
+            _entities = new List<T>();
         }
 
         #endregion
@@ -39,10 +29,10 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
         public T Create(T entity)
         {
             var currentUser = _currentUserProvider.GetCurrentUser();
-            entity.Id = new Id(NextId(Entities));
+            entity.Id = new Id(NextId(_entities));
             entity.SetCreatedInfo((UserId) currentUser.Id);
 
-            Entities.Add(entity);
+            _entities.Add(entity);
 
             return entity;
         }
@@ -51,7 +41,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
         {
             try
             {
-                var existingEntity = Entities.First(predicate);
+                var existingEntity = _entities.First(predicate);
                 return true;
             }
             catch
@@ -62,27 +52,27 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
 
         public IEnumerable<T> Fetch()
         {
-            return Entities;
+            return _entities;
         }
 
         public virtual T Find(Id id)
         {
-            return Entities.Find(x => x.Id == id);
+            return _entities.Find(x => x.Id == id);
         }
 
         public T FirstOrDefault(Func<T, bool> predicate)
         {
-            return Entities.FirstOrDefault(predicate);
+            return _entities.FirstOrDefault(predicate);
         }
 
         public IEnumerable<T> Fetch(Func<T, bool> predicate)
         {
-            return Entities.Where(predicate);
+            return _entities.Where(predicate);
         }
 
         public virtual T Update(T entity)
         {
-            var storedEntity = Entities.Find(x => x.Id == entity.Id);
+            var storedEntity = _entities.Find(x => x.Id == entity.Id);
 
             var currentUser = _currentUserProvider.GetCurrentUser();
             storedEntity.SetModifiedInfo((UserId) currentUser.Id);
@@ -92,9 +82,15 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
 
         #endregion
 
-        protected ulong NextId(List<T> entities)
+        public IEnumerable<RecordName> WithMatchingRecordNames(RecordName recordName)
         {
-            var maxId = entities.Count == 0
+            return Fetch(x => x.RecordName.Value.StartsWith(recordName.Value))
+                .Select(x => x.RecordName);
+        }
+
+        protected ulong NextId(IEnumerable<T> entities)
+        {
+            var maxId = _entities.Count == 0
                 ? 0
                 : entities.Select(x => x.Id.Value).Max();
 

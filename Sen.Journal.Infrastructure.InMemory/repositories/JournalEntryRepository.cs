@@ -7,17 +7,21 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
     {
         #region Construction
 
-        public JournalEntryRepository(ICurrentUserProvider currentUserProvider) : base(currentUserProvider)
+        public JournalEntryRepository(
+            Context context,
+            ICurrentUserProvider currentUserProvider
+        ) : base(context, currentUserProvider)
         {
+            GetEntities = () => Context.JournalEntries;
         }
 
         #endregion
 
-        #region Implementation of IJournalEntryRepository
+        #region IJournalEntryRepository Members
 
         public JournalEntry Find(JournalId journalId, JournalEntryTitle journalEntryTitle)
         {
-            return _entities.Single(x => x.JournalId == journalId && x.JournalEntryTitle == journalEntryTitle);
+            return Entities.Single(x => x.JournalId == journalId && x.JournalEntryTitle == journalEntryTitle);
         }
 
         #endregion
