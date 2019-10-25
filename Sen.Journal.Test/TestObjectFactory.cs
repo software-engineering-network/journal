@@ -1,5 +1,4 @@
 ﻿using SoftwareEngineeringNetwork.JournalApplication.Domain;
-using SoftwareEngineeringNetwork.JournalApplication.Domain.UserManagement;
 
 namespace SoftwareEngineeringNetwork.JournalApplication.Test
 {
@@ -12,8 +11,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test
         {
             return new Journal(
                 new UserId(1),
-                new JournalTitle(journalTitle),
-                new JournalId(journalId)
+                new JournalTitle(journalTitle)
             );
         }
 

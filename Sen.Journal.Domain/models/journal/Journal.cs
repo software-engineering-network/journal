@@ -2,27 +2,38 @@
 {
     public class Journal : Entity
     {
-        public UserId UserId { get; private set; }
-        public JournalTitle JournalTitle { get; private set; }
+        #region Properties
+
+        public UserId UserId { get; set; }
+        public JournalTitle JournalTitle { get; set; }
+
+        #endregion
+
+        #region Construction
 
         public Journal(
             UserId userId,
-            JournalTitle journalTitle,
-            JournalId journalId = null
-        ) : base(journalId)
+            JournalTitle journalTitle
+        )
         {
             UserId = userId;
             JournalTitle = journalTitle;
         }
 
-        public Journal Update(
-            UserId personId,
+        public Journal(
+            JournalId journalId,
+            UserId userId,
             JournalTitle journalTitle
-        )
+        ) : this(userId, journalTitle)
         {
-            UserId = personId;
-            JournalTitle = journalTitle;
-            return this;
+            Id = journalId;
         }
+
+        #endregion
+    }
+
+    public interface IJournalRepository : IRepository<Journal>
+    {
+        Journal Find(UserId userId, JournalTitle journalTitle);
     }
 }
