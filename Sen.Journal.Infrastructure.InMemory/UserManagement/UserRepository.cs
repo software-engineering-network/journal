@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using SoftwareEngineeringNetwork.JournalApplication.Domain;
-using SoftwareEngineeringNetwork.JournalApplication.Domain.UserManagement;
 
 namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory.UserManagement
 {

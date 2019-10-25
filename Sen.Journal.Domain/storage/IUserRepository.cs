@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SoftwareEngineeringNetwork.JournalApplication.Domain.UserManagement
+namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 {
     public interface IUserRepository : IRepository<User>
     {
