@@ -1,6 +1,5 @@
 ﻿using System;
 using FluentAssertions;
-using FluentValidation;
 using SoftwareEngineeringNetwork.JournalApplication.Domain;
 using SoftwareEngineeringNetwork.JournalApplication.Services;
 using Xunit;
@@ -25,10 +24,12 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.JournalManagement
                 .WithJournals();
 
             var userIdMustExistValidator = new UserIdMustExistValidator(unitOfWork);
+            var journalTitleMustNotBeNullOrWhitespaceValidator = new JournalTitleMustNotBeNullOrWhitespaceValidator();
             var journalTitleMustExistValidator = new JournalTitleMustNotExistValidator(unitOfWork);
 
             _createJournalValidator = new CreateJournalValidator(
                 userIdMustExistValidator,
+                journalTitleMustNotBeNullOrWhitespaceValidator,
                 journalTitleMustExistValidator
             );
         }
@@ -37,6 +38,9 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.JournalManagement
 
         [Theory]
         [InlineData(0, "New Journal Title", "Cannot find user.")]
+        [InlineData(1, null, "Please set a 'Journal Title'.")]
+        [InlineData(1, "", "Please set a 'Journal Title'.")]
+        [InlineData(1, " ", "Please set a 'Journal Title'.")]
         [InlineData(1, "Existing Journal Title", "Cannot create duplicate 'Journal Title' 'Existing Journal Title'")]
         public void WhenCreatingAJournal_WithInvalidArgs_TheCorrectExceptionIsThrown(
             ulong userId,
