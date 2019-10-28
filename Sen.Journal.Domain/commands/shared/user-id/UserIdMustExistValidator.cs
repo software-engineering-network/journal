@@ -10,7 +10,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
         {
             RuleFor(x => x.UserId)
                 .Must(x => unitOfWork.UserRepository.UserIdExists(x))
-                .WithMessage("Cannot find user.");
+                .WithMessage("User not found.");
         }
 
         #endregion

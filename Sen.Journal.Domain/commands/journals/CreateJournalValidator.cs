@@ -8,12 +8,12 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 
         public CreateJournalValidator(
             UserIdMustExistValidator userIdMustExistValidator,
-            JournalTitleMustNotBeNullOrWhitespaceValidator journalTitleMustNotBeNullOrWhitespaceValidator,
+            JournalTitleIsRequiredValidator journalTitleIsRequiredValidator,
             JournalTitleMustNotExistValidator journalTitleMustNotExistValidator
         )
         {
             Include(userIdMustExistValidator);
-            Include(journalTitleMustNotBeNullOrWhitespaceValidator);
+            Include(journalTitleIsRequiredValidator);
             Include(journalTitleMustNotExistValidator);
         }
 

@@ -79,6 +79,11 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
             return person.ToUser();
         }
 
+        public bool EmailAddressExists(EmailAddress emailAddress)
+        {
+            return Exists(x => x.EmailAddress == emailAddress);
+        }
+
         public User Find(Username username)
         {
             return _persons.Single(x => x.Username == username.Value).ToUser();

@@ -1,14 +1,14 @@
 ﻿namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 {
-    public class CreateUser
+    public class CreateUser :
+        IEmailAddressCommand,
+        IUsernameCommand
     {
         #region Properties
 
-        public EmailAddress EmailAddress { get; }
         public Name Name { get; }
         public Password Password { get; }
         public Surname Surname { get; }
-        public Username Username { get; }
 
         #endregion
 
@@ -28,6 +28,18 @@
             Surname = surname;
             Username = username;
         }
+
+        #endregion
+
+        #region IEmailAddressCommand Members
+
+        public EmailAddress EmailAddress { get; }
+
+        #endregion
+
+        #region IUsernameCommand Members
+
+        public Username Username { get; }
 
         #endregion
     }
