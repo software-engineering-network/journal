@@ -1,14 +1,9 @@
 ﻿namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 {
-    public class CreateJournal
+    public class CreateJournal :
+        IUserIdCommand,
+        IJournalTitleCommand
     {
-        #region Properties
-
-        public UserId UserId { get; }
-        public JournalTitle JournalTitle { get; }
-
-        #endregion
-
         #region Construction
 
         public CreateJournal(
@@ -19,6 +14,18 @@
             UserId = userId;
             JournalTitle = journalTitle;
         }
+
+        #endregion
+
+        #region IJournalTitleCommand Members
+
+        public JournalTitle JournalTitle { get; }
+
+        #endregion
+
+        #region IUserIdCommand Members
+
+        public UserId UserId { get; }
 
         #endregion
     }

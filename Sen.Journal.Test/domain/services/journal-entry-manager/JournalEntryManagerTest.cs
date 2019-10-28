@@ -7,12 +7,18 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test
 {
     public class JournalEntryManagerTest
     {
-        private readonly JournalEntryManager _journalEntryManager;
-        private readonly Journal _musicCoversJournal;
+        #region Fields
+
         private readonly User _johnDoe;
+        private readonly JournalEntryManager _journalEntryManager;
         private readonly IJournalEntryService _journalEntryService;
+        private readonly Journal _musicCoversJournal;
 
         private readonly IUnitOfWork _unitOfWork;
+
+        #endregion
+
+        #region Construction
 
         public JournalEntryManagerTest()
         {
@@ -27,14 +33,19 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test
             _journalEntryService = new JournalEntryService(_unitOfWork.JournalEntryRepository);
         }
 
+        #endregion
+
         [Theory]
-        [InlineData("Fall to Pieces", "Tuning: half-step down\nVerse: D D C G 4x\nPrechorus: A A G D A A G A")]
+        [InlineData(
+            "Fall to Pieces",
+            "Tuning: half-step down\nVerse: D D C G 4x\nPrechorus: A A G D A A G A"
+        )]
         public void WhenCreatingAPost_APostIsPersisted(string journalEntryTitle, string journalEntryContent)
         {
             var createJournalEntry = new CreateJournalEntry(
                 (UserId) _johnDoe.Id,
                 (JournalId) _musicCoversJournal.Id,
-                new JournalEntryTitle(journalEntryTitle), 
+                new JournalEntryTitle(journalEntryTitle),
                 new JournalEntryContent(journalEntryContent)
             );
 

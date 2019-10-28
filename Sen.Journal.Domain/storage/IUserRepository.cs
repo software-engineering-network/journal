@@ -7,6 +7,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
         User Find(Username username);
         IEnumerable<RecordName> FindMatchingRecordNames(RecordName recordName);
         bool RecordNameExists(RecordName recordName);
+        bool UserIdExists(UserId userId);
         bool UsernameExists(Username username);
     }
 }

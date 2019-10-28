@@ -23,6 +23,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test
         public static IUnitOfWork WithJournals(this IUnitOfWork unitOfWork)
         {
             unitOfWork.JournalRepository.Create(TestJournalFactory.CreateMusicCoversJournal(1));
+            unitOfWork.JournalRepository.Create(TestJournalFactory.CreateJournal(2, 1, "Existing Journal Title"));
             return unitOfWork;
         }
     }

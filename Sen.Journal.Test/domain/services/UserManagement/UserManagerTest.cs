@@ -5,7 +5,7 @@ using SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory;
 using SoftwareEngineeringNetwork.JournalApplication.Services;
 using Xunit;
 
-namespace SoftwareEngineeringNetwork.JournalApplication.Test
+namespace SoftwareEngineeringNetwork.JournalApplication.Test.UserManagement
 {
     public class UserManagerTest
     {

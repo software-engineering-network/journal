@@ -2,12 +2,20 @@
 {
     public class JournalEntryManager : IJournalEntryManager
     {
+        #region Fields
+
         private readonly IJournalEntryRepository _journalEntryRepository;
+
+        #endregion
+
+        #region Construction
 
         public JournalEntryManager(IJournalEntryRepository journalEntryRepository)
         {
             _journalEntryRepository = journalEntryRepository;
         }
+
+        #endregion
 
         #region IJournalEntryManager Members
 

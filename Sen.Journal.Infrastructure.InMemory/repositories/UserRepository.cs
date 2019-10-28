@@ -96,6 +96,11 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
             return _persons.Exists(x => x.RecordName == recordName.Value);
         }
 
+        public bool UserIdExists(UserId userId)
+        {
+            return _persons.Exists(x => x.Id == userId.Value);
+        }
+
         public bool UsernameExists(Username username)
         {
             return _persons.Exists(x => x.Username == username.Value);
