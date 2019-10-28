@@ -28,10 +28,9 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Services
 
         public void CreateUser(CreateUser createUser)
         {
-            var validationResult = _createUserValidator.Validate(createUser);
+            _createUserValidator.ValidateAndThrowCustom(createUser);
 
-            if (!validationResult.IsValid)
-                return;
+
 
             _userManager.CreateUser(createUser);
         }

@@ -42,7 +42,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.JournalManagement
         [InlineData(1, "", "Please set a 'Journal Title'.")]
         [InlineData(1, " ", "Please set a 'Journal Title'.")]
         [InlineData(1, "Existing Journal Title", "Cannot create duplicate 'Journal Title' 'Existing Journal Title'")]
-        public void WhenCreatingAJournal_WithInvalidArgs_TheCorrectExceptionIsThrown(
+        public void WhenCreatingAJournal_WithInvalidArgs_ItThrowsAnInvalidCommandException(
             ulong userId,
             string journalTitle,
             params string[] errorMessage
