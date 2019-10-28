@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System;
+using FluentAssertions;
 using SoftwareEngineeringNetwork.JournalApplication.Domain;
 using Xunit;
 
@@ -6,7 +7,13 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain
 {
     public class CreateUserValidatorTest
     {
+        #region Fields
+
         private readonly CreateUserValidator _createUserValidator;
+
+        #endregion
+
+        #region Construction
 
         public CreateUserValidatorTest()
         {
@@ -14,38 +21,46 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain
                 .CreateUnitOfWork()
                 .WithUsers();
 
-            _createUserValidator = new CreateUserValidator(unitOfWork.UserRepository);
+            _createUserValidator = new CreateUserValidator(
+                new EmailAddressIsRequiredValidator(),
+                new EmailAddressMustNotExistValidator(unitOfWork.UserRepository),
+                new UsernameIsRequiredValidator(),
+                new UsernameMustNotExistValidator(unitOfWork.UserRepository)
+            );
         }
 
+        #endregion
+
         [Theory]
-        [InlineData(
-            "john.doe@gmail.com",
-            "John",
-            "peanutbuttereggdirt",
-            "Doe",
-            "JohnDoe"
-        )]
-        public void WhenCreatingAUser_WithAnExistingUsername_NoUserIsCreated(
+        [InlineData(null, "JamesDoe", "*Email Address is required.*")]
+        [InlineData("", "JamesDoe", "*Email Address is required.*")]
+        [InlineData(" ", "JamesDoe", "*Email Address is required.*")]
+        [InlineData("john.doe@gmail.com", "JamesDoe", "*Email Address exists.*")]
+        [InlineData("james.doe@gmail.com", null, "*Username is required.*")]
+        [InlineData("james.doe@gmail.com", "", "*Username is required.*")]
+        [InlineData("james.doe@gmail.com", " ", "*Username is required.*")]
+        [InlineData("james.doe@gmail.com", "JohnDoe", "*Username exists.*")]
+        public void WhenCreatingAUser_WithInvalidArgs_ItThrowsAnInvalidCommandException(
             string emailAddress,
-            string name,
-            string password,
-            string surname,
-            string username
+            string username,
+            string errorMessage
         )
         {
             // create command
             var createUser = new CreateUser(
                 new EmailAddress(emailAddress),
-                new Name(name),
-                new Password(password),
-                new Surname(surname),
+                new Name("John"),
+                new Password("peanutbuttereggdirt"),
+                new Surname("Doe"),
                 new Username(username)
             );
 
             // evaluate command when username already exists
-            var validationResult = _createUserValidator.Validate(createUser);
+            Action validate = () => _createUserValidator.ValidateAndThrowCustom(createUser);
 
-            validationResult.IsValid.Should().Be(false);
+            validate.Should()
+                .Throw<InvalidCommandException>()
+                .WithMessage(errorMessage);
         }
     }
 }

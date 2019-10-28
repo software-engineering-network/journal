@@ -10,7 +10,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
         {
             RuleFor(x => x.JournalTitle)
                 .Must(x => !unitOfWork.JournalRepository.JournalTitleExists(x))
-                .WithMessage("Cannot create duplicate '{PropertyName}' '{PropertyValue}'");
+                .WithMessage("'{PropertyValue}' exists.");
         }
 
         #endregion

@@ -67,7 +67,10 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 
         public override string ToString()
         {
-            return Value.ToString();
+            if (Value != null)
+                return Value.ToString();
+
+            return string.Empty;
         }
 
         #endregion

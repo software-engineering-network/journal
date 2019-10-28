@@ -1,13 +1,13 @@
 ﻿namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 {
-    public class CreateJournalEntry
+    public class CreateJournalEntry :
+        IUserIdCommand,
+        IJournalIdCommand,
+        IJournalEntryContentCommand
     {
         #region Properties
 
-        public UserId UserId { get; }
-        public JournalId JournalId { get; }
         public JournalEntryTitle JournalEntryTitle { get; }
-        public JournalEntryContent JournalEntryContent { get; }
 
         #endregion
 
@@ -25,6 +25,24 @@
             JournalEntryTitle = journalEntryTitle;
             JournalEntryContent = journalEntryContent;
         }
+
+        #endregion
+
+        #region IJournalEntryContentCommand Members
+
+        public JournalEntryContent JournalEntryContent { get; }
+
+        #endregion
+
+        #region IJournalIdCommand Members
+
+        public JournalId JournalId { get; }
+
+        #endregion
+
+        #region IUserIdCommand Members
+
+        public UserId UserId { get; }
 
         #endregion
     }

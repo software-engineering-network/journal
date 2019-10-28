@@ -9,8 +9,8 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
         public UserIdMustExistValidator(IUnitOfWork unitOfWork)
         {
             RuleFor(x => x.UserId)
-                .Must(x => unitOfWork.UserRepository.UserIdExists(x))
-                .WithMessage("Cannot find user.");
+                .Must(x => unitOfWork.UserRepository.Exists(x))
+                .WithMessage("User not found.");
         }
 
         #endregion

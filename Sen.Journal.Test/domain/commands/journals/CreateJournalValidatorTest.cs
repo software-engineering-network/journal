@@ -1,7 +1,6 @@
 ﻿using System;
 using FluentAssertions;
 using SoftwareEngineeringNetwork.JournalApplication.Domain;
-using SoftwareEngineeringNetwork.JournalApplication.Services;
 using Xunit;
 
 namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain
@@ -23,25 +22,21 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain
                 .WithUsers()
                 .WithJournals();
 
-            var userIdMustExistValidator = new UserIdMustExistValidator(unitOfWork);
-            var journalTitleMustNotBeNullOrWhitespaceValidator = new JournalTitleMustNotBeNullOrWhitespaceValidator();
-            var journalTitleMustExistValidator = new JournalTitleMustNotExistValidator(unitOfWork);
-
             _createJournalValidator = new CreateJournalValidator(
-                userIdMustExistValidator,
-                journalTitleMustNotBeNullOrWhitespaceValidator,
-                journalTitleMustExistValidator
+                new UserIdMustExistValidator(unitOfWork),
+                new JournalTitleIsRequiredValidator(),
+                new JournalTitleMustNotExistValidator(unitOfWork)
             );
         }
 
         #endregion
 
         [Theory]
-        [InlineData(0, "New Journal Title", "Cannot find user.")]
-        [InlineData(1, null, "Please set a 'Journal Title'.")]
-        [InlineData(1, "", "Please set a 'Journal Title'.")]
-        [InlineData(1, " ", "Please set a 'Journal Title'.")]
-        [InlineData(1, "Existing Journal Title", "Cannot create duplicate 'Journal Title' 'Existing Journal Title'")]
+        [InlineData(0, "New Journal Title", "User not found.")]
+        [InlineData(1, null, "Journal Title is required.")]
+        [InlineData(1, "", "Journal Title is required.")]
+        [InlineData(1, " ", "Journal Title is required.")]
+        [InlineData(1, "Existing Journal Title", "'Existing Journal Title' exists.")]
         public void WhenCreatingAJournal_WithInvalidArgs_ItThrowsAnInvalidCommandException(
             ulong userId,
             string journalTitle,

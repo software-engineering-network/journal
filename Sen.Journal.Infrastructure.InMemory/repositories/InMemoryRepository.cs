@@ -47,6 +47,11 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
             return entity;
         }
 
+        public bool Exists(Id id)
+        {
+            return Exists(x => x.Id == id);
+        }
+
         public bool Exists(Func<T, bool> predicate)
         {
             try

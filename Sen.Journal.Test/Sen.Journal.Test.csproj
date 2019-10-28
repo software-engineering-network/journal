@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\JournalEntryManagement\" />
     <Folder Include="Services\JournalManagement\" />
   </ItemGroup>
 

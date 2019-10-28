@@ -6,10 +6,17 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
     {
         #region Construction
 
-        public CreateUserValidator(IUserRepository userRepository)
+        public CreateUserValidator(
+            EmailAddressIsRequiredValidator emailAddressIsRequiredValidator,
+            EmailAddressMustNotExistValidator emailAddressMustNotExistValidator,
+            UsernameIsRequiredValidator usernameIsRequiredValidator,
+            UsernameMustNotExistValidator usernameMustNotExistValidator
+        )
         {
-            RuleFor(x => x.Username)
-                .Must(x => !userRepository.UsernameExists(x));
+            Include(emailAddressIsRequiredValidator);
+            Include(emailAddressMustNotExistValidator);
+            Include(usernameIsRequiredValidator);
+            Include(usernameMustNotExistValidator);
         }
 
         #endregion

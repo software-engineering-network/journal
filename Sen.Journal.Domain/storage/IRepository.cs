@@ -6,6 +6,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
     public interface IRepository<T>
     {
         T Create(T entity);
+        bool Exists(Id id);
         bool Exists(Func<T, bool> predicate);
         IEnumerable<T> Fetch();
         IEnumerable<T> Fetch(Func<T, bool> predicate);
