@@ -1,9 +1,8 @@
 ﻿using FluentAssertions;
 using SoftwareEngineeringNetwork.JournalApplication.Domain;
-using SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory;
 using Xunit;
 
-namespace SoftwareEngineeringNetwork.JournalApplication.Test.UserManagement
+namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain
 {
     public class CreateUserValidatorTest
     {

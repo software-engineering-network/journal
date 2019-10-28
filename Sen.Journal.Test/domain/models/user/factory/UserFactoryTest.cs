@@ -2,7 +2,7 @@
 using SoftwareEngineeringNetwork.JournalApplication.Domain;
 using Xunit;
 
-namespace SoftwareEngineeringNetwork.JournalApplication.Test.UserManagement
+namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain
 {
     public class UserFactoryTest
     {
