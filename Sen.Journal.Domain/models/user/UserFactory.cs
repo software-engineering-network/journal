@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 {
-    public class UserManager : IUserManager
+    public class UserFactory : IUserFactory
     {
         #region Fields
 
@@ -13,16 +13,16 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 
         #region Construction
 
-        public UserManager(IUserRepository userRepository)
+        public UserFactory(IUserRepository userRepository)
         {
             _userRepository = userRepository;
         }
 
         #endregion
 
-        #region IUserManager Members
+        #region IUserFactory Members
 
-        public IUserManager CreateUser(CreateUser createUser)
+        public User CreateUser(CreateUser createUser)
         {
             var recordName = CreateRecordName(createUser);
 
@@ -35,9 +35,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
                 createUser.Username
             );
 
-            _userRepository.Create(user);
-
-            return this;
+            return user;
         }
 
         #endregion
@@ -59,7 +57,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
                 return candidateRecordName;
 
             var matchingRecordNames = _userRepository.FindMatchingRecordNames(candidateRecordName);
-            
+
             var quantifiers = matchingRecordNames
                 .Select(
                     x => x.Value.Split(
@@ -72,9 +70,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 
             foreach (var q in quantifiers)
             {
-                int quantifier;
-
-                if (!int.TryParse(q, out quantifier))
+                if (!int.TryParse(q, out var quantifier))
                     continue;
 
                 if (quantifier > max)

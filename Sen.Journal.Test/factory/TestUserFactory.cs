@@ -40,7 +40,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test
                 "john.doe@gmail.com",
                 "John",
                 "peanutbuttereggdirt",
-                "JohnDoe",
+                "jdoe",
                 "Doe",
                 "JohnDoe",
                 id
@@ -53,7 +53,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test
                 "jane.doe@gmail.com",
                 "Jane",
                 "peanutbuttereggdirt",
-                "JaneDoe",
+                "jdoe1",
                 "Doe",
                 "JaneDoe",
                 id

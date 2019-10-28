@@ -4,6 +4,6 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Services
 {
     public interface IUserManagementService
     {
-        void CreateUser(CreateUser createUser);
+        IUserManagementService CreateUser(CreateUser createUser);
     }
 }

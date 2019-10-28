@@ -8,13 +8,14 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.UserManagement
     public class CreateUserValidatorTest
     {
         private readonly CreateUserValidator _createUserValidator;
-        private readonly UserManager _userManager;
 
         public CreateUserValidatorTest()
         {
-            var userRepository = new UserRepository();
-            _createUserValidator = new CreateUserValidator(userRepository);
-            _userManager = new UserManager(userRepository);
+            var unitOfWork = TestUnitOfWorkFactory
+                .CreateUnitOfWork()
+                .WithUsers();
+
+            _createUserValidator = new CreateUserValidator(unitOfWork.UserRepository);
         }
 
         [Theory]
@@ -41,9 +42,6 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.UserManagement
                 new Surname(surname),
                 new Username(username)
             );
-
-            // setup storage
-            _userManager.CreateUser(createUser);
 
             // evaluate command when username already exists
             var validationResult = _createUserValidator.Validate(createUser);
