@@ -2,11 +2,11 @@
 
 namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 {
-    public class JournalTitleMustNotExistsValidator : AbstractValidator<IJournalTitleCommand>
+    public class JournalTitleMustNotExistValidator : AbstractValidator<IJournalTitleCommand>
     {
         #region Construction
 
-        public JournalTitleMustNotExistsValidator(IUnitOfWork unitOfWork)
+        public JournalTitleMustNotExistValidator(IUnitOfWork unitOfWork)
         {
             RuleFor(x => x.JournalTitle)
                 .Must(x => !unitOfWork.JournalRepository.JournalTitleExists(x))

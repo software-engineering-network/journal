@@ -8,11 +8,11 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 
         public CreateJournalValidator(
             UserIdMustExistValidator userIdMustExistValidator,
-            JournalTitleMustNotExistsValidator journalTitleMustNotExistsValidator
+            JournalTitleMustNotExistValidator journalTitleMustNotExistValidator
         )
         {
             Include(userIdMustExistValidator);
-            Include(journalTitleMustNotExistsValidator);
+            Include(journalTitleMustNotExistValidator);
         }
 
         #endregion

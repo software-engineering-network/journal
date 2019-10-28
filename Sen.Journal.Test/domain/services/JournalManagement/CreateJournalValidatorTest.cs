@@ -25,7 +25,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.JournalManagement
                 .WithJournals();
 
             var userIdMustExistValidator = new UserIdMustExistValidator(unitOfWork);
-            var journalTitleMustExistValidator = new JournalTitleMustNotExistsValidator(unitOfWork);
+            var journalTitleMustExistValidator = new JournalTitleMustNotExistValidator(unitOfWork);
 
             _createJournalValidator = new CreateJournalValidator(
                 userIdMustExistValidator,
