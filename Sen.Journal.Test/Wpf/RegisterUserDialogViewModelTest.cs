@@ -6,21 +6,24 @@ using Xunit;
 
 namespace SoftwareEngineeringNetwork.JournalApplication.Test.Wpf
 {
-    public class CreateUserDialogViewModelTest
+    public class RegisterUserDialogViewModelTest
     {
         #region Fields
 
+        private readonly RegisterUserDialogViewModel _registerUserDialogViewModel;
+
         private readonly IUserService _userService;
-        private readonly CreateUserDialogViewModel _createUserDialogViewModel;
 
         #endregion
 
         #region Construction
 
-        public CreateUserDialogViewModelTest()
+        public RegisterUserDialogViewModelTest()
         {
             var unitOfWork = TestUnitOfWorkFactory.CreateUnitOfWork();
             _userService = new UserService(unitOfWork.UserRepository);
+
+            var notifyPropertyChanged = new NotifyPropertyChanged();
 
             var userManagementService = new UserManagementService(
                 new CreateUserValidator(
@@ -33,7 +36,10 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Wpf
                 new UserFactory(unitOfWork.UserRepository)
             );
 
-            _createUserDialogViewModel = new CreateUserDialogViewModel(userManagementService);
+            _registerUserDialogViewModel = new RegisterUserDialogViewModel(
+                notifyPropertyChanged,
+                userManagementService
+            );
         }
 
         #endregion
@@ -46,11 +52,11 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Wpf
             string username
         )
         {
-            _createUserDialogViewModel.EmailAddress = emailAddress;
-            _createUserDialogViewModel.Name = name;
-            _createUserDialogViewModel.Password = password;
-            _createUserDialogViewModel.Surname = surname;
-            _createUserDialogViewModel.Username = username;
+            _registerUserDialogViewModel.EmailAddress = emailAddress;
+            _registerUserDialogViewModel.Name = name;
+            _registerUserDialogViewModel.Password = password;
+            _registerUserDialogViewModel.Surname = surname;
+            _registerUserDialogViewModel.Username = username;
         }
 
         [Theory]
@@ -77,7 +83,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Wpf
                 username
             );
 
-            var createUser = _createUserDialogViewModel.CreateCreateUser();
+            var createUser = _registerUserDialogViewModel.CreateCreateUser();
 
             var targetCreateUser = new CreateUser(
                 new EmailAddress(emailAddress),
@@ -106,6 +112,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Wpf
             string username
         )
         {
+            // arrange
             UpdateCreateUserDialogViewModel(
                 emailAddress,
                 name,
@@ -114,11 +121,14 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Wpf
                 username
             );
 
-            _createUserDialogViewModel.RegisterUser();
+            // act
+            _registerUserDialogViewModel.RegisterUser();
 
-            var user = _userService.Find(_createUserDialogViewModel.Username);
-
-            var targetUser = TestUserFactory.CreateJohnDoe(1).ToUserDto();
+            // assert
+            var user = _userService.Find(_registerUserDialogViewModel.Username);
+            var targetUser = TestUserFactory
+                .CreateJohnDoe(1)
+                .ToUserDto();
 
             user.Should().BeEquivalentTo(targetUser);
         }
