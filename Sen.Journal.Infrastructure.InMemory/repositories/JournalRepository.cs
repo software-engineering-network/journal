@@ -24,6 +24,11 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
             return Entities.Single(x => x.UserId == userId && x.JournalTitle == journalTitle);
         }
 
+        public bool JournalTitleExists(JournalTitle journalTitle)
+        {
+            return Exists(x => x.JournalTitle == journalTitle);
+        }
+
         #endregion
     }
 }

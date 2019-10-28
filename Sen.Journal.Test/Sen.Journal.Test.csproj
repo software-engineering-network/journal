@@ -24,8 +24,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="domain\services\journal-management\" />
-    <Folder Include="domain\services\user-management\" />
+    <Folder Include="Services\JournalEntryManagement\" />
+    <Folder Include="Services\JournalManagement\" />
   </ItemGroup>
 
 </Project>

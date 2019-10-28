@@ -2,8 +2,8 @@
 
 namespace SoftwareEngineeringNetwork.JournalApplication.Services
 {
-    public interface IUserManagementService
+    public interface IJournalManagementService
     {
-        IUserManagementService CreateUser(CreateUser createUser);
+        IJournalManagementService CreateJournal(CreateJournal createJournal);
     }
 }

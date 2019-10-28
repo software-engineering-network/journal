@@ -7,33 +7,37 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Services
         #region Fields
 
         private readonly CreateUserValidator _createUserValidator;
-        private readonly UserManager _userManager;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IUserFactory _userFactory;
 
         #endregion
 
         #region Construction
 
         public UserManagementService(
-            UserManager userManager,
-            CreateUserValidator createUserValidator
+            CreateUserValidator createUserValidator,
+            IUnitOfWork unitOfWork,
+            IUserFactory userFactory
         )
         {
-            _userManager = userManager;
             _createUserValidator = createUserValidator;
+            _unitOfWork = unitOfWork;
+            _userFactory = userFactory;
         }
 
         #endregion
 
         #region IUserManagementService Members
 
-        public void CreateUser(CreateUser createUser)
+        public IUserManagementService CreateUser(CreateUser createUser)
         {
-            var validationResult = _createUserValidator.Validate(createUser);
+            _createUserValidator.ValidateAndThrowCustom(createUser);
 
-            if (!validationResult.IsValid)
-                return;
+            var user = _userFactory.CreateUser(createUser);
 
-            _userManager.CreateUser(createUser);
+            _unitOfWork.UserRepository.Create(user);
+
+            return this;
         }
 
         #endregion
