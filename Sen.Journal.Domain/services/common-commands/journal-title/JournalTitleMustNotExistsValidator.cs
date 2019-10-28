@@ -9,7 +9,8 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
         public JournalTitleMustNotExistsValidator(IUnitOfWork unitOfWork)
         {
             RuleFor(x => x.JournalTitle)
-                .Must(x => !unitOfWork.JournalRepository.JournalTitleExists(x));
+                .Must(x => !unitOfWork.JournalRepository.JournalTitleExists(x))
+                .WithMessage("Cannot create duplicate '{PropertyName}' '{PropertyValue}'");
         }
 
         #endregion

@@ -2,6 +2,7 @@
 using FluentAssertions;
 using FluentValidation;
 using SoftwareEngineeringNetwork.JournalApplication.Domain;
+using SoftwareEngineeringNetwork.JournalApplication.Services;
 using Xunit;
 
 namespace SoftwareEngineeringNetwork.JournalApplication.Test.JournalManagement
@@ -35,8 +36,8 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.JournalManagement
         #endregion
 
         [Theory]
-        [InlineData(0, "New Journal Title", "Cannot create journal because the associated user was not found.")]
-        [InlineData(1, "Existing Journal Title", "Journal \'Existing Journal Title\' already exists.")]
+        [InlineData(0, "New Journal Title", "Cannot find user.")]
+        [InlineData(1, "Existing Journal Title", "Cannot create duplicate 'Journal Title' 'Existing Journal Title'")]
         public void WhenCreatingAJournal_WithInvalidArgs_TheCorrectExceptionIsThrown(
             ulong userId,
             string journalTitle,
@@ -48,9 +49,11 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.JournalManagement
                 new JournalTitle(journalTitle)
             );
 
-            Action validateCreateJournal = () => _createJournalValidator.ValidateAndThrow(createJournal);
+            Action validateCreateJournal = () => _createJournalValidator.ValidateAndThrowCustom(createJournal);
 
-            validateCreateJournal.Should().Throw<Exception>(errorMessage[0]);
+            validateCreateJournal.Should()
+                .Throw<Exception>()
+                .WithMessage(errorMessage[0]);
         }
     }
 }

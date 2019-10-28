@@ -5,23 +5,35 @@ using Xunit;
 
 namespace SoftwareEngineeringNetwork.JournalApplication.Test.JournalManagement
 {
-    public class JournalManagerTest
+    public class JournalManagementServiceTest
     {
         #region Fields
 
         private readonly User _johnDoe;
-        private readonly JournalManager _journalManager;
+        private readonly JournalManagementService _journalManagementService;
         private readonly IJournalService _journalService;
 
         #endregion
 
         #region Construction
 
-        public JournalManagerTest()
+        public JournalManagementServiceTest()
         {
-            var unitOfWork = TestUnitOfWorkFactory.CreateUnitOfWork();
+            var unitOfWork = TestUnitOfWorkFactory
+                .CreateUnitOfWork()
+                .WithUsers();
+
             _journalService = new JournalService(unitOfWork.JournalRepository);
-            _journalManager = new JournalManager(unitOfWork.JournalRepository);
+
+            var createJournalValidator = new CreateJournalValidator(
+                new UserIdMustExistValidator(unitOfWork),
+                new JournalTitleMustNotExistsValidator(unitOfWork)
+            );
+
+            _journalManagementService = new JournalManagementService(
+                createJournalValidator,
+                unitOfWork.JournalRepository
+            );
             _johnDoe = TestUserFactory.CreateJohnDoe(1);
         }
 
@@ -36,7 +48,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.JournalManagement
                 new JournalTitle(journalTitle)
             );
 
-            _journalManager.CreateJournal(createJournal);
+            _journalManagementService.CreateJournal(createJournal);
 
             var journal = _journalService.Find(_johnDoe.Id.Value, journalTitle);
             journal.DisplayName.Should().Be(journalTitle);

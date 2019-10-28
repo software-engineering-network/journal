@@ -65,6 +65,11 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
             return EqualityComparer<T>.Default.GetHashCode(Value);
         }
 
+        public override string ToString()
+        {
+            return Value.ToString();
+        }
+
         #endregion
 
         #region Operator Overloads
