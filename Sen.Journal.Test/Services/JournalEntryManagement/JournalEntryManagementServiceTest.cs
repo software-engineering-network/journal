@@ -5,7 +5,7 @@ using Xunit;
 
 namespace SoftwareEngineeringNetwork.JournalApplication.Test.Services.JournalEntryManagement
 {
-    public class JournalEntryManagerTest
+    public class JournalEntryManagementServiceTest
     {
         #region Fields
 
@@ -14,23 +14,21 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Services.JournalEnt
         private readonly IJournalEntryService _journalEntryService;
         private readonly Journal _musicCoversJournal;
 
-        private readonly IUnitOfWork _unitOfWork;
-
         #endregion
 
         #region Construction
 
-        public JournalEntryManagerTest()
+        public JournalEntryManagementServiceTest()
         {
-            _unitOfWork = TestUnitOfWorkFactory
+            var unitOfWork = TestUnitOfWorkFactory
                 .CreateUnitOfWork()
                 .WithUsers()
                 .WithJournals();
 
             _musicCoversJournal = TestJournalFactory.CreateMusicCoversJournal(1);
-            _journalEntryManagementService = new JournalEntryManagementService(_unitOfWork.JournalEntryRepository);
+            _journalEntryManagementService = new JournalEntryManagementService(unitOfWork.JournalEntryRepository);
             _johnDoe = TestUserFactory.CreateJohnDoe(1);
-            _journalEntryService = new JournalEntryService(_unitOfWork.JournalEntryRepository);
+            _journalEntryService = new JournalEntryService(unitOfWork.JournalEntryRepository);
         }
 
         #endregion
