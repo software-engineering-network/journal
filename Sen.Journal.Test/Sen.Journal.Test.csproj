@@ -21,6 +21,7 @@
     <ProjectReference Include="..\Sen.Journal.Domain\Sen.Journal.Domain.csproj" />
     <ProjectReference Include="..\Sen.Journal.Infrastructure.InMemory\Sen.Journal.Infrastructure.InMemory.csproj" />
     <ProjectReference Include="..\Sen.Journal.Services\Sen.Journal.Services.csproj" />
+    <ProjectReference Include="..\Sen.Journal.Wpf\Sen.Journal.Wpf.csproj" />
   </ItemGroup>
 
   <ItemGroup>
