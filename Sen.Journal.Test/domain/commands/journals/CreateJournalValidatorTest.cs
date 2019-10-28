@@ -22,14 +22,10 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain
                 .WithUsers()
                 .WithJournals();
 
-            var userIdMustExistValidator = new UserIdMustExistValidator(unitOfWork);
-            var journalTitleMustNotBeNullOrWhitespaceValidator = new JournalTitleIsRequiredValidator();
-            var journalTitleMustExistValidator = new JournalTitleMustNotExistValidator(unitOfWork);
-
             _createJournalValidator = new CreateJournalValidator(
-                userIdMustExistValidator,
-                journalTitleMustNotBeNullOrWhitespaceValidator,
-                journalTitleMustExistValidator
+                new UserIdMustExistValidator(unitOfWork),
+                new JournalTitleIsRequiredValidator(),
+                new JournalTitleMustNotExistValidator(unitOfWork)
             );
         }
 

@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="commands\journals\journal-id\" />
     <Folder Include="contracts\auditing\" />
   </ItemGroup>
 

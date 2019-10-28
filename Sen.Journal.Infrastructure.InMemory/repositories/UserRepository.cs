@@ -34,6 +34,11 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
             return FirstOrDefault(x => x.RecordName == entity.RecordName);
         }
 
+        public bool Exists(Id id)
+        {
+            return Exists(x => x.Id == id);
+        }
+
         public bool Exists(Func<User, bool> predicate)
         {
             try
@@ -99,11 +104,6 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
         public bool RecordNameExists(RecordName recordName)
         {
             return _persons.Exists(x => x.RecordName == recordName.Value);
-        }
-
-        public bool UserIdExists(UserId userId)
-        {
-            return _persons.Exists(x => x.Id == userId.Value);
         }
 
         public bool UsernameExists(Username username)
