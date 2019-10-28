@@ -3,14 +3,14 @@ using SoftwareEngineeringNetwork.JournalApplication.Domain;
 using SoftwareEngineeringNetwork.JournalApplication.Services;
 using Xunit;
 
-namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain
+namespace SoftwareEngineeringNetwork.JournalApplication.Test.Services.JournalEntryManagement
 {
     public class JournalEntryManagerTest
     {
         #region Fields
 
         private readonly User _johnDoe;
-        private readonly JournalEntryManager _journalEntryManager;
+        private readonly JournalEntryManagementService _journalEntryManagementService;
         private readonly IJournalEntryService _journalEntryService;
         private readonly Journal _musicCoversJournal;
 
@@ -28,7 +28,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain
                 .WithJournals();
 
             _musicCoversJournal = TestJournalFactory.CreateMusicCoversJournal(1);
-            _journalEntryManager = new JournalEntryManager(_unitOfWork.JournalEntryRepository);
+            _journalEntryManagementService = new JournalEntryManagementService(_unitOfWork.JournalEntryRepository);
             _johnDoe = TestUserFactory.CreateJohnDoe(1);
             _journalEntryService = new JournalEntryService(_unitOfWork.JournalEntryRepository);
         }
@@ -49,7 +49,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain
                 new JournalEntryContent(journalEntryContent)
             );
 
-            _journalEntryManager.CreateJournalEntry(createJournalEntry);
+            _journalEntryManagementService.CreateJournalEntry(createJournalEntry);
 
             var journalEntry = _journalEntryService.Find(
                 _musicCoversJournal.Id.Value,

@@ -3,7 +3,7 @@ using SoftwareEngineeringNetwork.JournalApplication.Domain;
 using SoftwareEngineeringNetwork.JournalApplication.Services;
 using Xunit;
 
-namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain.JournalManagement
+namespace SoftwareEngineeringNetwork.JournalApplication.Test.Services.JournalManagement
 {
     public class JournalManagementServiceTest
     {

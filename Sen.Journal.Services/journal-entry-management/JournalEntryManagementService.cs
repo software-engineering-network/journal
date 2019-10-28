@@ -1,6 +1,8 @@
-﻿namespace SoftwareEngineeringNetwork.JournalApplication.Domain
+﻿using SoftwareEngineeringNetwork.JournalApplication.Domain;
+
+namespace SoftwareEngineeringNetwork.JournalApplication.Services
 {
-    public class JournalEntryManager : IJournalEntryManager
+    public class JournalEntryManagementService : IJournalEntryManagementService
     {
         #region Fields
 
@@ -10,16 +12,16 @@
 
         #region Construction
 
-        public JournalEntryManager(IJournalEntryRepository journalEntryRepository)
+        public JournalEntryManagementService(IJournalEntryRepository journalEntryRepository)
         {
             _journalEntryRepository = journalEntryRepository;
         }
 
         #endregion
 
-        #region IJournalEntryManager Members
+        #region IJournalEntryManagementService Members
 
-        public IJournalEntryManager CreateJournalEntry(CreateJournalEntry createJournalEntry)
+        public IJournalEntryManagementService CreateJournalEntry(CreateJournalEntry createJournalEntry)
         {
             var journalEntry = new JournalEntry(
                 createJournalEntry.UserId,
