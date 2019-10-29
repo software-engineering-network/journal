@@ -23,8 +23,6 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Wpf
             var unitOfWork = TestUnitOfWorkFactory.CreateUnitOfWork();
             _userService = new UserService(unitOfWork.UserRepository);
 
-            var notifyPropertyChanged = new NotifyPropertyChanged();
-
             var userManagementService = new UserManagementService(
                 new CreateUserValidator(
                     new EmailAddressIsRequiredValidator(),
@@ -36,9 +34,22 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Wpf
                 new UserFactory(unitOfWork.UserRepository)
             );
 
+            var notifyPropertyChanged = new NotifyPropertyChanged();
+
             _registerUserDialogViewModel = new RegisterUserDialogViewModel(
                 notifyPropertyChanged,
-                userManagementService
+                userManagementService,
+                new CreateJournalDialogViewModelFactory(
+                    notifyPropertyChanged,
+                    new JournalManagementService(
+                        new CreateJournalValidator(
+                            new UserIdMustExistValidator(unitOfWork),
+                            new JournalTitleIsRequiredValidator(),
+                            new JournalTitleMustNotExistValidator(unitOfWork)
+                        ),
+                        unitOfWork.JournalRepository
+                    )
+                )
             );
         }
 

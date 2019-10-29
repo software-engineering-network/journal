@@ -58,7 +58,6 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Wpf
         {
             var createJournalDialogViewModel = _createJournalDialogViewModelFactory.Create();
             var createJournalDialog = new CreateJournalDialog();
-
             var result = createJournalDialog.ShowDialog();
         }
 
