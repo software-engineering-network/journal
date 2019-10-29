@@ -9,7 +9,6 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Wpf
         #region Fields
 
         private readonly INotifyPropertyChanged _notifyPropertyChangedImplementation;
-
         private readonly IUserManagementService _userManagementService;
 
         #endregion
@@ -49,7 +48,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Wpf
 
         #region IRegisterUser Members
 
-        public CreateUser CreateCreateUser()
+        public CreateUser BuildCreateUserCommand()
         {
             return new CreateUser(
                 new EmailAddress(EmailAddress),
@@ -62,7 +61,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Wpf
 
         public void RegisterUser()
         {
-            var createUser = CreateCreateUser();
+            var createUser = BuildCreateUserCommand();
             _userManagementService.CreateUser(createUser);
         }
 

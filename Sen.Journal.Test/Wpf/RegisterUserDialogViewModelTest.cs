@@ -83,7 +83,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Wpf
                 username
             );
 
-            var createUser = _registerUserDialogViewModel.CreateCreateUser();
+            var createUser = _registerUserDialogViewModel.BuildCreateUserCommand();
 
             var targetCreateUser = new CreateUser(
                 new EmailAddress(emailAddress),
