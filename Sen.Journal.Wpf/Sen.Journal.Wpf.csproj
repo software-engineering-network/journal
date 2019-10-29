@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.9.4.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.9.4\lib\net45\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -51,31 +54,44 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
+    <ApplicationDefinition Include="app\App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
+    <Page Include="main-window\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="App.xaml.cs">
+    <Compile Include="app\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="main-window\open-register-user-dialog\IOpenRegisterUserDialog.cs" />
+    <Compile Include="main-window\MainWindowViewModel.cs" />
+    <Compile Include="ioc\AutofacSetup.cs" />
     <Compile Include="create-journal-dialog\CreateJournalDialogViewModel.cs" />
     <Compile Include="create-journal-dialog\ICreateJournal.cs" />
     <Compile Include="create-journal-dialog\CreateJournalDialog.cs" />
     <Compile Include="create-journal-dialog\factory\CreateJournalDialogViewModelFactory.cs" />
     <Compile Include="create-journal-dialog\factory\ICreateJournalDialogViewModelFactory.cs" />
+    <Compile Include="ioc\WpfModule.cs" />
+    <Compile Include="main-window\open-register-user-dialog\OpenRegisterUserDialogCommand.cs" />
+    <Compile Include="main-window\open-register-user-dialog\OpenRegisterUserDialogCommandFactory.cs" />
     <Compile Include="register-user-dialog\IOpenCreateJournalDialog.cs" />
+    <Compile Include="register-user-dialog\RegisterUserDialog.xaml.cs">
+      <DependentUpon>RegisterUserDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="shared\NotifyPropertyChanged.cs" />
     <Compile Include="register-user-dialog\RegisterUserDialogViewModel.cs" />
     <Compile Include="register-user-dialog\IRegisterUser.cs" />
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="main-window\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="register-user-dialog\RegisterUserDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -95,13 +111,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="app\App.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sen.Journal.Domain\Sen.Journal.Domain.csproj">
