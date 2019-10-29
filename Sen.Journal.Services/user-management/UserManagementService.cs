@@ -36,7 +36,6 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Services
             var user = _userFactory.CreateUser(createUser);
 
             _unitOfWork.UserRepository.Create(user);
-
             return this;
         }
 

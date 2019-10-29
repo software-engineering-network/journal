@@ -63,6 +63,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="create-journal-dialog\CreateJournalDialogViewModel.cs" />
+    <Compile Include="create-journal-dialog\ICreateJournal.cs" />
+    <Compile Include="create-journal-dialog\CreateJournalDialog.cs" />
+    <Compile Include="create-journal-dialog\factory\CreateJournalDialogViewModelFactory.cs" />
+    <Compile Include="create-journal-dialog\factory\ICreateJournalDialogViewModelFactory.cs" />
+    <Compile Include="register-user-dialog\IOpenCreateJournalDialog.cs" />
     <Compile Include="shared\NotifyPropertyChanged.cs" />
     <Compile Include="register-user-dialog\RegisterUserDialogViewModel.cs" />
     <Compile Include="register-user-dialog\IRegisterUser.cs" />

@@ -2,9 +2,9 @@
 
 namespace SoftwareEngineeringNetwork.JournalApplication.Wpf
 {
-    public interface IRegisterUser
+    public interface ICreateJournal
     {
-        CreateUser BuildCreateUserCommand();
-        void RegisterUser();
+        CreateJournal BuildCreateJournalCommand();
+        void CreateJournal();
     }
 }

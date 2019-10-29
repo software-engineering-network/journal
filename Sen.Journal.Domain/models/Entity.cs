@@ -19,16 +19,16 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 
         #region Construction
 
-        protected Entity()
-        {
-            var dateTimeProvider = new BasicDateTimeProvider();
-            _auditable = new Auditable(dateTimeProvider);
-        }
-
         protected Entity(Id id)
             : this()
         {
             Id = id;
+        }
+
+        protected Entity()
+        {
+            var dateTimeProvider = new BasicDateTimeProvider();
+            _auditable = new Auditable(dateTimeProvider);
         }
 
         #endregion
