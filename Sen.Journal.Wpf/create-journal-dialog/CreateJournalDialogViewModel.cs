@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using SoftwareEngineeringNetwork.JournalApplication.Domain;
 using SoftwareEngineeringNetwork.JournalApplication.Services;
 
@@ -6,7 +7,8 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Wpf
 {
     public class CreateJournalDialogViewModel :
         INotifyPropertyChanged,
-        ICreateJournal
+        ICreateJournal,
+        ICloseDialog
     {
         #region Fields
 

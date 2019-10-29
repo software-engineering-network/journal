@@ -65,6 +65,10 @@
     </Compile>
     <Compile Include="create-journal-dialog\CreateJournalDialogViewModel.cs" />
     <Compile Include="create-journal-dialog\ICreateJournal.cs" />
+    <Compile Include="register-user-dialog\CreateJournalDialog.cs" />
+    <Compile Include="register-user-dialog\CreateJournalDialogViewModelFactory.cs" />
+    <Compile Include="register-user-dialog\ICreateJournalDialogViewModelFactory.cs" />
+    <Compile Include="register-user-dialog\IOpenCreateJournalDialog.cs" />
     <Compile Include="shared\NotifyPropertyChanged.cs" />
     <Compile Include="register-user-dialog\RegisterUserDialogViewModel.cs" />
     <Compile Include="register-user-dialog\IRegisterUser.cs" />
