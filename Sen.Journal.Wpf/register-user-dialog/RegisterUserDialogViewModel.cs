@@ -6,14 +6,14 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Wpf
 {
     public class RegisterUserDialogViewModel :
         INotifyPropertyChanged,
-        IRegisterUser,
-        IOpenCreateJournalDialog
+        IOpenCreateJournalDialog,
+        IRegisterUser
     {
         #region Fields
 
+        private readonly ICreateJournalDialogViewModelFactory _createJournalDialogViewModelFactory;
         private readonly INotifyPropertyChanged _notifyPropertyChanged;
         private readonly IUserManagementService _userManagementService;
-        private readonly ICreateJournalDialogViewModelFactory _createJournalDialogViewModelFactory;
 
         #endregion
 
