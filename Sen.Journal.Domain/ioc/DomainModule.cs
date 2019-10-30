@@ -21,6 +21,9 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
             builder.RegisterType<EmailAddressIsRequiredValidator>();
             builder.RegisterType<EmailAddressMustBeValid>();
             builder.RegisterType<EmailAddressMustNotExistValidator>();
+            builder.RegisterType<NameIsRequiredValidator>();
+            builder.RegisterType<PasswordIsRequiredValidator>();
+            builder.RegisterType<SurnameIsRequiredValidator>();
             builder.RegisterType<UserIdMustExistValidator>();
             builder.RegisterType<UsernameIsRequiredValidator>();
             builder.RegisterType<UsernameMustNotExistValidator>();
