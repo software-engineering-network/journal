@@ -8,15 +8,15 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Wpf
     {
         #region Fields
 
-        private readonly RegisterUserDialog _registerUserDialog;
+        private readonly RegisterUserDialogViewModel _registerUserDialogViewModel;
 
         #endregion
 
         #region Construction
 
-        public OpenRegisterUserDialogCommand(RegisterUserDialog registerUserDialog)
+        public OpenRegisterUserDialogCommand(RegisterUserDialogViewModel registerUserDialogViewModel)
         {
-            _registerUserDialog = registerUserDialog;
+            _registerUserDialogViewModel = registerUserDialogViewModel;
         }
 
         #endregion
@@ -30,7 +30,9 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Wpf
 
         public void Execute(object parameter)
         {
-            _registerUserDialog.ShowDialog();
+            var registerUserDialog = new RegisterUserDialog();
+            registerUserDialog.DataContext = _registerUserDialogViewModel;
+            registerUserDialog.ShowDialog();
         }
 
         public event EventHandler CanExecuteChanged;

@@ -7,6 +7,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Wpf
         #region Properties
 
         ICommand OpenRegisterUserDialogCommand { get; }
+        string OpenRegisterUserDialogText { get; }
 
         #endregion
     }

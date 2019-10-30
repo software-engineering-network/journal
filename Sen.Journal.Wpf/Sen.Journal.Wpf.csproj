@@ -76,7 +76,7 @@
     <Compile Include="create-journal-dialog\factory\ICreateJournalDialogViewModelFactory.cs" />
     <Compile Include="ioc\WpfModule.cs" />
     <Compile Include="main-window\open-register-user-dialog\OpenRegisterUserDialogCommand.cs" />
-    <Compile Include="main-window\open-register-user-dialog\OpenRegisterUserDialogCommandFactory.cs" />
+    <Compile Include="shared\ViewModelBase.cs" />
     <Compile Include="register-user-dialog\IOpenCreateJournalDialog.cs" />
     <Compile Include="register-user-dialog\RegisterUserDialog.xaml.cs">
       <DependentUpon>RegisterUserDialog.xaml</DependentUpon>

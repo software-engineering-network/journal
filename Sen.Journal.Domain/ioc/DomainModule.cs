@@ -6,9 +6,10 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
     {
         protected override void Load(ContainerBuilder builder)
         {
-            RegisterValidators(builder);
+            //RegisterValidators(builder);
             RegisterAuditing(builder);
             RegisterFactories(builder);
+            RegisterServices(builder);
         }
 
         private void RegisterValidators(ContainerBuilder builder)
