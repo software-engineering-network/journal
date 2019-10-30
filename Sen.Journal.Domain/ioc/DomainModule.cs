@@ -6,13 +6,13 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
     {
         protected override void Load(ContainerBuilder builder)
         {
-            //RegisterValidators(builder);
+            RegisterValidators(builder);
             RegisterAuditing(builder);
             RegisterFactories(builder);
             RegisterServices(builder);
         }
 
-        private void RegisterValidators(ContainerBuilder builder)
+        private static void RegisterValidators(ContainerBuilder builder)
         {
             builder.RegisterType<JournalEntryContentIsRequiredValidator>();
             builder.RegisterType<JournalIdMustExistValidator>();
@@ -23,19 +23,22 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
             builder.RegisterType<UserIdMustExistValidator>();
             builder.RegisterType<UsernameIsRequiredValidator>();
             builder.RegisterType<UsernameMustNotExistValidator>();
+
+            builder.RegisterType<CreateJournalValidator>();
+            builder.RegisterType<CreateUserValidator>();
         }
 
-        private void RegisterAuditing(ContainerBuilder builder)
+        private static void RegisterAuditing(ContainerBuilder builder)
         {
             builder.RegisterType<Auditable>().As<IAuditable>();
         }
 
-        private void RegisterFactories(ContainerBuilder builder)
+        private static void RegisterFactories(ContainerBuilder builder)
         {
             builder.RegisterType<UserFactory>().As<IUserFactory>();
         }
 
-        private void RegisterServices(ContainerBuilder builder)
+        private static void RegisterServices(ContainerBuilder builder)
         {
             builder.RegisterType<BasicDateTimeProvider>().As<IDateTimeProvider>();
             builder.RegisterType<CurrentUserProvider>().As<ICurrentUserProvider>();

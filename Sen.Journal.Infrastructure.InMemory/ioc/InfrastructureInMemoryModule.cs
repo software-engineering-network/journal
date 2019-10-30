@@ -11,6 +11,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
             builder.RegisterType<JournalRepository>().As<IJournalRepository>();
             builder.RegisterType<UserRepository>().As<IUserRepository>();
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
+            builder.RegisterType<Context>();
         }
     }
 }
