@@ -7,11 +7,12 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<Context>();
+            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
+
             builder.RegisterType<JournalEntryRepository>().As<IJournalEntryRepository>();
             builder.RegisterType<JournalRepository>().As<IJournalRepository>();
             builder.RegisterType<UserRepository>().As<IUserRepository>();
-            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
-            builder.RegisterType<Context>();
         }
     }
 }
