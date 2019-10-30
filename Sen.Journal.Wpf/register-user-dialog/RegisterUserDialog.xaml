@@ -3,10 +3,45 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SoftwareEngineeringNetwork.JournalApplication.Wpf.register_user_dialog"
+        xmlns:wpf="clr-namespace:SoftwareEngineeringNetwork.JournalApplication.Wpf"
         mc:Ignorable="d"
-        Title="RegisterUserDialog" Height="450" Width="800">
+        Title="RegisterUserDialog" Height="450" Width="800"
+        d:DataContext="{d:DesignInstance Type=wpf:RegisterUserDialogViewModel}">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <Label
+            Grid.Column="0"
+            Grid.Row="0"
+            Content="Username:"
+            HorizontalAlignment="Right" />
+        <TextBox
+            Grid.Column="1"
+            Grid.Row="0"
+            DataContext="{Binding Username}" />
+
+        <Label
+            Grid.Column="0"
+            Grid.Row="1"
+            Content="Email Address:"
+            HorizontalAlignment="Right" />
+        <TextBox
+            Grid.Column="1"
+            Grid.Row="1"
+            DataContext="{Binding EmailAddress}" />
+
+        <Button
+            Grid.Column="0"
+            Grid.Row="2"
+            Command="{Binding RegisterUserCommand}"
+            Content="Register" />
     </Grid>
 </Window>
