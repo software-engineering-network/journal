@@ -19,16 +19,15 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Wpf
         public App()
         {
             AutofacContainer = AutofacSetup.BuildContainer();
-            OpenMainWindow();
+
+            ShowMainWindow();
         }
 
         #endregion
 
-        private void OpenMainWindow()
+        private static void ShowMainWindow()
         {
-            var mainWindowViewModel = AutofacContainer.Resolve<MainWindowViewModel>();
-            var mainWindow = new MainWindow();
-            mainWindow.DataContext = mainWindowViewModel;
+            var mainWindow = new MainWindow {DataContext = AutofacContainer.Resolve<MainWindowViewModel>()};
             mainWindow.Show();
         }
     }

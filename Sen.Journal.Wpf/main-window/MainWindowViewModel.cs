@@ -7,6 +7,12 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Wpf
         ViewModelBase,
         IOpenRegisterUserDialog
     {
+        #region Properties
+
+        public string Title => "Sen.Journal";
+
+        #endregion
+
         #region Construction
 
         public MainWindowViewModel(

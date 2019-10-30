@@ -30,8 +30,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Wpf
 
         public void Execute(object parameter)
         {
-            var registerUserDialog = new RegisterUserDialog();
-            registerUserDialog.DataContext = _registerUserDialogViewModel;
+            var registerUserDialog = new RegisterUserDialog {DataContext = _registerUserDialogViewModel};
             registerUserDialog.ShowDialog();
         }
 
