@@ -27,7 +27,12 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Wpf
 
         private static void ShowMainWindow()
         {
-            var mainWindow = new MainWindow {DataContext = AutofacContainer.Resolve<MainWindowViewModel>()};
+            var mainWindow = new MainWindow
+            {
+                DataContext = AutofacContainer.Resolve<MainWindowViewModel>(),
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
+            };
+
             mainWindow.Show();
         }
     }

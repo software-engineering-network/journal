@@ -19,6 +19,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Wpf
         private static void RegisterCommands(ContainerBuilder builder)
         {
             builder.RegisterType<OpenRegisterUserDialogCommand>();
+            builder.RegisterType<RegisterUserCommand>();
         }
 
         private static void RegisterServices(ContainerBuilder builder)

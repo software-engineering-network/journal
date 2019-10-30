@@ -8,12 +8,14 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 
         public CreateUserValidator(
             EmailAddressIsRequiredValidator emailAddressIsRequiredValidator,
+            EmailAddressMustBeValid emailAddressMustBeValid,
             EmailAddressMustNotExistValidator emailAddressMustNotExistValidator,
             UsernameIsRequiredValidator usernameIsRequiredValidator,
             UsernameMustNotExistValidator usernameMustNotExistValidator
         )
         {
             Include(emailAddressIsRequiredValidator);
+            Include(emailAddressMustBeValid);
             Include(emailAddressMustNotExistValidator);
             Include(usernameIsRequiredValidator);
             Include(usernameMustNotExistValidator);

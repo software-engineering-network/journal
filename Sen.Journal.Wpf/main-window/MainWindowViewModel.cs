@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Windows.Input;
 
 namespace SoftwareEngineeringNetwork.JournalApplication.Wpf
 {
@@ -27,7 +26,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Wpf
 
         #region IOpenRegisterUserDialog Members
 
-        public ICommand OpenRegisterUserDialogCommand { get; }
+        public OpenRegisterUserDialogCommand OpenRegisterUserDialogCommand { get; }
         public string OpenRegisterUserDialogText => "Register User";
 
         #endregion

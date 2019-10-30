@@ -39,6 +39,11 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Services
             return this;
         }
 
+        public ValidationResult ValidateCreateUser(CreateUser createUser)
+        {
+            return new ValidationResult(_createUserValidator.Validate(createUser));
+        }
+
         #endregion
     }
 }

@@ -21,12 +21,13 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Wpf
 
         #region INotifyPropertyChanged Members
 
-        public event PropertyChangedEventHandler PropertyChanged
-        {
-            add => _notifyPropertyChanged.PropertyChanged += value;
-            remove => _notifyPropertyChanged.PropertyChanged -= value;
-        }
+        public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
+
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
     }
 }

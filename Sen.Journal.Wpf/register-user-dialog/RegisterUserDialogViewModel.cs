@@ -1,29 +1,76 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Text;
 using SoftwareEngineeringNetwork.JournalApplication.Domain;
 using SoftwareEngineeringNetwork.JournalApplication.Services;
 
 namespace SoftwareEngineeringNetwork.JournalApplication.Wpf
 {
     public class RegisterUserDialogViewModel :
-        INotifyPropertyChanged,
+        ViewModelBase,
         IOpenCreateJournalDialog,
         IRegisterUser
     {
         #region Fields
 
         private readonly ICreateJournalDialogViewModelFactory _createJournalDialogViewModelFactory;
-        private readonly INotifyPropertyChanged _notifyPropertyChanged;
+        private readonly ObservableCollection<string> _errorMessages;
         private readonly IUserManagementService _userManagementService;
+        private string _emailAddress;
+        private bool _isFormValid;
+        private string _username;
 
         #endregion
 
         #region Properties
 
-        public string EmailAddress { get; set; }
+        public string EmailAddress
+        {
+            get => _emailAddress;
+            set
+            {
+                _emailAddress = value;
+                OnPropertyChanged(nameof(EmailAddress));
+                CanRegisterUser();
+            }
+        }
+
         public string Name { get; set; }
         public string Password { get; set; }
         public string Surname { get; set; }
-        public string Username { get; set; }
+
+        public string Username
+        {
+            get => _username;
+            set
+            {
+                _username = value;
+                OnPropertyChanged(nameof(Username));
+                CanRegisterUser();
+            }
+        }
+
+        public string ErrorMessages
+        {
+            get
+            {
+                var stringBuilder = new StringBuilder();
+                foreach (var errorMessage in _errorMessages)
+                    stringBuilder.Append($"{errorMessage}\n");
+
+                return stringBuilder.ToString();
+            }
+        }
+
+        public bool IsFormValid
+        {
+            get => _isFormValid;
+            set
+            {
+                _isFormValid = value;
+                OnPropertyChanged(nameof(IsFormValid));
+            }
+        }
 
         #endregion
 
@@ -33,21 +80,13 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Wpf
             INotifyPropertyChanged notifyPropertyChanged,
             IUserManagementService userManagementService,
             ICreateJournalDialogViewModelFactory createJournalDialogViewModelFactory
-        )
+        ) : base(notifyPropertyChanged)
         {
-            _notifyPropertyChanged = notifyPropertyChanged;
             _userManagementService = userManagementService;
             _createJournalDialogViewModelFactory = createJournalDialogViewModelFactory;
-        }
 
-        #endregion
-
-        #region INotifyPropertyChanged Members
-
-        public event PropertyChangedEventHandler PropertyChanged
-        {
-            add => _notifyPropertyChanged.PropertyChanged += value;
-            remove => _notifyPropertyChanged.PropertyChanged -= value;
+            _errorMessages = new ObservableCollection<string>();
+            RegisterUserCommand = new DelegateCommand(RegisterUser, CanRegisterUser);
         }
 
         #endregion
@@ -68,6 +107,8 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Wpf
 
         #region IRegisterUser Members
 
+        public DelegateCommand RegisterUserCommand { get; }
+
         public CreateUser BuildCreateUserCommand()
         {
             return new CreateUser(
@@ -79,12 +120,26 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Wpf
             );
         }
 
-        public void RegisterUser()
+        #endregion
+
+        private void RegisterUser()
         {
-            var createUser = BuildCreateUserCommand();
-            _userManagementService.CreateUser(createUser);
+            _userManagementService.CreateUser(BuildCreateUserCommand());
         }
 
-        #endregion
+        private bool CanRegisterUser()
+        {
+            var validationResult = _userManagementService.ValidateCreateUser(BuildCreateUserCommand());
+
+            _errorMessages.Clear();
+
+            foreach (var errorMessage in validationResult.ErrorMessages)
+                _errorMessages.Add(errorMessage);
+
+            OnPropertyChanged(nameof(ErrorMessages));
+            IsFormValid = validationResult.IsValid;
+
+            return IsFormValid;
+        }
     }
 }

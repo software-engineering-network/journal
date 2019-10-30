@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Input;
 using SoftwareEngineeringNetwork.JournalApplication.Wpf.register_user_dialog;
 
@@ -30,7 +31,13 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Wpf
 
         public void Execute(object parameter)
         {
-            var registerUserDialog = new RegisterUserDialog {DataContext = _registerUserDialogViewModel};
+            var registerUserDialog = new RegisterUserDialog
+            {
+                DataContext = _registerUserDialogViewModel,
+                Owner = Application.Current.MainWindow,
+                WindowStartupLocation = WindowStartupLocation.CenterOwner
+            };
+
             registerUserDialog.ShowDialog();
         }
 
