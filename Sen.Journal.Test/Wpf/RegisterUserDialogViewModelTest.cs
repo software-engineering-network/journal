@@ -1,147 +1,147 @@
-﻿using FluentAssertions;
-using SoftwareEngineeringNetwork.JournalApplication.Domain;
-using SoftwareEngineeringNetwork.JournalApplication.Services;
-using SoftwareEngineeringNetwork.JournalApplication.Wpf;
-using Xunit;
+﻿//using FluentAssertions;
+//using SoftwareEngineeringNetwork.JournalApplication.Domain;
+//using SoftwareEngineeringNetwork.JournalApplication.Services;
+//using SoftwareEngineeringNetwork.JournalApplication.Wpf;
+//using Xunit;
 
-namespace SoftwareEngineeringNetwork.JournalApplication.Test.Wpf
-{
-    public class RegisterUserDialogViewModelTest
-    {
-        #region Fields
+//namespace SoftwareEngineeringNetwork.JournalApplication.Test.Wpf
+//{
+//    public class RegisterUserDialogViewModelTest
+//    {
+//        #region Fields
 
-        private readonly RegisterUserDialogViewModel _registerUserDialogViewModel;
+//        private readonly RegisterUserDialogViewModel _registerUserDialogViewModel;
 
-        private readonly IUserService _userService;
+//        private readonly IUserService _userService;
 
-        #endregion
+//        #endregion
 
-        #region Construction
+//        #region Construction
 
-        public RegisterUserDialogViewModelTest()
-        {
-            var unitOfWork = TestUnitOfWorkFactory.CreateUnitOfWork();
-            _userService = new UserService(unitOfWork.UserRepository);
+//        public RegisterUserDialogViewModelTest()
+//        {
+//            var unitOfWork = TestUnitOfWorkFactory.CreateUnitOfWork();
+//            _userService = new UserService(unitOfWork.UserRepository);
 
-            var userManagementService = new UserManagementService(
-                new CreateUserValidator(
-                    new EmailAddressIsRequiredValidator(),
-                    new EmailAddressMustBeValid(),
-                    new EmailAddressMustNotExistValidator(unitOfWork.UserRepository),
-                    new NameIsRequiredValidator(),
-                    new PasswordIsRequiredValidator(),
-                    new SurnameIsRequiredValidator(),
-                    new UsernameIsRequiredValidator(),
-                    new UsernameMustNotExistValidator(unitOfWork.UserRepository)
-                ),
-                unitOfWork,
-                new UserFactory(unitOfWork.UserRepository)
-            );
+//            var userManagementService = new UserManagementService(
+//                new CreateUserValidator(
+//                    new EmailAddressIsRequiredValidator(),
+//                    new EmailAddressMustBeValid(),
+//                    new EmailAddressMustNotExistValidator(unitOfWork.UserRepository),
+//                    new NameIsRequiredValidator(),
+//                    new PasswordIsRequiredValidator(),
+//                    new SurnameIsRequiredValidator(),
+//                    new UsernameIsRequiredValidator(),
+//                    new UsernameMustNotExistValidator(unitOfWork.UserRepository)
+//                ),
+//                unitOfWork,
+//                new UserFactory(unitOfWork.UserRepository)
+//            );
 
-            _registerUserDialogViewModel = new RegisterUserDialogViewModel(
-                userManagementService,
-                new CreateJournalDialogViewModelFactory(
-                    new JournalManagementService(
-                        new CreateJournalValidator(
-                            new UserIdMustExistValidator(unitOfWork),
-                            new JournalTitleIsRequiredValidator(),
-                            new JournalTitleMustNotExistValidator(unitOfWork)
-                        ),
-                        unitOfWork.JournalRepository
-                    )
-                )
-            );
-        }
+//            _registerUserDialogViewModel = new RegisterUserDialogViewModel(
+//                userManagementService,
+//                new CreateJournalDialogViewModelFactory(
+//                    new JournalManagementService(
+//                        new CreateJournalValidator(
+//                            new UserIdMustExistValidator(unitOfWork),
+//                            new JournalTitleIsRequiredValidator(),
+//                            new JournalTitleMustNotExistValidator(unitOfWork)
+//                        ),
+//                        unitOfWork.JournalRepository
+//                    )
+//                )
+//            );
+//        }
 
-        #endregion
+//        #endregion
 
-        private void UpdateCreateUserDialogViewModel(
-            string emailAddress,
-            string name,
-            string password,
-            string surname,
-            string username
-        )
-        {
-            _registerUserDialogViewModel.EmailAddress = emailAddress;
-            _registerUserDialogViewModel.Name = name;
-            _registerUserDialogViewModel.Password = password;
-            _registerUserDialogViewModel.Surname = surname;
-            _registerUserDialogViewModel.Username = username;
-        }
+//        private void UpdateCreateUserDialogViewModel(
+//            string emailAddress,
+//            string name,
+//            string password,
+//            string surname,
+//            string username
+//        )
+//        {
+//            _registerUserDialogViewModel.EmailAddress = emailAddress;
+//            _registerUserDialogViewModel.Name = name;
+//            _registerUserDialogViewModel.Password = password;
+//            _registerUserDialogViewModel.Surname = surname;
+//            _registerUserDialogViewModel.Username = username;
+//        }
 
-        [Theory]
-        [InlineData(
-            "john.doe@gmail.com",
-            "John",
-            "peanutbuttereggdirt",
-            "Doe",
-            "JohnDoe"
-        )]
-        public void WhenRegisteringAUser_ItBuildsACreateUserCommandFromItsProperties(
-            string emailAddress,
-            string name,
-            string password,
-            string surname,
-            string username
-        )
-        {
-            UpdateCreateUserDialogViewModel(
-                emailAddress,
-                name,
-                password,
-                surname,
-                username
-            );
+//        [Theory]
+//        [InlineData(
+//            "john.doe@gmail.com",
+//            "John",
+//            "peanutbuttereggdirt",
+//            "Doe",
+//            "JohnDoe"
+//        )]
+//        public void WhenRegisteringAUser_ItBuildsACreateUserCommandFromItsProperties(
+//            string emailAddress,
+//            string name,
+//            string password,
+//            string surname,
+//            string username
+//        )
+//        {
+//            UpdateCreateUserDialogViewModel(
+//                emailAddress,
+//                name,
+//                password,
+//                surname,
+//                username
+//            );
 
-            var createUser = _registerUserDialogViewModel.BuildCreateUserCommand();
+//            var createUser = _registerUserDialogViewModel.BuildCreateUserCommand();
 
-            var targetCreateUser = new CreateUser(
-                new EmailAddress(emailAddress),
-                new Name(name),
-                new Password(password),
-                new Surname(surname),
-                new Username(username)
-            );
+//            var targetCreateUser = new CreateUser(
+//                new EmailAddress(emailAddress),
+//                new Name(name),
+//                new Password(password),
+//                new Surname(surname),
+//                new Username(username)
+//            );
 
-            createUser.Should().BeEquivalentTo(targetCreateUser);
-        }
+//            createUser.Should().BeEquivalentTo(targetCreateUser);
+//        }
 
-        [Theory]
-        [InlineData(
-            "john.doe@gmail.com",
-            "John",
-            "peanutbuttereggdirt",
-            "Doe",
-            "JohnDoe"
-        )]
-        public void WhenRegisteringAUser_AUserIsPersisted(
-            string emailAddress,
-            string name,
-            string password,
-            string surname,
-            string username
-        )
-        {
-            // arrange
-            UpdateCreateUserDialogViewModel(
-                emailAddress,
-                name,
-                password,
-                surname,
-                username
-            );
+//        [Theory]
+//        [InlineData(
+//            "john.doe@gmail.com",
+//            "John",
+//            "peanutbuttereggdirt",
+//            "Doe",
+//            "JohnDoe"
+//        )]
+//        public void WhenRegisteringAUser_AUserIsPersisted(
+//            string emailAddress,
+//            string name,
+//            string password,
+//            string surname,
+//            string username
+//        )
+//        {
+//            // arrange
+//            UpdateCreateUserDialogViewModel(
+//                emailAddress,
+//                name,
+//                password,
+//                surname,
+//                username
+//            );
 
-            // act
-            _registerUserDialogViewModel.RegisterUserCommand.Execute();
+//            // act
+//            _registerUserDialogViewModel.RegisterUserCommand.Execute();
 
-            // assert
-            var user = _userService.Find(_registerUserDialogViewModel.Username);
-            var targetUser = TestUserFactory
-                .CreateJohnDoe(1)
-                .ToUserDto();
+//            // assert
+//            var user = _userService.Find(_registerUserDialogViewModel.Username);
+//            var targetUser = TestUserFactory
+//                .CreateJohnDoe(1)
+//                .ToUserDto();
 
-            user.Should().BeEquivalentTo(targetUser);
-        }
-    }
-}
+//            user.Should().BeEquivalentTo(targetUser);
+//        }
+//    }
+//}
