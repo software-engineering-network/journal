@@ -2,16 +2,11 @@
 {
     public class CreateUser :
         IEmailAddressCommand,
+        INameCommand,
+        IPasswordCommand,
+        ISurnameCommand,
         IUsernameCommand
     {
-        #region Properties
-
-        public Name Name { get; }
-        public Password Password { get; }
-        public Surname Surname { get; }
-
-        #endregion
-
         #region Construction
 
         public CreateUser(
@@ -34,6 +29,24 @@
         #region IEmailAddressCommand Members
 
         public EmailAddress EmailAddress { get; }
+
+        #endregion
+
+        #region INameCommand Members
+
+        public Name Name { get; }
+
+        #endregion
+
+        #region IPasswordCommand Members
+
+        public Password Password { get; }
+
+        #endregion
+
+        #region ISurnameCommand Members
+
+        public Surname Surname { get; }
 
         #endregion
 

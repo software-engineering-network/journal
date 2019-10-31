@@ -26,7 +26,11 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Wpf
             var userManagementService = new UserManagementService(
                 new CreateUserValidator(
                     new EmailAddressIsRequiredValidator(),
+                    new EmailAddressMustBeValid(),
                     new EmailAddressMustNotExistValidator(unitOfWork.UserRepository),
+                    new NameIsRequiredValidator(),
+                    new PasswordIsRequiredValidator(),
+                    new SurnameIsRequiredValidator(),
                     new UsernameIsRequiredValidator(),
                     new UsernameMustNotExistValidator(unitOfWork.UserRepository)
                 ),
@@ -34,13 +38,9 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Wpf
                 new UserFactory(unitOfWork.UserRepository)
             );
 
-            var notifyPropertyChanged = new NotifyPropertyChanged();
-
             _registerUserDialogViewModel = new RegisterUserDialogViewModel(
-                notifyPropertyChanged,
                 userManagementService,
                 new CreateJournalDialogViewModelFactory(
-                    notifyPropertyChanged,
                     new JournalManagementService(
                         new CreateJournalValidator(
                             new UserIdMustExistValidator(unitOfWork),
@@ -133,7 +133,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Wpf
             );
 
             // act
-            _registerUserDialogViewModel.RegisterUser();
+            _registerUserDialogViewModel.RegisterUserCommand.Execute();
 
             // assert
             var user = _userService.Find(_registerUserDialogViewModel.Username);

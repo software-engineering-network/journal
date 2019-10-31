@@ -1,16 +1,14 @@
-﻿using System.ComponentModel;
-using SoftwareEngineeringNetwork.JournalApplication.Domain;
+﻿using SoftwareEngineeringNetwork.JournalApplication.Domain;
 using SoftwareEngineeringNetwork.JournalApplication.Services;
 
 namespace SoftwareEngineeringNetwork.JournalApplication.Wpf
 {
     public class CreateJournalDialogViewModel :
-        INotifyPropertyChanged,
+        ViewModelBase,
         ICreateJournal
     {
         #region Fields
 
-        private readonly INotifyPropertyChanged _notifyPropertyChanged;
         private readonly IJournalManagementService _journalManagementService;
 
         #endregion
@@ -24,12 +22,8 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Wpf
 
         #region Construction
 
-        public CreateJournalDialogViewModel(
-            INotifyPropertyChanged notifyPropertyChanged,
-            IJournalManagementService journalManagementService
-        )
+        public CreateJournalDialogViewModel(IJournalManagementService journalManagementService)
         {
-            _notifyPropertyChanged = notifyPropertyChanged;
             _journalManagementService = journalManagementService;
         }
 
@@ -49,16 +43,6 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Wpf
         {
             var createJournal = BuildCreateJournalCommand();
             _journalManagementService.CreateJournal(createJournal);
-        }
-
-        #endregion
-
-        #region INotifyPropertyChanged Members
-
-        public event PropertyChangedEventHandler PropertyChanged
-        {
-            add => _notifyPropertyChanged.PropertyChanged += value;
-            remove => _notifyPropertyChanged.PropertyChanged -= value;
         }
 
         #endregion

@@ -1,6 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.9.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Sen.Journal.Domain\Sen.Journal.Domain.csproj" />
   </ItemGroup>
 

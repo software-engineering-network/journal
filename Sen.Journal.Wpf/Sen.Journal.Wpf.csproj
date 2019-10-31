@@ -14,6 +14,21 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,7 +50,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.9.4.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.9.4\lib\net45\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.8.5.0\lib\net45\FluentValidation.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.4.1\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,31 +76,45 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
+    <ApplicationDefinition Include="app\App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
+    <Page Include="main-window\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="App.xaml.cs">
+    <Compile Include="app\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="main-window\open-register-user-dialog\IOpenRegisterUserDialog.cs" />
+    <Compile Include="main-window\MainWindowViewModel.cs" />
+    <Compile Include="ioc\AutofacSetup.cs" />
     <Compile Include="create-journal-dialog\CreateJournalDialogViewModel.cs" />
     <Compile Include="create-journal-dialog\ICreateJournal.cs" />
     <Compile Include="create-journal-dialog\CreateJournalDialog.cs" />
     <Compile Include="create-journal-dialog\factory\CreateJournalDialogViewModelFactory.cs" />
     <Compile Include="create-journal-dialog\factory\ICreateJournalDialogViewModelFactory.cs" />
+    <Compile Include="ioc\WpfModule.cs" />
+    <Compile Include="main-window\open-register-user-dialog\OpenRegisterUserDialogCommand.cs" />
+    <Compile Include="shared\DelegateCommand.cs" />
+    <Compile Include="register-user-dialog\RegisterUserCommand.cs" />
+    <Compile Include="shared\ViewModelBase.cs" />
     <Compile Include="register-user-dialog\IOpenCreateJournalDialog.cs" />
-    <Compile Include="shared\NotifyPropertyChanged.cs" />
+    <Compile Include="register-user-dialog\RegisterUserDialog.xaml.cs">
+      <DependentUpon>RegisterUserDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="register-user-dialog\RegisterUserDialogViewModel.cs" />
     <Compile Include="register-user-dialog\IRegisterUser.cs" />
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="main-window\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="register-user-dialog\RegisterUserDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -95,23 +134,40 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="app\App.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sen.Journal.Domain\Sen.Journal.Domain.csproj">
       <Project>{F01CC84E-D4F8-42BF-B339-DD0EB0C6D784}</Project>
       <Name>Sen.Journal.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Sen.Journal.Infrastructure.InMemory\Sen.Journal.Infrastructure.InMemory.csproj">
+      <Project>{3E1C54FB-9732-45C0-9AFC-7A5E9D3AD154}</Project>
+      <Name>Sen.Journal.Infrastructure.InMemory</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sen.Journal.Services\Sen.Journal.Services.csproj">
       <Project>{5B49A0DF-92A7-491C-B67D-93C357D94903}</Project>
       <Name>Sen.Journal.Services</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

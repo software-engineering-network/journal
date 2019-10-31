@@ -2,13 +2,13 @@
 
 namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 {
-    public class JournalEntryContentIsRequiredValidator : AbstractValidator<IJournalEntryContentCommand>
+    public class PasswordIsRequiredValidator : AbstractValidator<IPasswordCommand>
     {
         #region Construction
 
-        public JournalEntryContentIsRequiredValidator()
+        public PasswordIsRequiredValidator()
         {
-            RuleFor(x => x.JournalEntryContent)
+            RuleFor(x => x.Password)
                 .Must(x => !string.IsNullOrWhiteSpace(x.Value))
                 .WithMessage("{PropertyName} is required.");
         }

@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="590b2e3f-7a84-4dc1-9613-510dac7c4f95" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/LayerDesigner">
+  <layers>
+    <layer Id="a8606472-1471-4948-9f7e-dcafc873f512" name="Sen.Journal.Wpf">
+      <references>
+        <reference Id="5ac48b0b-2c0e-402e-a459-5f69bfaf6896" name="Sen.Journal.Wpf">
+          <ArtifactNode Label="Sen.Journal.Wpf" Category="CodeSchema_Project" Id="(Assembly=../Sen.Journal.Wpf/Sen.Journal.Wpf.csproj)">
+            <Category Ref="File" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=SoftwareEngineeringNetwork.JournalApplication.Wpf)" Label="SoftwareEngineeringNetwork.JournalApplication.Wpf.exe" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.exe" />
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="db0a51f0-8ded-42b1-a8ce-973ef97d3e12" name="Sen.Journal.Infrastructure.InMemory">
+      <references>
+        <reference Id="ddc0c677-9961-45e3-8afc-ece437292602" name="Sen.Journal.Infrastructure.InMemory">
+          <ArtifactNode Label="Sen.Journal.Infrastructure.InMemory" Category="CodeSchema_Project" Id="(Assembly=../Sen.Journal.Infrastructure.InMemory/Sen.Journal.Infrastructure.InMemory.csproj)">
+            <Category Ref="File" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory)" Label="SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="352dafa6-5e64-4852-926b-ed5540ccfdee" name="Sen.Journal.Services">
+      <references>
+        <reference Id="d18e7ae2-50bf-432b-aa01-619c65dc3f88" name="Sen.Journal.Services">
+          <ArtifactNode Label="Sen.Journal.Services" Category="CodeSchema_Project" Id="(Assembly=../Sen.Journal.Services/Sen.Journal.Services.csproj)">
+            <Category Ref="File" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=SoftwareEngineeringNetwork.JournalApplication.Services)" Label="SoftwareEngineeringNetwork.JournalApplication.Services.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="b5dcd021-f5f7-4aea-a998-047edd245d8d" name="Sen.Journal.Domain">
+      <references>
+        <reference Id="740fefc4-d281-4bc3-b453-e88b937fe66c" name="Sen.Journal.Domain">
+          <ArtifactNode Label="Sen.Journal.Domain" Category="CodeSchema_Project" Id="(Assembly=../Sen.Journal.Domain/Sen.Journal.Domain.csproj)">
+            <Category Ref="File" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=SoftwareEngineeringNetwork.JournalApplication.Domain)" Label="SoftwareEngineeringNetwork.JournalApplication.Domain.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+  </layers>
+</layerModel>

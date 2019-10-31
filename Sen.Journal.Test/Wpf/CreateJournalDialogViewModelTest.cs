@@ -30,10 +30,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Wpf
                 unitOfWork.JournalRepository
             );
 
-            _createJournalDialogViewModel = new CreateJournalDialogViewModel(
-                new NotifyPropertyChanged(),
-                journalManagementService
-            );
+            _createJournalDialogViewModel = new CreateJournalDialogViewModel(journalManagementService);
 
             _journalService = new JournalService(unitOfWork.JournalRepository);
         }
