@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using SoftwareEngineeringNetwork.JournalApplication.Services;
+﻿using SoftwareEngineeringNetwork.JournalApplication.Services;
 
 namespace SoftwareEngineeringNetwork.JournalApplication.Wpf
 {
@@ -7,19 +6,14 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Wpf
     {
         #region Fields
 
-        private readonly INotifyPropertyChanged _notifyPropertyChanged;
         private readonly IJournalManagementService _journalManagementService;
 
         #endregion
 
         #region Construction
 
-        public CreateJournalDialogViewModelFactory(
-            INotifyPropertyChanged notifyPropertyChanged,
-            IJournalManagementService journalManagementService
-        )
+        public CreateJournalDialogViewModelFactory(IJournalManagementService journalManagementService)
         {
-            _notifyPropertyChanged = notifyPropertyChanged;
             _journalManagementService = journalManagementService;
         }
 
@@ -29,10 +23,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Wpf
 
         public CreateJournalDialogViewModel Create()
         {
-            return new CreateJournalDialogViewModel(
-                _notifyPropertyChanged,
-                _journalManagementService
-            );
+            return new CreateJournalDialogViewModel(_journalManagementService);
         }
 
         #endregion

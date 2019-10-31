@@ -24,8 +24,6 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Wpf
 
         private static void RegisterServices(ContainerBuilder builder)
         {
-            builder.RegisterType<NotifyPropertyChanged>().As<INotifyPropertyChanged>();
-
             builder.RegisterType<CreateJournalDialogViewModelFactory>().As<ICreateJournalDialogViewModelFactory>();
         }
 

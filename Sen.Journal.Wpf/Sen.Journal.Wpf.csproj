@@ -105,7 +105,6 @@
     <Compile Include="register-user-dialog\RegisterUserDialog.xaml.cs">
       <DependentUpon>RegisterUserDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="shared\NotifyPropertyChanged.cs" />
     <Compile Include="register-user-dialog\RegisterUserDialogViewModel.cs" />
     <Compile Include="register-user-dialog\IRegisterUser.cs" />
     <Compile Include="main-window\MainWindow.xaml.cs">

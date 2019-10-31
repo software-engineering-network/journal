@@ -6,10 +6,18 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Wpf
     {
         #region Properties
 
+        string EmailAddress { get; set; }
+        string Name { get; set; }
+        string Password { get; set; }
+        string Surname { get; set; }
+        string Username { get; set; }
+
         DelegateCommand RegisterUserCommand { get; }
 
         #endregion
 
         CreateUser BuildCreateUserCommand();
+
+        void RegisterUser();
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace SoftwareEngineeringNetwork.JournalApplication.Wpf
+﻿namespace SoftwareEngineeringNetwork.JournalApplication.Wpf
 {
     public class MainWindowViewModel :
         ViewModelBase,
@@ -14,10 +12,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Wpf
 
         #region Construction
 
-        public MainWindowViewModel(
-            INotifyPropertyChanged notifyPropertyChanged,
-            OpenRegisterUserDialogCommand openRegisterUserDialogCommand
-        ) : base(notifyPropertyChanged)
+        public MainWindowViewModel(OpenRegisterUserDialogCommand openRegisterUserDialogCommand)
         {
             OpenRegisterUserDialogCommand = openRegisterUserDialogCommand;
         }

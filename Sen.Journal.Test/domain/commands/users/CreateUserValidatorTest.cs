@@ -23,7 +23,11 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test.Domain
 
             _createUserValidator = new CreateUserValidator(
                 new EmailAddressIsRequiredValidator(),
+                new EmailAddressMustBeValid(),
                 new EmailAddressMustNotExistValidator(unitOfWork.UserRepository),
+                new NameIsRequiredValidator(), 
+                new PasswordIsRequiredValidator(), 
+                new SurnameIsRequiredValidator(), 
                 new UsernameIsRequiredValidator(),
                 new UsernameMustNotExistValidator(unitOfWork.UserRepository)
             );
