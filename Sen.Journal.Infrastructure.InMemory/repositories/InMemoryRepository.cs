@@ -38,9 +38,8 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
 
         public T Create(T entity)
         {
-            var currentUser = _currentUserProvider.GetCurrentUser();
             entity.Id = new Id(NextId(Entities));
-            entity.SetCreatedInfo((UserId) currentUser.Id);
+            entity.Update();
 
             Entities.Add(entity);
 
@@ -54,15 +53,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
 
         public bool Exists(Func<T, bool> predicate)
         {
-            try
-            {
-                var existingEntity = Entities.First(predicate);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            return Entities.Any(predicate);
         }
 
         public IEnumerable<T> Fetch()
@@ -89,8 +80,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Infrastructure.InMemory
         {
             var storedEntity = Entities.Find(x => x.Id == entity.Id);
 
-            var currentUser = _currentUserProvider.GetCurrentUser();
-            storedEntity.SetModifiedInfo((UserId) currentUser.Id);
+            storedEntity.Update();
 
             return Find(entity.Id);
         }

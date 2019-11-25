@@ -8,7 +8,7 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Test
         public static IUnitOfWork CreateUnitOfWork()
         {
             var context = new Context();
-            var currentUserProvider = TestObjectFactory.CreateCurrentUserProvider();
+            var currentUserProvider = TestServiceFactory.CreateCurrentUserProvider();
             var unitOfWork = new UnitOfWork(context, currentUserProvider);
             return unitOfWork;
         }

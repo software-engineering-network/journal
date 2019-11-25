@@ -9,7 +9,6 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
         UserId ModifiedBy { get; }
         DateTime? ModifiedDate { get; }
 
-        IAuditable SetCreatedInfo(UserId userId);
-        IAuditable SetModifiedInfo(UserId userId, DateTime? now = null);
+        IAuditable Update();
     }
 }

@@ -4,9 +4,10 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 {
     public class BasicDateTimeProvider : IDateTimeProvider
     {
-        public DateTime Now()
-        {
-            return DateTime.Now;
-        }
+        #region IDateTimeProvider Members
+
+        public DateTime Now => DateTime.Now;
+
+        #endregion
     }
 }

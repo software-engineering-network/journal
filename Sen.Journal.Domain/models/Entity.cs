@@ -19,16 +19,15 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 
         #region Construction
 
-        protected Entity(Id id)
-            : this()
+        protected Entity(IAuditable auditable, Id id)
+            : this(auditable)
         {
             Id = id;
         }
 
-        protected Entity()
+        protected Entity(IAuditable auditable)
         {
-            var dateTimeProvider = new BasicDateTimeProvider();
-            _auditable = new Auditable(dateTimeProvider);
+            _auditable = auditable;
         }
 
         #endregion
@@ -43,14 +42,9 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 
         public DateTime? ModifiedDate => _auditable.ModifiedDate;
 
-        public IAuditable SetCreatedInfo(UserId userId)
+        public IAuditable Update()
         {
-            return _auditable.SetCreatedInfo(userId);
-        }
-
-        public IAuditable SetModifiedInfo(UserId userId, DateTime? now = null)
-        {
-            return _auditable.SetModifiedInfo(userId, now);
+            return _auditable.Update();
         }
 
         #endregion

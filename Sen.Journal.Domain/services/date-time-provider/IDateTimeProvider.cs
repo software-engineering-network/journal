@@ -4,6 +4,10 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 {
     public interface IDateTimeProvider
     {
-        DateTime Now();
+        #region Properties
+
+        DateTime Now { get; }
+
+        #endregion
     }
 }
