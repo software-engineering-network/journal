@@ -24,7 +24,7 @@
             JournalId journalId,
             UserId userId,
             JournalTitle journalTitle
-        ) : this(userId, journalTitle)
+        )
         {
             Id = journalId;
         }

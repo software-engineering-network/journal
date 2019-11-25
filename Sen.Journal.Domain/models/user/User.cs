@@ -41,7 +41,7 @@
             RecordName recordName,
             Surname surname,
             Username username
-        ) : base(userId)
+        )
         {
             Id = userId;
             EmailAddress = emailAddress;

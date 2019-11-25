@@ -19,9 +19,13 @@ namespace SoftwareEngineeringNetwork.JournalApplication.Domain
 
         #region Construction
 
-        protected Entity(IAuditable auditable, Id id)
-            : this(auditable)
+        protected Entity()
         {
+        }
+
+        protected Entity(IAuditable auditable, Id id)
+        {
+            _auditable = auditable;
             Id = id;
         }
 
